@@ -1,6 +1,6 @@
 # c++结构体与c结构体的区别
 ##### c语言
-```
+``` c++
 struct today
 {
     int hour;
@@ -9,7 +9,7 @@ struct today
 };
 ```
 ##### c++
-```
+``` c++
 struct today
 {
 private://有权限控制
@@ -30,7 +30,7 @@ public:
 };
 ```
 # c++类的使用
-```
+``` c++
     #include<iostream>
     struct today
     {
@@ -62,7 +62,7 @@ public:
 # 类的权限管理
 - 对类的成员的访问做限制
 ##### private:私有权限
-```
+``` c++
     struct SData{
     private://此时i和j只能在本类的内部被使用
         int i;
@@ -70,7 +70,7 @@ public:
     };
 ```
 ##### public:公有权限
-```
+``` c++
     struct SData{
     public://此时i和j可以被类的外部使用
         int i;
@@ -79,14 +79,14 @@ public:
 ```
 # struct和private的区别
 ##### struct:主要用于纯的结构体，其成员默认都是public
-```
+``` c++
 struct SData{
     int i;//公有成员
     int j;
 }
 ```
 ##### class:由于有功能的开发，其成员默认都是private
-```
+``` c++
 class SData{
    int i;私有成员
    int j;
@@ -94,7 +94,7 @@ class SData{
 ```
 # this指针
 - 用于指向本类中的成员
-```
+``` c++
 struct SData{
     int i;
     int j;
@@ -109,7 +109,7 @@ struct SData{
 ***
 # c++默认参数
 - 当函数有多个参数时通过在定义时对后面的参数进行赋值来减少调用时的参数个数
-```
+``` c++
     #include<iostream>
     int add(int x,int y,int z=0);//add函数有三个形式参数其中最后一个被赋值了
     int main()
