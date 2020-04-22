@@ -1,11 +1,12 @@
 # c++结构体与c结构体的区别
 ##### c语言
-``` struct today
-    {
-        int hour;
-        int min;
-        int sec;//不可以定义成员函数没有权限控制
-    };
+```
+struct today
+{
+    int hour;
+    int min;
+    int sec;//不可以定义成员函数没有权限控制
+};
 ```
 ##### c++
 ```
