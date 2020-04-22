@@ -1,0 +1,14 @@
+* sqlserver_trigger
+** DDL trigger 
+** DML trigger
+*** insert trigger
+*** update trigger
+*** delete trigger
+*** grammer
+	#+BEGIN_SRC 
+	create trigger trigger_name
+	on{table|view}
+	{
+	
+	}
+	#+END_SRC

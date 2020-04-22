@@ -1,0 +1,58 @@
+* emacs-day1
+** emcas手册
+- C-h t:打开emacs简易手册
+- C-g:取消执行
+- C-h k:按键是什么意思
+- C-h v:变量是什么意思
+- C-h f:函数是什么意思
+** emacs光标移动
+- C-p:前一行
+- C-n:下一行
+- C-b:前一个字符
+- C-f:后一个字符
+- C-a:移动到行首
+- C-e:移动到行尾
+- M-a:移动到句子的头部
+- M-e:移动到句子头部
+- M-<:移动到文章头部
+- M->:移动到文章尾部
+- C-u #:重复执行某命令#次例如C-u 8 C-p
+** 激活emacs自带功能
+- 显示行号:M-x linum-mode
+- 打开文件:C-x C-f然后输入文件路径
+- 保存文件:C-x C-s
+** elisp编程
+- learn x in y minutes
+- (+ 2 2);;2+2
+- (+ 2 (* 3 4));;2+3*4
+- (setq variablename "value");;定义变量并赋值
+- (message variable);;输出变量的值
+- (defun functionname ());;定义一个函数
+- (defun interactive functionname());;将函数定义成交互式的
+- (global-set-key (kbd "<f2>") 'my-func);;绑定快捷键
+*** 测试代码
+- (+ 2 2)
+- (+ 2 (* 3 4))
+- (setq my-name "yangqibin")
+- (message my-name)
+- (defun my-func ()
+-  (interactive)
+-  (message "hello,%s" my-name))
+- (my-func)
+- (global-set-key (kbd "<f2>") 'my-func)
+** 配置文件
+- 位置:~/.emacs.d/init.el
+- (tool-bar-mode -1):关闭工具栏
+- (scroll-bar-mode):关闭滚动条
+- (linum-mode 1):开启行号
+- (electric-indent-mode):关闭缩进
+- (setq inhibit-splash-screen t):关闭启动页面
+- (defun open-my-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+** package系统
+- M-x package-install
+- company包用于自动补全
+** org-mode
+- C-c C-t to goggle TOO states
+- GTD (getting things done)

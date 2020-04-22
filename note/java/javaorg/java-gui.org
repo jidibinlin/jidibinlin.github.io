@@ -1,0 +1,211 @@
+* AWT-summary
+  - AWT is a kit to create the gui
+  - Awt containing Component and MenuComponent
+*** Component
+**** Container
+***** Window
+****** Frame class used to create a titled frame window
+	   #+BEGIN_SRC java
+
+	   import java.awt.*;
+	   public class Example01{
+	      public static void main(String[] args)
+	      {
+	          Frame f =new Frame("first frame");//create new frame obj
+			  f.setSize(400,300);//set the frame size
+			  f.setLocation(300,200);//set the location
+			  f.setVisiable(true)//visiablity
+	      }
+	   }
+
+	   #+END_SRC
+****** Dialog class used to create dialog 
+******* FileDialog
+***** Panel is a container too. But can`t exist alone.
+**** Buttom
+**** Label
+**** CheckBox
+**** TextComponent
+***** TextArea
+***** TextField
+*** MenuComponent
+**** MenuBar
+**** MenuItem
+***** Menu
+** layout manager
+   - kits con`t exist alone. It must be put in a container.
+   - The container determine the size what the kits have.
+   - we can use the setLayout() way to set the layout manager
+*** file layout manager
+**** FlowLayout 
+	 - Simpleist layout manager. Kits will be set at the position as the add order from left to right.
+	   when kits come to the border ,its will be set at the new line automaticlly.
+***** Constructed ways
+****** FlowLayout(): Kits will be set centerly horizontally,vertical position 5 units defaultly;
+****** FlowLayout(int align): kits will be set centerly horizontally,vertical position 5 units defaultly, refer to the container; 
+****** FlowLayout(int align,int hgap,int vgap): Set the alian way and vertical position as your wish;
+	   #+BEGIN_SRC java
+
+	   import class java.awt.*;
+	   public class Example02{
+	   public static void main(String[],args)
+	       {
+	           final Frame f=new Frame("flowlayout");//create a window named flowlayout
+			   f.setLayout(new FlowLayout(FlowLayout.LEFT,20,30));//set FlowLayout as the layout manager.All the kits aline left,horizont position 20, vertical position 30
+			   f.setSize(220,300);
+			   f.setLocation(300,200);
+			   f.add(new Button("first"));//the first Button
+			   f.add(new Button("second"));//the second Button
+			   f.add(new Button("third"));//the third Button
+	       }
+	   }
+
+	   #+END_SRC
+**** Border Layout
+	 - One complex layout manager. Container are divided into 5 place.East ,South, West, North and Center
+	 - When we want to add component to the container we need to use "add (Component comp,Object constraints)"
+******* comp is the kits to be add,constraints set the position of the kits. 
+		#+BEGIN_SRC java
+
+		import java.awt.*;
+		public class Example03{
+		public static void main(String[],args)
+		    {
+			    final Frame f = new Frame("BorderLayout");
+				f.setLayout(new BorderLayout());
+				f.setSize(300,300);
+				f.setLocation(300,200);
+				f.setVisiable(true);
+				Button but1 = new Button("east");
+				Button but2 = new Button("sourth");
+				Button but3 = new Button("west");
+				Button but4 = new Button("north");
+				Button but5 = new Button("center");
+				f.add(but1,BorderLayout.EAST);
+				f.add(but2,BorderLayout.SOURTH);
+				f.add(but3,BorderLayout.WEST);
+				f.add(but4,BorderLayout.NORTH);
+				f.add(but5,BorderLayout.CENTER);
+		    }
+		}
+		
+		#+END_SRC
+**** GirdLayout
+	 - The container are divided into servral boxes what the size is same
+***** Constructer ways
+****** GridLayout(): only one line, each kits occupy one colum;
+****** GridLayout(int row, int cols): set the rows and colums of the contain; 
+****** GridLayout(int rows, int cols, int hgap, int vgap), set the rows ,clos,and the vertical, horizontal speration distance;
+	   #+BEGIN_SRC java
+
+	   import java.awt.*;
+	   public class Example04{
+	       public static void main(String[] args)
+		   {
+		       Frame f = new Frame("GridLayout");//create a window
+			   f.setLayout(new GridLayout(3,3));//set the window as 3*3 grid
+			   f.setSize(300,300);//set the size of the window
+			   f.setLocation(400,300);
+			   for(int i=1;i<=9;i++)
+			   {
+			       Button btn = new Button("btn" + i);
+				   f.add(btn);
+			   }
+			   f.setVisiable(true);
+		   }
+	   }
+	   
+	   #+END_SRC
+	   
+**** GirdBagLayout
+	 -The most complex and flexible Layout manager.GirdBagLayout all one kits takes over several grids;
+***** using step
+****** 1. create the GridbagLayout layout manager
+	   #+BEGIN_SRC java
+
+	   GridBagLayout layout = new GridBagLayout();
+	   container.setLayout(layout);
+
+	   #+END_SRC
+****** 2. create the GridBagContraints and set attributes
+	   #+BEGIN_SRC java
+	   
+	   GridBagContraints constraints = new GridBagContraints();
+	   constraints.gridx = 1;//set the grid top-left coner broadwise index
+	   constraints.gridy = 1;//set the grid top-left coner endwise index
+	   constraints.gridwidth = 1;//set the grids to be took over by the kit broadwise
+	   constraints.gridheight = 1;//set the grids to be took over by the kit endwise
+ 
+	   #+END_SRC
+****** 3. call the setConstraints() way to create the reference between GridBagConstraints obj and kits what are controled
+	   #+BEGIN_SRC java
+	   
+	   layout.setConstraints(component,constraints);
+	   
+	   #+END_SRC
+****** 4. add kits into container
+	   #+BEGIN_SRC java
+	   
+	   container.add(component);
+	   
+	   #+END_SRC
+	   
+	   #+BEGIN_SRC java 
+	   import java.awt.*;
+	   class Layout extends Frame{
+	       public Layout(String title){
+		       GridBagLayout layout = new GridBagLayout();
+			   this.setLayout(layout);
+			   c.fill = GridBagConstraints.BOTH;//set kits can be extends vertically and horizontally
+			   c.weightx = 1;//vertical weight
+			   c.weighty = 1;//horizontal weight
+			   this.addComponent("btn1",layout,c);
+			   this.addComponent("btn2",layout,c);
+			   this.addComponent("btn3",layout,c);
+			   c.gridwidth=GridBagConstraints.REMAINDER;
+			   this.addComponent("btn4",layout,c);
+			   c.weightx = 0;
+			   c.weighty = 0;
+			   addComponent("btn5",layout,c);
+			   c.gridwidth = 1;//set kits take over one grid
+			   this.addComponent("btn6",layout,c);
+			   c.gridwidth = GridBagConstraints.REMAINDER;
+			   this.addComponent("btn7",layout,c);
+			   c.gridheight = 2;
+			   c.gridwidth = 1
+			   c.weightx = 2;
+			   c.weighty = 2;
+			   this.addComponent("btn8",layout,c);
+			   c.gridwidth=GridBagConstraints.REMAINDER;
+			   c.gridheight = 1;
+			   this.addComponent("btn9",layout,c);
+			   this.addComponent("btn10",layout,c);
+			   this.setTitle(title);
+			   this.pack();
+			   this.setVisiable(true);
+		   }
+		   private void addComponent(String name,GridBagLayout layout,GridBagConstraints c)
+		   {
+		       Button bt = new Button(name);
+			   layout.setConstraints(bt,c);
+			   this.add(bt);
+		   }
+	   }
+	   
+	   public class Example05{
+	   public static void main(String [] args){
+	       new Layout("GridBagLayout");
+		   }
+	   }
+
+	   #+END_SRC
+**** CardLayout
+***** common ways
+	  #+BEGIN_SRC java
+	  void first (Constainer parent);
+	  void last (Container parent);
+	  void previous(Container parent);
+	  void next(Container parent);
+	  void show(Container parent,String name);
+	  
+	  #+END_SRC

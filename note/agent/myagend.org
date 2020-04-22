@@ -1,0 +1,4 @@
+** TODO learn emacs
+   DEADLINE: <2018-11-30 Fri> SCHEDULED: <2018-11-25 Sun>
+** TODO learn elisp
+** TODO hacking emacs
