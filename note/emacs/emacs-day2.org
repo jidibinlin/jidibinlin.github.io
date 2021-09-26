@@ -1,0 +1,75 @@
+* emacs-day2
+** disable backup file
+#+BEGIN_SRC emacs-lisp
+  (setq make-backup-fiLes Nil)
+#+End_SRC
+
+#+RESULTS:
+** comments
+1.insert src
+#+BEGIN_SRC emacs-lisp
+    代码
+#+END_SRC
+2.C-c '代码进行注释
+    再次C-c '退出
+    <s tab直接出现BEGIN_SRC.....
+
+3.开启org模式代码高亮
+#+BEGIN_SRC emacs-lisp
+  (require 'org)
+  (setq org-src-fontify-natively t)
+#+END_SRC
+** add delete selection mode 
+#+begin_src emacs-lisp
+(delete-selection-mode t)
+#+end_src
+** full screen
+#+BEGIN_SRC 
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
+#+END_SRC
+** 括号匹配
+#+BEGIN_SRC emacs-lisp 
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+#+END_SRC
+** show current line
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode t)
+#+END_SRC
+** emacs package-source
+- see the doc of melpa official site
+*** install hungry-delete
+- M-x package-install hungry-delete
+#+BEGIN_SRC emacs-lisp
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+#+END_SRC
+*** M-x package-list-list
+    -d:delete
+    -u:update
+    -x:execute
+    -i:install
+*** useful package
+    -smex/helm-smex
+    -swiper
+    -smartparens
+*** M-x customize-group tp customize the package 
+*** M-Return 序号修正等功能
+ 
+** javascript
+1.install package js2-mode
+#+BEGIN_SRC elisp
+(setq auto-mode-alist
+    (append
+    '(("\\.js\\'" . js2-mode))
+    auto-mode-alist)）
+#+END_SRC
+2.install package nodejs-repl
+3.install exec-path-frome-shell
+
+** learn more from emacs itselt
+1. c-h c-f(find-function), c-h c-v(find-variable), c-h c-k(find-function-on-key)
+2. tell user to learn more about elisp(M-x info)
+** GTD agenda
+1. C-c C-s:schedule
+2. C-c C-d:deadline
+3. org-agend

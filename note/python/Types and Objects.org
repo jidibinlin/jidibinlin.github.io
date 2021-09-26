@@ -1,0 +1,141 @@
+* Types and Objects
+  1. All the data stored in a Python program is built around the concept of an object.
+     Objects include fundamental data types such as numbers, strings, lists, and dictionaries.
+     However, it’s also possible to create user-defined objects in the form of classes. In addi-
+     tion, most objects related to program structure and the internal operation of the inter-
+     preter are also exposed.This chapter describes the inner workings of the Python object
+     model and provides an overview of the built-in data types. Chapter 4, “Operators and
+     Expressions,” further describes operators and expressions. Chapter 7, “Classes and
+     Object-Oriented Programming,” describes how to create user-defined objects.
+** Terminology
+   1. object:
+	  Every piece of data stored in a program is an object.Each object has an identity,a type(which is also known as its class),and a value
+
+	  #+BEGIN_SRC comments
+	  for example ,when you write a = 42,an integer object is created with the value of 42.You can view the identity of an object as a
+	  pointer to its location in memory.a is a name that refers to this specific location.
+	  #+END_SRC
+
+   2. type:
+	  The type of an object,also known as the object`s class,describes the internal representation of the object as well as the methods and operations that it supports.
+	  
+   3. instance: 
+      When an object of a particular type is created,that object is sometimes called an instance of that type.
+
+   4. mutable-object:
+	  After an instance is created its identity and type cannot be changed.If an object`s value can be modified,the object is said to be mutable.
+
+   5. immutable-object:
+	  After an instance is created its identity and type cannot be changed.If an object`s value cannot be modified,the object is said to be immutable
+
+   6. containner or collection
+	  An object that contains references to other objects is said to be a container or collection
+
+   7. Most objects are characterized by a number of data attributes and methods
+
+   8. attribute:
+	  An attribute is a value associated with an object.
+
+   9. methods:
+	  A method is a function that performs some sort of operation on an object when the method is invoked as a function
+
+   10. methods are accessed using the dot(.)operator,as shown in the following example:
+ 
+	   #+BEGIN_SRC python
+	   a = 3 + 4j    #Create a complex number
+	   r = a.real    #Get the real part(an attribute)
+
+	   b=[1, 2, 3]   #Create a lists
+	   b.append(7)   #Add a new element using the append method
+	   #+END_SRC
+
+** Object Identity and Types
+
+   1. The built-in function id() returns the identity of an object as an integer.
+      This integer ususally corresponds to the object`s location in memory,although this is specific to the Python
+	  implementation and no such interpretation of the identity should be made.
+   2. The build-in function type() returns the type if an object. 
+      Here`s an example of different ways you might compare two ohjects:
+
+	  #+BEGIN_SRC python
+	  # Compare two objects
+	  def compare(a,b):
+	      if a is b:
+		      # a and b are the same objects
+			  statements
+          if a == b:
+		      # a and b have the same value
+          if type(a) is type(b):
+		      # a and b have the same type
+			  statements
+	  #+END_SRC
+
+   3. The type of an object is itself an object known as the object`s class.This object is uniquely defined and is always the same for all instances
+	  of a given type.Therefore,the type can be compared using the is operator.All type objects are assigned names that can be used to perform type 
+	  checking.Most of these names are built-ins,such as list,dict,and file.Here`s an example
+
+      #+BEGIN_SRC python
+	  if type(s) is list:
+          s.append(item)
+      if type(d) is dict:
+	      d.update(t)
+      #+END_SRC
+	  
+   4. Because types can be specialized by defining classes,a better way to check type is to use the built-in isinstance(object, type) function.Here`s an example:
+	  
+	  #+BEGIN_SRC python
+	  if isinstance(s,list):
+	      s.append(item)
+      if isinstance(d,dict):
+	      d.update(t)
+	  #+END_SRC
+	  
+	  Because the isinstance() function is aware of inheritance,it is the preferred way to check the type of any Python object.
+
+   5. Althouth type check can be added to a program,type checking is often not as usefull as you might imagine.
+
+      1. For one,excessice checking severely affects performance.
+      2. Second,programs don`t always define objects that neatly fit into an inheritance hierarchy.
+
+      For instance,if the purpose of the preceding isinstance(s.list)statement is to test wherether s is "list-like",it wouldn`t 
+	  work with objects that had the same programming interface as a list but didn`t directly inherit from the built-in type.Another
+	  option for adding type-checking to a program is to define abstract base classes.This is described in Chapter 7.
+
+** Reference Counting and Garbage Collection
+   1. All objects are references-counted.An object`s reference count is increased whenever it`s assigned to 
+	  to a new name or placed in a container such as a list,tuple,or dictionary,as shown here:
+
+	  #+BEGIN_SRC python
+	  a = 37       #Creates an object with value 37
+	  b = a        #Increases reference count on 37
+	  c = []    
+	  c.append(b)  Increases reference count on 37
+	  #+END_SRC
+   
+	  This example creates a single object containing the value 37.a is merely a name that refers to the newly
+	  created object. When b is assigned a,b becomes a new name for the same object and the object`s reference 
+	  increases again.Throughout the example,only one object contains 37.All other operations are simply creating 
+	  new references to the object.
+
+   2. An object`s reference count is decreased by the del statement or whenever a reference goes out of scope(or is reassigned).
+	  Here`s an example:
+	  
+	  #+BEGIN_SRC python
+	  del a      # Decrease reference count of 37
+	  b = 42     # Decrease reference count of 37
+	  c[0] = 2.0 # Decrease reference count of 37
+	  #+END_SRC
+	  
+	  The current reference count of an object can be obtained using the sys.getrefcount() function.For example:
+	  #+BEGIN_SRC python
+	  >>> a = 37
+	  >>> import sys
+	  >>> sys.getrefcount(a)
+	  7
+	  >>>
+	  #+END_SRC
+
+   3. 
+	  
+
+

@@ -1,0 +1,22 @@
+* Vue Cli
+  Vue Cli是一个官方发布的vue.js项目脚手架, 使用vue-cli可以快速搭建Vue开发环境以及对应的webpack配置
+** 安装Vue 脚手架
+*** vue-cli 3
+   #+begin_src shell
+     npm install -g @vue/cli
+   #+end_src
+*** vue-cli 2
+   #+begin_src shell
+     npm install -g @vue/cli
+     npm install -g @vue/cli-init
+     vue init webpack my-project
+   #+end_src
+** 初始化项目
+*** Vue CLI2初始化项目
+   #+begin_src shell
+     vue init webpack my-project
+   #+end_src
+*** Vue CLI3初始化项目
+   #+begin_src shell
+     vue create my-project
+   #+end_src

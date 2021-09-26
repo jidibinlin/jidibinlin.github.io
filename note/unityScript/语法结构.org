@@ -1,0 +1,52 @@
+* Unity语法结构
+
+脚本是附加在游戏物体上，用于定义游戏对象的行为代码 。Unity 支持javascript 和 c# 这里只介绍c#
+#+begin_src csharp
+  using namespace;
+
+  public class className:MonoBehaviour // 要想挂在Unity的物体上，必须继承MonoBehaviour
+  {
+      void funcName()
+      {
+          Debug.Log("show Debug info");
+          print("print info");
+      }
+  }
+#+end_src
+- 嵌入Unity的脚本 文件名和类名必须一致
+- 写好的脚本必须附加到物体上才可以执行  
+- 附加到物体的脚本必须从MonoBehavour类继承  
+* 使用Unity创建的cs(c#脚本)的基本结构
+#+begin_src csharp
+  using UnityEngine;
+  using System.Collections;
+
+  public class Demon01:MonoBehaviour{
+      //Use this for initialization
+      void Start(){
+        
+      }
+      //Update is called once per frame
+      void Update(){ //这个方法每一帧会调用一次
+        
+      }
+  }
+#+end_src
++ Unity中的字段
+  #+begin_src csharp
+    using UnityEngine;
+    using System.Collections;
+
+    public class Demon01:MonoBehaviour{
+        [SerializeField]// 序列化字段 :: 在编辑器中显示私有变量
+        private int a = 100;
+
+        [HideInInspector]// 在编辑器中隐藏字段
+        public int b;
+
+        [Range(0,100)] //设置在编辑器中的值的范围
+        public int c;
+    }
+  #+end_src
+
+* 脚本生命周期(必然事件)

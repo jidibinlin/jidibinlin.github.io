@@ -1,0 +1,84 @@
+* Webpack
+** 认识webpack
+   + webpack是一个现代的JavaScript应用的静态模块打包工具
+   + webpack让我们可能进行模块化开发，并且会帮助我们处理模块间的依赖关系
+   + 而且不仅仅是javaScript文件，我们的CSS、图片、json文件等等在webpack中都可以被当做模块来使用
+** webpack的安装
+   1. webpack需要依赖node环境
+   2. 当package.json中定义了scripts时，其中包含了webpack命令，那么使用的是局部webpack
+*** 全局安装
+    #+begin_src shell
+      npm install webpack -g
+    #+end_src
+*** 局部安装
+    #+begin_src shell
+      cd 对应目录
+      npm install webpack --save-dev
+    #+end_src
+    + --save-dev :: 是开发时的依赖，项目打包后不需要继续使用
+** webpack的起步
+*** 文件和文件夹解析
+    + dist文件夹 :: 用于存放之后打包的文件
+    + src文件夹 :: 用于存放我们写的源文件
+      + main.js :: 项目的入口文件
+      + mathUtils.js :: 定义了一些数学工具函数
+    + index.html :: 首页html
+    + package.json :: 通过npm init生成的, npm包管理的文件
+*** 基本开发步骤 
+    1. 按照模块化规范进行开发
+    2. 使用webpack进行打包
+      #+begin_src shell
+        webpack ./src/main.js ./dist/bundle.js
+      #+end_src
+*** webpack.config.js :: 用于简化命令，自动化打包
+    1. 使用npm init 生成package.json
+    2. 编写webpack.config.js
+    #+begin_src js
+      const path = require('path')
+      module.exports = {
+          entry: './src/main.js',
+          output: {
+              path: path.resolve(__dirname, 'dist'),
+              filename: 'bundle.js'
+          },
+      }
+    #+end_src
+** webpack的部署
+** loader的使用
+   + 在开发中，我们不仅仅有基本的js代码处理，我们也需要加载css、图片，也包括一些高级的将ES6
+     转成ES5代码，将TypeScript转成ES5代码，将scss转成css，将.jsx、.vue文件转成js文件等等。
+   + 对于webpack本身的能力来说，对于这些转化是不支持的，我们需要使用loader进行拓展。
+*** 引入css的步骤
+    1. 先在main.js中依赖.css
+       #+begin_src js
+         require('./css/normal.css')
+       #+end_src
+    2. 导入style-loader 和 css-loader
+       1. 安装css-loader 和 style-loader
+          #+begin_src shell
+            npm install --save-dev css-loader style-loader
+          #+end_src
+       2. 在webpack.config.js中的modules关键字下进行配置
+          #+begin_src js
+            module.exports={
+                modules: {
+                    rules : {
+                        {
+                            test:/\.css$/,
+                            // 加载顺序 从右向左
+                            use: ['style-loader','css-loader']
+                        }
+                    }
+                }
+            }
+          #+end_src
+
+*** 引入图片的步骤
+** webpack中配置Vue
+   在后续项目中，我们会使用Vuejs进行开发，而且会以特殊的文件夹来组织vue的组件
+   1. 安装vue
+   #+begin_src shell
+     npm install vue --save
+   #+end_src
+** plugin的使用
+** 搭建本地服务器

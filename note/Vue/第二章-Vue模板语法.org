@@ -1,0 +1,848 @@
+* Vue模板语法
+** 插值操作 :: Mustache
+*** 我们可以通过Mustache语法（也就是双大括号）将data中的文本数据插入到HTML中并且数据是响应式的
+    #+begin_src html
+       <div id="app">
+           <h2>Hello {{name}}</h2>
+           <h2>{{firstname}} {{firstname}}</h2>
+           <!-- mustache 语法中，不仅仅可以直接写变量，也可以写简单的表达式 -->
+           <h2>{{firstname + ' ' + firstname}}</h2>
+           <h2>{{counter * 2}}</h2>
+       </div>
+    #+end_src
+    #+begin_src web
+       <script type="text/javascript">
+         let app = new Vue({
+             el: '#app',
+             data:{
+                 name: 'VueJs',
+                 firstName: 'coder',
+                 lastName: 'why',
+                 counter: 100
+             }
+         })
+       </script>
+    #+end_src
+*** v-once 指令
+    数据只会在第一次展示出来，但是不会再响应式的更改了
+    #+begin_src html
+      <div id="app">
+          <!-- name只会在第一次展示出来，name值变动后，html不会显示新的值 -->
+          <h2 v-once >Hello {{name}}</h2>
+      </div>
+    #+end_src
+    #+begin_src web
+       <script type="text/javascript">
+         let app = new Vue({
+             el: '#app',
+             data:{
+                 name: 'VueJs',
+             }
+         })
+       </script>
+    #+end_src
+*** v-html 指令
+    某些情况下，我们从服务器请求到的数据本身就是一个HTML代码
+    如果我们通过{{}}来输出，会将HTML代码也一起输出。
+    但是我们可能希望的是按照HTML格式进行解析，并且显示对应的内容
+    + 该指令后面往往会跟上一个string类型
+    + 会将string的html解析出来并且进行渲染
+    #+begin_src html
+      <div id="app">
+        <h2>{{url}}</h2>
+        <h2 v-html="url"></h2>
+      </div>
+    #+end_src
+    #+begin_src web
+       <script type="text/javascript">
+         let app = new Vue({
+             el: '#app',
+             data:{
+                 message: '你好啊',
+                 url: '<a href="https://www.baidu.com">百度一下</a>'
+             }
+         })
+       </script>
+    #+end_src
+*** v-text 指令
+    + v-text作用和Mustache比较相似： 都是用于将数据显示在界面中
+    + v-text通常情况下接受一个string类型
+    #+begin_src html
+      <div id="app">
+        <h2>{{message}}</h2>
+        <!-- aaaaaa会被直接覆盖 不够灵活 -->
+        <h2 v-text="message">aaaaaa</h2>
+      </div>
+    #+end_src
+    #+begin_src web
+      <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data:{
+                message: '你好啊',
+            }
+        })
+      </script>
+    #+end_src
+*** v-pre 指令
+    + v-pre用于跳过这个元素和它子元素的变异过程，用于显示原本的Mustache语法类似于转义
+      #+begin_src html
+        <div id="app">
+          <h2>{{message}}</h2>
+          <!-- 这里会直接显示{{message}} -->
+          <h2 v-pre>{{message}}</h2>
+        </div>
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+          let app = new Vue({
+              el: '#app',
+              data:{
+                  message: 'hello world',
+              }
+          })
+        </script>
+      #+end_src
+*** v-cloak 指令
+    + 在某些情况下，我们浏览器可能会直接显示出未编译的Mustache标签
+    + cloak :: 斗篷 防止显示抖动
+    #+begin_src html
+      <style>
+       [v-cloak]{
+           display: none;
+        }
+      </style>
+      <div id="app" v-cloak>
+        <h2>{{message}}</h2>
+        <!-- 这里会直接显示{{message}} -->
+        <h2 v-pre>{{message}}</h2>
+      </div>
+    #+end_src
+    #+begin_src web
+      //在Vue解析之前，div中有一个属性v-cloak
+      //在Vue解析之后，div中没有一个属性v-cloak
+      <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello world',
+            }
+        })
+      </script>
+    #+end_src
+    
+** 绑定属性
+*** v-bind
+    + v-bind用于动态绑定属性
+      - 比如动态绑定a元素的href属性
+      - 比如动态绑定img元素的src属性
+    + 作用 :: 动态绑定属性
+    + 缩写 ::
+    + 预期 :: any(with argument) | Object (without argument)
+    + 参数 :: attrOrProp(optional)
+    #+begin_src html
+      <div id="app">
+        <!-- 动态绑定 src 属性 -->
+        <img v-bind:src="imgURL" alt="">
+        <!-- 动态绑定 href 属性 -->
+        <a v-bind:href="aHref">百度一下</a>
+      </div>
+    #+end_src
+    #+begin_src web
+      <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello world',
+                imgURL: 'img/path',
+                aHref: 'https://www.baidu.com'
+            }
+        })
+      </script>
+    #+end_src
+    + v-bind语法糖(简洁写法)
+      #+begin_src html
+        <img :src="imgURL" alt="">
+      #+end_src
+*** v-bind 绑定class属性
+    + 对象语法
+      #+begin_src html
+        <div id="app">
+          <!-- 动态绑定 src 属性 -->
+          <img v-bind:src="imgURL" alt="">
+          <!-- 动态绑定 href 属性 -->
+          <a v-bind:href="aHref">百度一下</a>
+        </div>
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+          let app = new Vue({
+              el: '#app',
+              data:{
+                  message: 'hello world',
+                  imgURL: 'img/path',
+                  aHref: 'https://www.baidu.com'
+              }
+          })
+        </script>
+      #+end_src
+    + 数组语法
+      - 用法一 :: 直接通过{}当顶一个类
+        #+begin_src html
+          <h1 :class="{'active' : isActive}">Hello World</h2>
+          <h1 :class="{'active' : true, 'line' : true}">Hello World</h2>
+        #+end_src
+      - 用法二 :: 也可以通过判断，传入多个值
+        #+begin_src html
+          <h1 :class="{'active' : isActive,'line':isLine}">Hello World</h2>
+        #+end_src
+      - 用法三 :: 和普通的class同时存在，并不冲突
+        #+begin_src html
+          <h1 class="title" :class="{'active' : isActive,'line':isLine}">Hello World</h2>
+        #+end_src
+      - 用法四 :: 如果过于复杂，可以放在一个methods或者computed中
+        [注]: classes是一个计算属性
+        - 语法
+          #+begin_src html
+            <h1 class="title" :class="classes">Hello World</h2>
+            <h1 :class="['active','line']"></h2>
+          #+end_src
+        - 例子
+          #+begin_src html
+            <div id="app">
+                <h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
+            </div>
+          #+end_src
+          #+begin_src web
+            <script type="text/javascript">
+              let app = new Vue({
+                  el: '#app',
+                  data:{
+                      message: 'Hello Vue',
+                      isActive: true,
+                      isLine: true
+                  },
+                  methods: {
+                      getClasses:function(){
+                          return {active : this.isActive, this.line:isLine}
+                      }
+                  }
+              })
+            </script>
+          #+end_src
+*** v-bind 绑定style属性
+    + 对象语法
+      + 语法
+        #+begin_src html
+          <h2 :style="{key(css属性名): value(属性值)}">{{message}}</h2>
+          <!-- font-size = fontSize -->
+          <h2 :style="{fontSize: '50px'}"</h2>
+        #+end_src
+      + 例子
+        #+begin_src html
+          <!-- <h2 :style="{fontSize: '50px'}"</h2> -->
+          <h2 :style="{fontSize: firstSize}"</h2>
+          <h2 :style="{fontSize: secondSize+'px'}"</h2>
+         
+        #+end_src
+        #+begin_src web
+          <script type="text/javascript">
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    firstSize: '100px',
+                    secondSize: 100
+                }
+            })
+          </script>
+        #+end_src
+    + 数组语法同 v-bind绑定style属性
+      #+begin_src html
+        <div id="app">
+            <h2 :style="[baseStyle]">{{message}}</h2>
+        </div>
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊',
+                 baseStyle:{backgroundColor: 'red'}
+             }
+         })
+        </script>
+      #+end_src
+** 计算属性
+   + 我们知道，在模板中可以直接通过插值语法显示一些data中的数据
+   + 但是某些情况，我们可能需要对数据进行一些转化后再显示，或者需要将多个数据结合起来进行显示
+     + 比如我们有firstName和lastName两个变量，我们需要显示完整的
+     + 但是如果多个地方都需要显示完整的名称，我们就要写多个{{firstName}} {{lastName}}
+   + 我们可以将上面的代码转换成计算属性
+   + 计算属性会进行缓存，如果多次使用，计算属性只会调用一次，性能更好
+*** 基本使用
+    #+begin_src html
+        <div id="app">
+            <h2 :style="[baseStyle]">{{fullName}}</h2>
+        </div>
+    #+end_src
+    #+begin_src web
+      <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'lebron',
+                lastName: 'James'
+            },
+            //计算属性
+            computed:{
+                fullName:function(){
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        })
+      </script>
+    #+end_src
+** 事件监听
+*** v-on介绍
+     + 作用 :: 绑定事件监听器
+     + 缩写 :: @
+     + 预期 :: Function | Inline Statement | Object
+     + 参数 :: event
+*** v-on基本使用   
+    #+begin_src html
+      <div id="app">
+        <h2>当前计数: {{counter}}</h2>
+        <!-- <button v-on:click="counter++">+</button>-->
+        <!-- <button v-on:click="counter++">-</button> -->
+        <button v-on:click="increment">+</button>
+        <button v-on:click="decrement">-</button>
+      </div>
+    #+end_src
+    #+begin_src web
+      <script type="text/javascript">
+        const app = new Vue({
+            el:"#app",
+            data:{
+                counter: 0,
+            },
+            methods:{
+                increment(){
+                    this.counter++;
+                },
+                decrement(){
+                    this.counter--;
+                }
+            }
+        })
+      </script>
+    #+end_src
+*** v-on语法糖
+    #+begin_src html
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    #+end_src
+*** v-on参数
+    + 如果该方法不需要额外参数，那么方法后的()可以不添加
+      #+begin_src html
+        <button @click="increment">+</button>
+        <button @click="increment()">+</button>
+        <button @click="decrement">-</button>
+        <button @click="decrement()">-</button>
+      #+end_src
+    + 如果需要传入某个参数，同时需要event对象时，可以通过$event传入事件 
+      #+begin_src html
+        <button @click="btnClick(123,$event)">按钮</button>
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊'
+             },
+             methods: {
+                 btnClick(abc,event){
+                     console.log('-------',abc,event);
+                 }
+             }
+         })
+        </script>
+      #+end_src
+    + 在事件定义时，写方法时忽略了小括号，但是方法本身是需要一个参数的，这个时候，Vue会默认将浏览器生产的event对象作为参数传入到方法中
+*** v-on修饰符
+    在某些情况下，我们拿到event的目的可能是进行一些事件处理
+    + .stop :: 调用event.stopPropagation() 用来阻止事件的冒泡
+      #+begin_src html
+        <div id="app">
+          <div @click='divClick'>
+            <button @click.stop="btnClick">按钮</button>
+          </div>
+        </div
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊'
+             },
+             methods: {
+                 btnClick() {
+                     console.log('btnClick');
+                 },
+                 divClick() {
+                     console.log('divClick')
+                 }
+             }
+         })
+        </script>
+      #+end_src
+    + .prevent :: 调用event.preventDefault() 阻止默认事件(例如表单的提交事件)
+      #+begin_src html
+        <div id="app">
+          <form action="baidu">
+              <input type="submit" value="提交" @click.prevent="submitClick" />
+          </form>
+        </div
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊'
+             },
+             methods: {
+                 submitClick(){
+                     console.log('-----------');
+                 }
+             }
+         })
+        </script>
+      #+end_src
+    + .{keyCode | keyAlias} :: 只当事件是从特定键出发时才触发回调
+      #+begin_src html
+        <div id="app">
+          <form action="baidu">
+              <input type="submit" value="提交" @keyup.enter="onEnter" />
+              <input type="submit" value="提交" @keydown.enter="onEnter" />
+              <input type="submit" value="提交" @keyup="keyup" />
+          </form>
+        </div
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊'
+             },
+             methods: {
+                 onEnter(){
+                     console.log('-----------');
+                 }
+                 keyup(){
+                     console.log('keyup');
+                 }
+             }
+         })
+        </script>
+      #+end_src
+    + .native :: 监听组件根元素的原生事件
+    + .once :: 只触发一次回调 
+      #+begin_src html
+        <div id="app">
+          <button @click.once="doThis"></button>
+        </div
+      #+end_src
+      #+begin_src web
+        <script type="text/javascript">
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: '你好啊'
+             },
+             methods: {
+                 doThis(){
+                     console.log('doThis');
+                 }
+             }
+         })
+        </script>
+      #+end_src
+** 条件判断
+*** v-if、v-else-if、v-else
+    这三个指令与JavaScript的条件语句if、else、else if类似
+    Vue的条件指令可以根据表达式的值在DOM中渲染或销毁元素或组件
+    #+begin_src web
+      <div id="app">
+          <h2 v-if="isShow">{{message}}</h2>
+          <h1 v-else="isShow">isShow为false时显示我</h1>
+
+          <h2 v-if="score>=90">优秀</h2>
+          <h2 v-else-if="score>=80">良好</h2>
+          <h2 v-else-if="score>=60">及格</h2>
+          <h2 v-else=>不及格</h2>
+
+          <h1>{{result}}</h1>
+
+      </div>
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊',
+               isShow: false,
+               score: 99
+           },
+
+           computed: {
+               result(){
+                   let showMessage = '';
+                   if(this.score >=90){
+                       showMessage = '优秀'
+                   } else if (this.score >=80) {
+                       showMessage = '良好'
+                   }
+                   return showMessage;
+               }
+           }
+       })
+      </script>
+    #+end_src
+*** 条件渲染案例
+**** 用户登录案例
+     + 用户在登录时，可以切换用户用账号登录还是邮箱地址登录
+       #+begin_src web
+         <div id="app">
+             <span v-if="isUser">
+                 <label>用户账号：</label>
+                 <!-- key是用来防止Vue内部的复用问题 -->
+                 <input placeholder ="用户账号: " key="username" />
+             </span>
+             <span v-else>
+                 <label>邮箱地址: </label>
+                 <input placeholder="邮箱地址" key="emial" />
+             </span>
+             <button @click="handleToggle">切换类型</button>
+         </div>
+         <script type="text/javascript">
+          let app = new Vue({
+              el: "#app",
+              data: {
+                  isUser: true
+              },
+              methods: {
+                  handleToggle(){
+                      isUser=!isUser
+                  }
+              }
+          })
+         </script>
+       #+end_src
+*** v-show
+    v-show的用法和v-if非常相似，也用于决定一个元素是否渲染
+**** v-if 和 v-show的区别
+     + v-if当条件为false时，压根不会有对应的元素在DOM中
+     + v-show 当条件为false时，仅仅是将元素的display属性设为none而已
+     + 当显示与隐藏之间切换很频繁时，使用v-show。当只有一次切换时，通过使用v-if
+     #+begin_src web
+       <div id="app">
+           <h2 v-show="isShow">{{message}}</h2>
+       </div>
+
+       <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊',
+                isShow: true
+            }
+        })
+       </script>
+     #+end_src
+** 循环遍历 
+*** v-for遍历数组
+    + v-for的语法类似与JavaScript中的for循环
+    + 格式如下: item in items的格式
+    + 如果在遍历过程中不需要使用索引值
+      - v-for = "movie in movies"
+    + 如果在遍历过程中，我们需要拿到元素在数组中的索引值
+      - 语法格式 :: v-for=(item,index) in items
+      - 其中index就代表了取出的item在原数组的索引值
+    #+begin_src web
+      <div id="app">
+          <ul>
+              <!-- 无index -->
+              <li v-for="item in names">{{item}}</li>
+              <!-- 有index -->
+              <li v-for="(item,index) in names">{{index}}.{{item}}</li>
+          </ul>
+      </div>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               names: ['why','kobe','james','curry']
+           }
+       })
+      </script> 
+    #+end_src
+*** v-for遍历对象
+    #+begin_src web
+      <div id="app">
+          <ul>
+
+              <ul>
+                  <!-- 如果在遍历对象的过程中，如果知识获取一个值，那么获取到的是value -->
+                  <li v-for="item in info">{{item}}</li>
+                  <!-- 获取key和value的格式为(value,key) -->
+                  <li v-for="(value,key) in info">{{key}}.{{value}}</li>
+                  <!-- 获取key,value和index的格式为(value,key,index) -->
+                  <li v-for="(value,key,index) in info">{{key}}.{{value}}.{{index}}</li>
+
+              </ul>
+          </ul>
+      </div>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               name: 'why',
+               age: 18,
+               height: 180
+           }
+       })
+      </script> 
+    #+end_src
+
+*** v-for 组件的key属性
+    + 官方推荐我们在使用v-for时，给对应的元素或组件添加上一个:key属性
+      这样可以更高效的更新虚拟DOM
+    #+begin_src web
+      <div id="app">
+          <ul>
+
+              <ul>
+                  <!-- 加上:key后 插入的性能会更好 key="item" 应为要显示的对象 -->
+                  <li v-for="item in info" :key="item">{{item}}</li>
+
+              </ul>
+          </ul>
+      </div>
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               name: 'why',
+               age: 18,
+               height: 180
+           }
+       })
+      </script> 
+    #+end_src
+*** 响应式检测数组元素变化
+    + push()
+    + pop()
+    + shift() :: 删除数组中的第一个元素
+    + unshift() :: 在数组最前面添加元素
+    + splice()
+      - 删除元素
+        - splice(start,countsToRemove) :: 从start开始删除countesToRemove个元素
+        - splice(start) :: 从start开始删除后面所有的元素
+      - 插入元素
+        - splice(1,0,'m','n','l') :: 一个都不删，然后追加'm','n','l'
+      - 替换元素
+        - splice(1,3,'m','n','l') :: 先删除三个元素 然后在添加'm','n','l'
+    + sort()
+    + reverse()
+    + 修改数组元素不是响应式的
+      + 可以通过Vue.set(this.letters,0,'bbbb')的方式响应式修改
+** 阶段案例
+** v-model
+   Vue中使用v-model指令来实现表单元素和数据的"双向绑定"
+*** v-model基本使用
+    #+begin_src web
+      <div id="app">
+          <input type="text" v-model="message" />
+          <h2>{{message}}</h2>
+      </div>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊'
+           }
+       })
+      </script>
+
+    #+end_src
+*** v-model:radio
+    #+begin_src web
+      <div id="app">
+          <label for="male">
+              <input type="radio" name="sex" id="male" v-model="sex" value="男">男
+          </label>
+          <label for="female">
+              <input type="radio" name="sex" id="female" v-model="sex" value="女">女
+          </label>
+          <h2>您选择的性别是{{sex}}</h2>
+      </div>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               sex: ''
+           }
+       })
+      </script>
+
+    #+end_src
+*** v-model:checkbox
+**** 单选框
+      #+begin_src web
+        <div id="app">
+            <label for="liscense">
+                <input type="checkbox" id="liscense" v-model="isAgree" />同意协议
+            </label>
+            <h2>您选择的是: {{isAgree}}</h2>
+            <button :disabled="!isAgree">下一步</button>
+        </div>
+
+        <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAgree: false
+            }
+        })
+        </script>
+      #+end_src
+**** 多选框
+      #+begin_src web
+        <div id="app">
+            <label for="">
+                <input type="checkbox" value="篮球" v-model="hobbies" />篮球
+                <input type="checkbox" value="足球" v-model="hobbies" />足球
+                <input type="checkbox" value="乒乓球" v-model="hobbies" />乒乓球
+                <input type="checkbox" value="羽毛球" v-model="hobbies" />羽毛球
+            </label>
+            <h2>您的爱好是: {{hobbies}}</h2>
+            <button :disabled="!isAgree">下一步</button>
+        </div>
+
+        <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                hobbies: []
+            }
+        })
+        </script>
+      #+end_src
+     
+*** v-model:select
+**** 单选
+     + v-model绑定的是一个值
+     + 当我们选中option中的一个时，会将对应的value赋值到mySelect中
+     #+begin_src web
+       <div id="app">
+           <select name="abc" id="" v-model="fruit">
+               <option value="苹果">苹果</option>
+               <option value="香蕉">香蕉</option>
+               <option value="榴莲">榴莲</option>
+               <option value="葡萄">葡萄</option>
+           </select>
+           <h2>您选中的水果是{{fruit}}</h2>
+       </div>
+
+       <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                fruit: '香蕉'
+            }
+        })
+       </script>
+     #+end_src
+**** 多选
+     + v-model绑定的是一个数组
+     + 当选中多个值时，就会将选中的option对应的value添加到mySelects中
+     #+begin_src web
+       <div id="app">
+           <select name="abc" id="" v-model="fruits" multiple>
+               <option value="苹果">苹果</option>
+               <option value="香蕉">香蕉</option>
+               <option value="榴莲">榴莲</option>
+               <option value="葡萄">葡萄</option>
+           </select>
+           <h2>您选中的水果是{{fruit}}</h2>
+       </div>
+
+       <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                fruits: []
+            }
+        })
+       </script>
+     #+end_src
+
+*** 值绑定
+      #+begin_src web
+        <div id="app">
+            <input type="checkbox" value="篮球" v-model="hobbies" />篮球
+            <input type="checkbox" value="足球" v-model="hobbies" />足球
+            <input type="checkbox" value="乒乓球" v-model="hobbies" />乒乓球
+            <input type="checkbox" value="羽毛球" v-model="hobbies" />羽毛球
+            <h2>您的爱好是: {{hobbies}}</h2>
+            <label v-for="item in orginHobbies" :for="item">
+                <input type="checkbox" :id="item" :value="item" v-model="hobbies">{{item}}
+            </label>
+        </div>
+
+        <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                hobbies: []
+                orginHobbies:['篮球','足球','乒乓球','羽毛球','台球','高尔夫球']
+            }
+        })
+        </script>
+      #+end_src
+    
+
+*** 修饰符
+**** lazy
+     + 默认情况加，v-mode默认是在input事件中同步输入框的数据的。
+     + 也就是说，一旦有数据发生改变时，对应的data中的数据就会自动发生改变
+     + lazy修饰符可以让数据失去焦点或者回车时才更新;
+     #+begin_src web
+       <div id="app">
+           <input type="text" v-model.lazy="message">
+           <h2>{{message}}</h2>
+       </div>
+
+       <script type="text/javascript">
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊'
+            }
+        })
+       </script>
+     #+end_src
+**** number
+     + 默认情况下，在输入框中无论我们输入的是字母还是数字，都会被当做字符串进行处理
+     + 但是如果我们希望处理的是数字类型，那么最好直接将内容当做数字处理
+     + number修饰符可以让输入框中的内容自动转成数字类型;
+**** trim
+     + 如果输入内容有很多空格，通常我们希望将其取出
+     + trim修饰符可以过滤内容左右两边的空格

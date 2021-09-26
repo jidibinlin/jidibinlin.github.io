@@ -1,0 +1,532 @@
+* 组件化
+  + 组件化是Vue.js中的重要思想
+    + 它提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用
+    + 任何应用都会被抽象成一颗组件树
+  + 组件化思想的应用:
+    + 有了组件化的思想，我们在以后的开发中就要充分的利用它
+    + 尽可能的将页面拆分成一个个小的，可复用的组件
+    + 这样让我们的代码更加方便组织和管理，并且扩展性也更强
+** 注册组件的基本步骤
+   + 创建组件构造器 :: Vue.extend()
+     + 调用vue.extend()创建的是一个组件构造其
+     + 通常在创建组件构造器时，传入template代表我们自定义组件的模板
+     + 该模板就是使用到组件的地方，要显示的HTML代码
+   + 注册组件 :: Vue.component()
+     + 调用Vue.component()是将组件构造器注册为一个组件，并且给他启一个组件的标签名称
+     + 所以需要传入两个参数: 1. 注册组件的标签名 2. 组件构造器
+   + 使用组件 :: 
+     #+DOWNLOADED: screenshot @ 2021-06-17 12:06:59
+     [[file:组件化/2021-06-17_12-06-59_screenshot.png]]
+   + 组件必须挂载在某个Vue实例下，否则它不会生效 :: 
+ 
+** Vue组件的基本使用
+   #+begin_src web
+     <div id="app">
+         <!-- 3. 使用组件 -->
+         <my-cpn></my-cpn>
+     </div>
+
+     <script type="text/javascript">
+         //1. 创建组件构造器
+         const myComponent = Vue.extend({
+         template:`
+         <div>
+             <h2>组件标题</h2>
+             <p>我是组件中的一个段落内容</p>
+         </div>`
+         });
+
+         //2. 注册组件，并且定义组件标签的名称
+         Vue.component('my-cpn',myComponent)
+
+     </script>
+   #+end_src
+
+** 全局组件与局部组件
+*** 全局组件 :: 可以在多个Vue的实例下面使用
+    #+begin_src web
+      <script type="text/javascript">
+          Vue.component('my-cpn',myComponent)
+      </script>
+    #+end_src
+*** 局部组件
+    #+begin_src web
+      <script type="text/javascript">
+       const cpnC = Vue.extend({
+           template: `
+               <div>
+                   <h2> 我是标题</h2>
+                   <p>我是内容，哈哈哈哈哈啊</p>
+               </div>
+           `
+       })
+
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊'
+           },
+           components: {
+               // cpn 使用组件时的标签名
+               cpn:cpnC
+           }
+       })
+      </script>
+    #+end_src
+
+** 父组件和子组件的区别
+*** cpnC1 是子组件 cpnC2 是父组件
+    + 组件和组件之间存在层级关系
+    + 而其中一种非常重要的关系就是父子组件的关系
+   #+begin_src web
+     <script type="text/javascript">
+      // 1. 创建第一个组件构造器
+      const cpnC1 = Vue.extend({
+          template: `
+              <div>
+                  <h2> 我是标题1</h2>
+                  <p>我是内容，哈哈哈哈哈啊</p>
+              </div>
+          `
+      })
+      // 2. 创建第二个组件构造器
+      const cpnC2 = Vue.extend({
+          template: `
+              <div>
+                  <h2> 我是标题2</h2>
+                  <p>我是内容，哈哈哈哈哈啊</p>
+                  <cpn1></cpn1>
+              </div>
+          `,
+          components: {
+              cpn1: cpnC1
+          }
+      })
+      //root组件
+      const app = new Vue({
+          el: '#app',
+          data: {
+              message: '你好啊'
+          },
+          components: {
+              // cpn 使用组件时的标签名
+              cpn2: cpnC2
+          }
+      })
+     </script>
+   #+end_src
+
+** 注册组件语法糖
+*** 全局组件
+   #+begin_src web
+     <div id="app">
+         <!-- 2. 使用组件 -->
+         <my-cpn></my-cpn>
+     </div>
+
+     <script type="text/javascript">
+         // 1. 构造并注册组件
+         Vue.component('my-cpn',{
+         template:`
+            <div>
+                <h2>组件标题</h2>
+                <p>我是组件中的一个段落内容</p>
+            </div>
+          `
+         })
+     </script>
+   #+end_src
+*** 局部组件
+   #+begin_src web
+     <div id="app">
+         <cpn2></cpn2>
+     </div>
+
+     <script type="text/javascript">
+      const app = new Vue({
+          el: '#app',
+          data: {
+              message: '你好啊'
+          },
+          components: {
+              'cpn2': {
+                  template: `
+                   <div>
+                       <h2>我是标题</h2>
+                       <p>我是内容，哈哈哈</p>
+                   </div>
+                  `
+              }
+          }
+      })
+     </script>
+   #+end_src
+
+** 模板的分离写法
+   模板分离写法的目的是将html分离出来，然后挂载到对应的组件上，这样代码的结构会变得非常清晰
+*** 使用<script>标签 :: 注意 type 必须是 text/x-template
+    #+begin_src web
+      <div id="app">
+          <my-cpn></my-cpn>
+      </div>
+
+      <script type="text/x-template" id="myCpn">
+          <div>
+              <h2>组件标题</h2>
+              <p>我是组件的内容，今天天气不错哦</p>
+          </div>
+      </script>
+
+      <script type="text/javascript">
+       let app = new Vue({
+           el: '#app',
+           components:{
+               'my-cpn': {
+                   template:'#myCpn'
+               }
+           }
+       })
+      </script>
+    #+end_src
+*** 使用<template>标签
+    #+begin_src web
+      <div id="app">
+          <my-cpn></my-cpn>
+      </div>
+
+      <template id="#myCpn">
+          <div>
+              <h2>组件标题</h2>
+              <p>我是组件的内容，今天天气不错哦</p>
+          </div>
+      </template>
+
+      <script type="text/javascript">
+       let app = new Vue({
+           el: '#app',
+           components:{
+               'my-cpn': {
+                   template:'#myCpn'
+               }
+           }
+       })
+      </script>
+    #+end_src
+
+* 组件数据的存放
+   + 组件对象也有一个data属性(也可以有methods等属性)
+   + 只是这个data属性必须是一个函数
+   + 而且这个函数返回一个对象，对象内部保存着数据
+   #+begin_src web
+     <div id="app">
+         <my-cpn></my-cpn>
+     </div>
+
+     <template id="#myCpn">
+         <div>
+             <h2>{{title}}</h2>
+             <p>我是内容，哈哈哈</p>
+         </div>
+     </template>
+
+     <script type="text/javascript">
+      let app = new Vue({
+          el: '#app',
+          components:{
+              'my-cpn': {
+                  template:'#myCpn',
+                  //数据使用函数
+                  data() {
+                      title: 'abc'
+                  }
+              }
+          }
+      })
+     </script>
+   #+end_src
+* 父子组件通信
+#+DOWNLOADED: screenshot @ 2021-06-22 13:41:20
+[[file:父子组件通信/2021-06-22_13-41-20_screenshot.png]]
+
+** 通过props向子组件传递数据
+*** 字符串数组，数组中的字符串就是传递时的名称
+*** 对象，对象可以设置传递时的类型，也可以设置默认值等
+#+begin_src web
+  <div id="app">
+      <cpn v-bind:cmovies="movies" :cmessage="message"></cpn>
+  </div>
+
+  <template id="cpn">
+      <div>
+          <ul>
+              <li v-for="item in cmovies">{{item}}</li>
+          </ul>
+          <h2>{{cmessage}}</h2>
+      </div>
+  </template>
+
+  <script type="text/javascript">
+
+    // 父传子: props
+    const cpn = {
+
+        //数组方式传递
+        props:['cmovies','cmessage'],
+        //对象方式传递 可以进行数据验证
+        props:{
+            //变量名:类型
+            cmovies: Array,
+            // 提供默认值写法
+            cmessage:{
+                //类型
+                type:String,
+                //默认值
+                default: 'aaaaaaa',
+                //必须传的值
+                required: true
+            },
+            cmovies: {
+                type: Array,
+                //类型是对象或者数组时，default必须是一个函数
+                default(){
+                    return[]
+                }
+            }
+            //可以时多种类型
+            propa:[String,Number],
+            //自定义验证函数
+            propb: {
+                validator: function(value){
+                    return ['success','warning','danger'].indexof(value)!=-1
+                }
+            }
+            //自定义变量类型
+            propc:{
+                author: function(firstName,lastName){
+                    this.firstName = firstName,
+                    this.lastName = lastName
+                }
+            }
+
+        }
+        data(){
+            return{
+
+            },
+        }
+    }
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            movies:['海王','海贼王','海尔兄弟']
+        },
+
+        components:{
+            cpn
+            }
+        }
+    })
+  </script>
+#+end_src
+** 通过事件向父组件发送消息
+   + 当子组件需要向父组件传递数据时，就需要用到自定义事件了。
+     我们之前学习的v-on不仅仅可以用于监听DOM事件，也可以用于组件间的自定义事件
+   + 自定义事件的流程
+     + 在子组件中，通过$emit()来触发事件
+     + 在父组件中，通过v-on来监听子组件事件
+  #+begin_src web
+    <div id="app">
+        <cpn @item-click="cpnClick"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <button v-for="item in categories"
+                    @click="btnClick(item)">
+                {{item.name}}
+            </button>
+        </div>
+    </template> 
+
+
+    <script type="text/javascript">
+      const cpn = {
+          template: '#cpn',
+          data(){
+              return {
+                  categories: [
+                      {id: 'aaa',name: '热门推荐'},
+                      {id: 'bbb',name: '手机数码'},
+                      {id: 'ccc',name: '家用电器'},
+                      {id: 'ddd',name: '电脑办公'},
+                  ]
+              }
+          },
+          methods: {
+              btnClick(item){
+                  // 发射事件
+                  this.$emit('item-click',item)
+              }
+          }
+      }
+
+      const app = new Vue({
+          el: '#app',
+          data: {
+              message: '你好啊'
+          },
+          components: {
+              cpn
+
+          },
+          methods:{
+              cpnClick(item){
+                  console.log(item);
+              }
+          }
+      })
+    </script>
+  #+end_src
+
+* 父子组件的访问方式
+** 父访问子
+*** $children
+    #+begin_src web
+      <div id="app">
+          <cpn></cpn>
+          <cpn></cpn>
+          <cpn></cpn>
+          <cpn></cpn>
+          <button @click="btnClick">按钮</button>
+      </div>
+      <template id="cpn">
+          <div>我是子组件</div>
+      </template>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊',
+           },
+           methods:{
+               btnClick(){
+                   this.$children[0].showMessage();
+                   this.$children[0].name;
+               }
+           }
+           components:{
+               cpn:{
+                   template: '#cpn',
+                   data(){
+                       return {
+                           name: '我是子组件的name'
+                       }
+                   }
+                   methods: {
+                       showMessage(){
+                           console.log('showMessage');
+                       }
+                   }
+               }
+           }
+       })
+      </script>
+    #+end_src
+*** $refs :: 用的比较多
+    #+begin_src web
+      <div id="app">
+          //先给组件添加ref属性
+          <cpn ref="aaa"></cpn>
+          <cpn></cpn>
+          <cpn></cpn>
+          <cpn></cpn>
+          <button @click="btnClick">按钮</button>
+      </div>
+      <template id="cpn">
+          <div>我是子组件</div>
+      </template>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊',
+           },
+           methods:{
+               btnClick(){
+                   // $refs => 对象类型，默认是一个空的对象 ref="aaa"
+                   console.log(this.$refs.aaa.name);
+               }
+           }
+           components:{
+               cpn:{
+                   template: '#cpn',
+                   data(){
+                       return {
+                           name: '我是子组件的name'
+                       }
+                   }
+                   methods: {
+                       showMessage(){
+                           console.log('showMessage');
+                       }
+                   }
+               }
+           }
+       })
+      </script>
+    #+end_src
+** 子访问父
+*** $parent
+    #+begin_src web
+      <div id="app">
+          //先给组件添加ref属性
+          <cpn></cpn>
+      </div>
+      <template id="cpn">
+          <h2>我是cpn组件</h2>
+          <ccpn></ccpn>
+      </template>
+      <template id="ccpn">
+          <div>我是子组件</div>
+          <button @click="btnclick">按钮</button>
+      </template>
+
+      <script type="text/javascript">
+       const app = new Vue({
+           el: '#app',
+           data: {
+               message: '你好啊',
+           },
+           components:{
+               cpn:{
+                   template: '#cpn',
+                   data(){
+                       return {
+                           name: '我是cpn组件的name'
+                       }
+                   }
+                   components: {
+                       ccpn:{
+                           template: 'ccpn'
+                           methods: {
+                               //1. 访问父组件$parent
+                               btnClick(){
+                                   //1. 访问父组件$parent
+                                   console.log(this.$parent);
+                                   console.log(this.$parent.name);
+                                   //2. 访问根组件$root
+                                   console.log(this.$root);
+                               }
+
+                           }
+                       }
+                   }
+               }
+           }
+       })
+      </script>
+    #+end_src

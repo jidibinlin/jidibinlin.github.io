@@ -1,0 +1,65 @@
+* 模块化开发
+** CommonJs
+** E6
+*** 导出 :: export
+**** export 指令用于导出变量
+     #+begin_src js
+       // info.js
+       export let name = 'why'
+       export let age = 18
+       export let height = 1.88
+     #+end_src
+     #+begin_src js
+       //info.js
+       let name = 'why'
+       let age = 18
+       let height = 1.88
+       export{name,age,height}
+     #+end_src
+**** export 导出函数
+     #+begin_src js
+       export function mul(num1,num2){
+           return num1 + num2
+       }
+     #+end_src
+     #+begin_src js
+       function mul(num1,num2){
+           return num1 + num2
+       }
+       export {
+           mul
+       }
+     #+end_src
+**** export 导出类
+     #+begin_src js
+       export class Person{
+           run(){
+               console.log("在奔跑");
+           }
+       }
+     #+end_src
+**** export default
+     某些情况下，一个模块中包含某个功能，我们并不希望给这个功能命名，而且让导入者可以自己来命名，
+     这个时候就可以使用export default
+     #+begin_src js
+       const address = "北京"
+       //导出
+       export default address
+     #+end_src
+     #+begin_src js
+       import addr from "./aaa.js"
+     #+end_src
+*** 导入 :: import
+**** 首先我们需要在HTML代码中引入两个js文件，并且类型需要设置为module
+     #+begin_src html
+       <script type="module" src="info.js"></script>
+       <script type="module" src="main.js"></script>
+     #+end_src
+**** import指令用于导入模块中的内容，比如main.js的代码
+     #+begin_src js
+       import {name,age,height} from "./info.js"
+     #+end_src
+**** 一次性导入
+     #+begin_src js
+       import * as aaa from './aaa.js'
+     #+end_src

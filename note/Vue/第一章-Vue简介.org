@@ -1,0 +1,251 @@
+* Vue 的安装方法
+*** 直接CDN引入
+    + 开发环境版本
+      #+begin_src html
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      #+end_src
+    + 生产环境版本
+      #+begin_src html
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+      #+end_src
+*** 下载和引入
+    + 开发环境版本 :: https://vuejs.org/js/vue.js
+    + 生产环境版本 :: https://vuejs.org/js/vue.min.js
+*** 使用NPM安装
+    + 后续通过webpack和CLI的使用，我们使用该方式
+* JavaScript var const let的区别
+  + var :: 可以跨块使用 但是不能跨函数使用
+    #+begin_src javascript
+      {
+          var a;
+      }
+      console.log(a)//可以访问到
+
+      function p (){
+          var b;
+      }
+      console.log(b)//不能访问到
+    #+end_src
+
+  + let :: 不可以跨块使用 也不能跨函数使用
+    #+begin_src javascript
+
+      {
+          let a;
+      }
+      console.log(a)//不可以访问到
+
+      function p (){
+          let b;
+      }
+      console.log(b)//不能访问到
+    #+end_src
+  + const :: 不可以跨块使用 也不能跨函数使用 而且必须在声明时初始化（赋值）不可以修改
+
+* Vue中的MVVM
+  + 什么是MVVM :: https://zh.wikipedia.org/wiki/MVVM
+   #+DOWNLOADED: screenshot @ 2021-06-02 15:06:05
+   [[file:Vue中的MVVM/2021-06-02_15-06-05_screenshot.png]]
+ 
+    + Model
+      + 数据层
+      + 数据可能是我们固定的思数据，更多的是来自我们服务器，从网络上请求下来的数据
+      + 在我们计数器的案例中，就是后面抽取出来的obj,当然，里面的数据可能没有那么简单
+    + ViewModel :: 用于连接Model 和 View
+      + 视图模型层
+      + 视图模型层是View和Model沟通的桥梁
+      + 一方面它实现了Data Binding，也就是数据绑定，将Model的改变实时的反应到View中
+      + 另一方面它实现了DOM Listener，也就是DOM监听，当DOM发生一些事件(点击，滚动，touch等)时，可以监听到，并在需要的情况下改变对应的Data。
+    + View
+      + 视图层
+      + 在我们前端开发中，通常就是DOM层
+      + 主要的作用是给用户展示各种信息
+* Vue中的 option
+  + el ::
+    + 类型 :: string | HTMLElement
+      - 作用： 决定之后Vue实例会管理哪一个DOM
+      #+begin_src web
+        <script>
+         const app = new Vue({
+             //el:'#app',
+             el: document.querySelector(),
+             data:obj,
+             methods: {
+                 add: function(){
+                     console.log("add被执行");
+                     this.counter++
+                 },
+                 sub: function(){
+                     console.log("sub被执行");
+                     this.counter--
+                 }
+
+             }
+         })
+        </script>
+
+      #+end_src
+    + data :: Object | Function(在组件当中 data 必须是一个函数)
+      - 作用: Vue实例对应的数据对象
+    + methods :: {[key:string]:Function}
+      - 作用: 定义属于Vue的一些方法，可以在其他地方调用，也可以在指令中使用
+* Vue的生命周期
+  #+ATTR_ORG: :width 800
+  #+ATTR_ORG: :height 300
+  [[./Vue中的MVVM/lifecycle.png]]
+  #+begin_src web
+    <<script type="text/javascript">
+      const app = new Vue({
+          el: '#app',
+          data: obj,
+          methods:{...},
+          beforeCreate: function(){
+          
+          },
+          created: function(){
+              console.log('created');
+          },
+          mounted: function(){
+              console.log('mounted');
+          }
+      })
+    </script>
+
+  #+end_src
+* 代码实例
+** Hello Vue
+  #+begin_src html
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Title</title>
+        </head>
+        <body>
+            <div id="app">{{message}}</div>
+            <script src="../js/vue.js"></script>
+            <script>
+            const app = new Vue({//它的参数是一个对象类型
+              el: '#app', //用于挂载要管理的元素
+              data: { //定义数据
+                message: 'Hello Vue' //响应式 message修改后对应de的{{message}}也会修改
+              }
+            })
+
+            </script>
+        </body>
+    </html>
+  #+end_src
+*** 代码总结
+    + Vue的响应式
+    + 代码做了什么事情
+      + 创建了一个Vue对象
+      + 创建Vue对象的时候，传入了一些options:{}
+        + {}中包含了"el"属性:该属性决定了Vue对象挂载到哪一个元素上
+        + {}中包含了data属性：该属性通常会存储一些数据
+          + 这些数据可以是我们直接定义出来的
+          + 也可能是来自网络，从服务器加载的
+*** 声明式变成与命令式编程
+    + 命令式编程 ::
+      1. 创建div元素，设置id属性
+      2. 定义一个变量叫message
+      3. 将message变量放在前面的div元素中显示
+    + 声明式编程 ::
+      1. 首先做一个声明
+      2. 然后在别的地方进行操作
+** 列表展示
+*** 功能描述
+     显示一个列表
+*** 代码
+      #+begin_src html
+
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Title</title>
+          </head>
+          <body>
+            <div id="app">
+              <ul>
+                <li v-for="item in movies">{{item}}</li>
+              </ul>
+            </div>
+            <script src="../js/vue.js"></script>
+            <script>
+              const app = new Vue({
+                  el: '#app',
+                  data: { //定义数据
+                      message: 'Hello Vue',
+                          movies:['电影1','电影2','电影3','电影4']
+                  }
+              })
+
+            </script>
+          </body>
+        </html>
+      #+end_src
+*** 代码总结
+    + 我们现在从服务器请求过来一个列表，希望展示到html中
+    + html 代码中使用 v-vor指令
+      #+begin_src html
+        <li v-for="item in movies">{{item}</li>
+      #+end_src
+    + 响应式的，当数组中的数据发生改变时，界面会自动改变 
+
+** 计数器
+   + 功能描述
+     1. 点击+ 计数器+1
+     2. 点击- 计数器-1
+   + 新的指令和属性
+     + methods :: 该属性用于在Vue对象中定义方法
+     + @click :: 该指令用于监听某个元素的点击事件，并且需要制定当法神点击时，执行的方法(方法通常是
+       methods中定义的方法) 
+   + 代码
+     #+begin_src web
+       <!DOCTYPE html>
+       <html lang="en">
+           <head>
+               <meta charset="utf-8">
+               <meta http-equiv="X-UA-Compatible" content="IE=edge">
+               <meta name="viewport" content="width=device-width, initial-scale=1">
+               <title>Title</title>
+           </head>
+           <body>
+               <div id="app">
+                   <h2>当前计数: {{counter}}</h2>
+                   <!-- <button v-on:click="counter++">+</button>-->
+                   <!-- <button v-on:click="counter++">-</button> -->
+                   <button v-on:click="add">+</button>
+                   <button v-on:click="sub">-</button>
+               </div>
+
+
+               <script src="../js/vue.js"> </script>
+               <script type="text/javascript">
+                 const app = new Vue({
+                     el:"#app",
+                     data:{
+                         counter: 0,
+                     },
+                     methods:{
+                         add: function(){
+                             console.log("add被执行");
+                             this.counter++;
+                         },
+                         sub: function(){
+                             console.log("sub被执行");
+                             this.counter--;
+                         }
+                     }
+                 })
+               </script>
+           </body>
+       </html>
+     #+end_src
+
+

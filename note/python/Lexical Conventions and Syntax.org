@@ -1,0 +1,222 @@
+* Lexical Conventions and Syntax
+  This chapter describes the syntactic and lexical conventions of a Python program.
+  Topics include line structure, grouping of statements, reserved words, literals, operators,
+  tokens, and source code encoding.
+** Line Structure and Indentation
+    1.Each statement in a program is terminated with a newline.Long statements can span multiple lines by using the line-continuation character(\)
+
+	  #+BEGIN_SRC python
+	  a = math.cos(3*(x-n))+\
+	      math.sin(3*(y-n))
+	  #+END_SRC
+
+	2.We don`t need the line-continuation character when the definition of a triple-quoted string,list,tuple,or dictionary spans multiple lines.
+	  More generally,any part of a program enclosed in parentheses(...),brackets[...],braces{...},or triple quotes can span multiple lines without 
+	  use of the line-continuation character because they clearly denote the start and end of a definition.
+
+	3.Indentation is used to denote different blocks of code,such as the bodies of functions,conditinoals,loops,and classes.
+	  The amount of indentation used for the first statement of a block is arbitrary,but the indentation of the entire block must
+	  be consistent.
+
+	  #+BEGIN_SRC python
+	  if a:
+	      statement1    #Consistent indentation
+		  statement2
+      else:
+	      statement3
+		    statement4  # Inconsistent indentation(error)
+	  #+END_SRC
+
+    4.If the body of a function,conditional,loop,or class is short and contaions only a single statement, it can be placed on the same line,like this:
+	  
+	  #+BEGIN_SRC python
+	  if a:    statement1
+	  else:    statement2
+	  #+END_SRC
+
+    5.To denote an empty body or block,use the pass statement.Here`s an example:
+
+	  #+BEGIN_SRC python
+	  if a:
+	      pass
+      else:
+	      statements
+	  #+END_SRC
+    6.Although tabs can be used for indentation,this practice is discouraged.The use of spaces is universally preferred(and encouraged) by the Python programming community.
+
+	7.To place more than one statement on a line,separate the statements with a semicolon(;).A line containing a single statement can also be terminated by a semicolon,although.
+	  this is unnecessary.
+
+    7.The # character denotes a comment that extends to the end of the line.A # appearing inside a quoted string doesn`s start a comment,however.
+
+	8.Finally,the interpreter ignores all bland lines except when runing in interactive mode.
+	  In this case,a blank line signals the end of input when typing a statement that spans multiple lines.
+	
+** Identifiers and Reserved Words 
+   1.An identifier is a name used to identify variables,functions,classes,modules,and other objects.
+     1.Identifiers can include letters,numbers,and the underscore character(_)
+	 2.Identifiers must always start with a nonnumeric character.
+	 3.Letters are currently confined to the character A-Z and a-z in the ISO_Latin character set.
+	 4.Identifiers are case-sensitive ,FOO is different from foo.
+	 5.Special symbols such as $,% and @ are not allowed in identifiers.
+	 6.Words such as if,else,and for are reserved and cannot be used as identifier names.The following list shows all the reserved words:
+
+	     #+BEGIN_SRC python
+		 and      del      from      nonlocal      try
+		 as       elif     global    not           while
+		 assert   else     if        or            with
+		 break    except   import    pass          yield
+		 class    exec     in        print
+		 continue finally  is        raise
+		 def      for      lambda    return
+	     #+END_SRC
+
+     7.identifiers starting or ending with underscores often have special meanings.
+	   1.identifiers starting with a single underscore such as _foo are not imported by the from module import * statement
+	   2.identifiers with leading and trailing double underscores such as __init__are reserved for special methods
+	   3.identifiers with leading double underscores such as __bar are used to implement private class menbers
+** Numeric Literals
+   1.There are four types of built-in numeric literals:
+     - Booleans: The identifiers True and False are interpreted as Boolean values with the integer values of 1 and 0,respectively.
+     - Intergers: A number such as 1234 is interpreted as a decimal integer.To specify an integer using octal,hexadecimal,or binary notation,precede the value with 0,0x or 0b,
+	              respectively(for example,0644,0x100fea8,or 0b11101010).Integers in Python can have an arbitrary number of digits,so if you want to specify a really large integer,
+	              just write out all of the digits,as in 1234567890.This trailing L is related to the fact that Python internally
+	              represents integers as either a fixed-precision machine integer or an arbitrary precision long integer type depending on the magnitude of the value. In older versions of
+	              Python, you could explicitly choose to use either type and would add the trailing L to explicitly indicate the long type.
+	              Today, this distinction is unnecessary and is actively discouraged.So, if you want a large integer value, just write it without the L .
+     - Floating-point numbers: Numbers such as 123.34 and 1.2334e+02 are interpreted as floating-point numbers.
+     - Complex numbers: You can create complex numbers with real and imaginary parts by add a real number and an imaginary number,as in 1.2+12.34j
+** String Literals
+   1.String literals are used to specify a sequence of characters and are defined by enclosing text in single('),double("),or triple(''' or """)quotes.
+   2.There is no semantic difference between quoting styles other than the requirement that you ues the same type of quote to start and terminate a string.
+   3.Single- and double-quoted strings must be defined on a single line 
+   4.Triple-quoted strings can span multiple lines and include all of the enclosed formatting(that is,newlines,tabs,spaces and so on).
+   5.Adjacent strings(separated by white space,newline,or a line-continuation character)such as "hello" 'world' are concatenated to form a single string "helloworld".
+   6.Within string literals, the backslash(\)character is used to escape special characters such as newlines,the backsplash itselt,quotes,and nonprinting characters.
+     Unrecongnized escape sequences are let in the string unmodified and include the leading backslash.
+	     Table 2.1 Standard Character Escape Codes
+
+	       Character                   Description
+	       \                           Newline continuation
+		   \\                          Backslash
+		   \'                          Single quote 
+		   \"                          Double quote
+		   \a                          Bell
+		   \b                          Backspace
+		   \e                          Escape
+		   \0                          Null
+		   \n                          Line feed
+		   \v                          Vertical tab
+           \t						   Horizontal tab
+		   \r                          Carriage return
+		   \f                          Form feed
+           \000						   Octal value ( \000 to \377 )
+           \uxxxx                      Unicode character ( \u0000 to \uffff )
+		   \Uxxxxxxxx                  Unicode character ( \U00000000 to \Uffffffff )
+           \N{charname}                Unicode character name
+		   \xhh                        Hexadecimal value ( \x00 to \xff )
+
+       1.The escape code \000 and \x are used to embed characters into a string literal that can`t be easily typed(that is,control codes,nonprinting characters,symbols,international characters,and so on)
+	   2.Python 2 uses a separete string type for Unicode data. To write a Unicode string literal,you prefix the first quote with the letter "u".For example
+
+	     #+BEGIN_SRC python
+		 s = u"Jalape\u00f1o"
+	     #+END_SRC
+
+		 In Python 3,this prefix character is unnecessary(and is actuall a syntax error) as all strings are already Unicode.
+		 Python 2 will emulate this behavior if you run the interpreter with the -U option(in which case all string literals will be treated as Unicode and the u prefix can be omitted)
+       3.Optionally, you can precede a string literal with an r or R such as in r'\d'.
+	     These string are known as raw strings because all their backslash characters are left intact-that is,the strings literally contains the enclosed text,including the backslashs
+		 Raw strings cannot end in a single backslash such as r"\".Within raw strings,\uxxxx escape sequeces are still interpreted as Unicode characters,provided that the umber of preceding \ characters is odd.For instance,ur"\u1234".
+		 
+** Containers
+   1.Values enclosed in sequare brackets[...],parentheses(...) and braces{...}denote a collection of objects contained in a list,tuple,and dictionary,respectively,as in the following example:
+   
+     #+BEGIN_SRC python
+     a = [1,3.4,'hello']    # A list
+	 b = (10,20,30)         # A tuple
+	 c = {'a': 3, 'b': 42}  # A dictionary
+     #+END_SRC
+
+   2.List,tuple,and dictionary literals can span multiple lines without using the line-continuation character(\).In addition,a trailing comma is allowed on the last item.For example
+
+     #+BEGIN_SRC python
+	 a = [1,
+	      3.4,
+		  'hello',
+        ]
+     #+END_SRC
+
+** Operators,Delimiters,and Special Symbols
+   1.The following operators a recognized:
+
+     #+BEGIN_SRC python
+     +    -    *    **    /    //    %    <<    >>    &    |
+	 ^    ~    <     >    <==  >=    ==   !=    <>    +=
+	 -=   *=   /=   //=   %=   **=   &=   |=    ^=    >>=  <<=
+     #+END_SRC
+
+   2.The following tokens serve as delimiters for expressions,lists,dictionaries,and various parts of a statement:
+
+     #+BEGIN_SRC python
+     (   )    [   ]    {   }    ,    :    .    `    =    ;
+     #+END_SRC
+
+	 1.For example,the equal(=)character serves as a delimiters between the name and value of an assignment
+	   whereas the comma(,)character is used to delimit arguments to a function,elements in lists and tuples,and so on.
+	   The period(.)is also used int floating-point numbers and in the ellipsis(...)used in extended slicing operations.
+	   Finally ,the following special symbols are also used:
+
+	     #+BEGIN_SRC python
+         '    "    #    \    @
+	     #+END_SRC
+
+   3.The characters $ and ? have no meaning in Python and cannot appear in a program except inside a quoted string literal.
+** Documentation Strings
+   1. if the first statement of module,class,or function definition is a string,that string becomes a 
+	  documentation string for the associated ohject,as in following example:
+
+	    #+BEGIN_SRC python
+	    def fact():
+		    "This function computes a factorial"
+			if (n<=1): return 1
+			else: return n * fact(n-1)
+	    #+END_SRC
+
+** Decorators
+   1. Function,methods,or class definitions may be preceded by a special symbol known as a decorator,the purpose of which is to modify the behavior of the 
+	  definition that follows.Decorators are denoted with the @symbol and must be placed on a separate line immediately before the corresponding function,method,or class.
+	  Here`s an example:
+
+      #+BEGIN_SRC python
+	  class Foo(object):
+	      @staticmethod
+	      def bar():
+	          pass
+      #+END_SRC
+
+   2. More than one decorator can be used,but each one must be on a separate line.
+
+	  #+BEGIN_SRC python
+	  @foo
+	  @bar
+	  def spam():
+	      pass
+	  #+END_SRC
+
+   3. More information about decorators can be found in Chapter 6,"Functions and Functional Programming," and Chapter 7,"Class and Object-Oriented Programming"
+
+** Source Code Encoding
+   1. Python source programs are normally written in statdard 7-bit ASCII.However,users working in Unicode enviroments may find this 
+	  awkward--especially if they must write a lot of string literals with international characters.
+   2. It is possible to write Python source code in a different encoding by including a special encoding comment in the first or second line of a program:
+
+	  #+BEGIN_SRC python
+	  #!/usr/bin/env python
+	  # -*- coding: UTF-8 -*-
+	  s="Jalapeño" #String in quotes is directly encoded in UTF-8.
+	  #+END_SRC
+
+   3. When the special coding: comment is suppiled,string literals may be typed in directly using a Unicode-aware editor.However,other elements of
+	  Python,including identifier names and reserved words, should still be restricted to ASCII characters.
+

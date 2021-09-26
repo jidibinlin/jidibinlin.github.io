@@ -1,0 +1,11 @@
+* setClass store objs what we don`t know the count
+** Collection
+*** list
+**** ArrayList
+**** LinkedList
+**** Vector
+*** set
+** Map
+*** HashMap
+**** LinkedHashSet
+*** TreeMap
