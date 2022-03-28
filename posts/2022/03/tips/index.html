@@ -1,0 +1,318 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jidibinlin`s blog Site - C&#43;&#43;单例的几种写法 </title>
+    
+    
+    <meta content="cpp, singleton" name="keywords">
+    
+    <meta content="jidibinlin`s blog Site - 单例的写法 单例是最常用的简单的一种设计模式，实现方法多样，根据不同的需求有不同的写法。这里只介绍几种比较好的写法。
+有缺陷的懒汉式 #include &lt;iostream&gt; using namespace std;  class Singleton{ private:  Singleton(){  cout&lt;&lt;&#34;constructor called!&#34;&lt;&lt;std::endl;  }   Singleton(Singleton&amp;)=delete;// 此处使用delete可以禁用拷贝构造  Singleton&amp; operator = (const Singleton&amp;)=delete;  static Singleton * instance_ptr; public:  ~Singleton(){  cout&lt;&lt;&#34;destructor called!&#34;&lt;&lt;endl;  }   static Singleton* get_instance(){  if(instance_ptr==nullptr){  instance_ptr = new Singleton;  }  return instance_ptr;  } };  Singleton* Singleton::instance_ptr = nullptr;//所有静态成员必须在类外开辟空间  int main(int argc, char *argv[]) {  Singleton* instance = Singleton::get_instance();  Singleton* instance2 = Singleton::get_instance();  return 0; } 这种实现方式有两个问题" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    <link rel="stylesheet" async href="/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/self/css/gallery.css">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" integrity="sha256-PZEg+mIdptYTwWmLcBTsa99GIDZujyt7VHBZ9Lb2Jys=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/">
+        jidibinlin`s blog Site
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
+        
+
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/post/">Posts</a></dd>
+                
+
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>C&#43;&#43;单例的几种写法</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/cpp/">
+            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/cpp/">
+            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
+        </a>
+    
+        <a href="/tags/singleton/">
+            <span class="layui-badge " style="vertical-align: 2px;">singleton</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h2 id="单例的写法">单例的写法</h2>
+<p>单例是最常用的简单的一种设计模式，实现方法多样，根据不同的需求有不同的写法。这里只介绍几种比较好的写法。</p>
+<h3 id="有缺陷的懒汉式">有缺陷的懒汉式</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;constructor called!&#34;</span><span style="color:#f92672">&lt;&lt;</span>std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Singleton(Singleton<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">=</span><span style="color:#66d9ef">delete</span>;<span style="color:#75715e">// 此处使用delete可以禁用拷贝构造
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Singleton<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">const</span> Singleton<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">=</span><span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Singleton <span style="color:#f92672">*</span> instance_ptr;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;destructor called!&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Singleton<span style="color:#f92672">*</span> <span style="color:#a6e22e">get_instance</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(instance_ptr<span style="color:#f92672">==</span><span style="color:#66d9ef">nullptr</span>){
+</span></span><span style="display:flex;"><span>            instance_ptr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instance_ptr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Singleton<span style="color:#f92672">*</span> Singleton<span style="color:#f92672">::</span>instance_ptr <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;<span style="color:#75715e">//所有静态成员必须在类外开辟空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">*</span> instance <span style="color:#f92672">=</span> Singleton<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">*</span> instance2 <span style="color:#f92672">=</span> Singleton<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这种实现方式有两个问题</p>
+<dl>
+<dt>线程安全问题</dt>
+<dd>当多线程访问的时候,可能引发竞态条件. 当第一个线程在if中判断instance_ptr是空的,
+于是开始实例化单例,同时第二个线程也尝试获取单例,这个时候由于第一个线程还没实例化完成于是也开始实例化
+单例;这样就会导致实例化两个对象</dd>
+<dt>内存泄漏</dt>
+<dd>这个类只负责new对象,却没有负责delete对象. 可以使用 <strong>共享指针</strong> 解决这个问题;</dd>
+</dl>
+<h3 id="最推荐的懒汉式单例--magic-static--局部静态变量">最推荐的懒汉式单例(magic static)&ndash;局部静态变量</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;destructor called&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Singleton(<span style="color:#66d9ef">const</span> Singleton<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">=</span><span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> Singleton<span style="color:#f92672">&amp;</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> Singleton<span style="color:#f92672">&amp;</span> get_instance(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">static</span> Singleton instance;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instance;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;constructor called&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">&amp;</span> instance <span style="color:#f92672">=</span> Singleton<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">&amp;</span> instance2 <span style="color:#f92672">=</span> Singleton<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这种方式利用了Magic Static 的特性.如果变量初始化时,并发同时进入声明语句,并发线程将会阻塞等待初始化结束.c++静态变量生命周期从声明到程序结束,也是一种懒汉式.</p>
+<h3 id="单例模板">单例模板</h3>
+<h4 id="crtp奇异-递归模板模式实现">CRTP奇异 递归模板模式实现</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> T<span style="color:#f92672">&amp;</span> get_instance(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">static</span> T instacne;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> instacne;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;destrector called&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    Singleton(<span style="color:#66d9ef">const</span> Singleton<span style="color:#f92672">&amp;</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span>    Singleton<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">const</span> Singleton<span style="color:#f92672">&amp;</span>)<span style="color:#f92672">=</span><span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Singleton(){
+</span></span><span style="display:flex;"><span>        cout<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;constrector called&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//1. friend calss declaration is required!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//2. constructor should be private
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DerivedSingle</span><span style="color:#f92672">:</span><span style="color:#66d9ef">public</span> Singleton<span style="color:#f92672">&lt;</span>DerivedSingle<span style="color:#f92672">&gt;</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//!!! attention!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//needs to be friend in order to
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//access the private constructor/destructor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">&lt;</span>DerivedSingle<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    DerivedSingle(<span style="color:#66d9ef">const</span> DerivedSingle<span style="color:#f92672">&amp;</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span>    DerivedSingle<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">const</span> DerivedSingle<span style="color:#f92672">&amp;</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">delete</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    DerivedSingle() <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    DerivedSingle<span style="color:#f92672">&amp;</span> instance <span style="color:#f92672">=</span> DerivedSingle<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    DerivedSingle<span style="color:#f92672">&amp;</span> instance2 <span style="color:#f92672">=</span> DerivedSingle<span style="color:#f92672">::</span>get_instance();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>构造函数需要是protected,这样子类才能继承;</li>
+<li>使用了奇异递归模板模式</li>
+<li>这里的基类析构函数可以不需要virtual,因为子类在应用种只会用Derived类型,保证了析构时和构造时的类型一致</li>
+</ol>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/reusing_code/">
+                                <h3 class="">C&#43;&#43; Template - Class Template</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/cpp/">
+            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/cpp/">
+            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>

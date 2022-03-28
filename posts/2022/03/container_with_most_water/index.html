@@ -1,0 +1,403 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jidibinlin`s blog Site - leetcode-盛水最多的容器 </title>
+    
+    
+    <meta content="leetcode, double-point" name="keywords">
+    
+    <meta content="jidibinlin`s blog Site - Container_With_Most_Water Description https://leetcode-cn.com/problems/container-with-most-water/
+ analyze problem 这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。
+slove step  step1 分配两个指针，分别指向数组的头尾 [1,8,6,2,5,4,8,3,7] l r   step2计算面积并与全局最优解做比较，如果大于全局最优解，刷新全局最优解。并且移动对应数字较小的那个指针 (向对应数字较大的方向移动)
+```nil [1,8,6,2,5,4,8,3,7] l r ```  重复上述操作直到指针相遇
+certify 需要该解法需要证明的是，为什么每次移动对应值较小的指针是正确的。 双指针代表的是 可以作为容器边界的所有位置的范围 移动指针就代表这个指针不可能再作为容器的边界了。 为什么指向较小值的指针不可能再作为容器的边界了 。
+  step1
+假设当前左指针和右指针指向的数分别为\(x\) 和\(y\), 不失一般性，我们假设 \(x \leq y\) 两个指针之间的距离为t。那么，他们组成的容器的容量为：
+\begin{equation} min(x,y)*t = x*t \end{equation}
+如果我们保持左指针的位置不变，那么无论右指针在哪里，这个容器的容量都不会超过 \(x*t\) 。为什么呢，这里我们只考虑当指针还指向左右边界的时候。 我们任意向左移动右指针，指向的数为 \(y_{1}\) ，两个指针之间的距离为 \(t_{1}\) ，\(t_{1} &lt; t\) ，并且 \(min(x,y_{1}) \le min(x,y)\)
+ 如果 \(y_{1} \le y\), then \(min(x,y_{1}) \le min(x,y)\) ; 如果 \(y_{1} \ge y\), then \(min(x,y_{1}) =x= min(x,y)\) ;  所以有:" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    <link rel="stylesheet" async href="/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/self/css/gallery.css">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" integrity="sha256-PZEg+mIdptYTwWmLcBTsa99GIDZujyt7VHBZ9Lb2Jys=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/">
+        jidibinlin`s blog Site
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
+        
+
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/post/">Posts</a></dd>
+                
+
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>leetcode-盛水最多的容器</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/double-point/">
+            <span class="layui-badge " style="vertical-align: 2px;">double-point</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h2 id="container-with-most-water">Container_With_Most_Water</h2>
+<h3 id="description">Description</h3>
+<p><a href="https://leetcode-cn.com/problems/container-with-most-water/">https://leetcode-cn.com/problems/container-with-most-water/</a></p>
+<figure><img src="/ox-hugo/2022-02-09_17-16-12_screenshot.png"/>
+</figure>
+
+<h3 id="analyze-problem">analyze problem</h3>
+<p>这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。</p>
+<h4 id="slove-step">slove step</h4>
+<dl>
+<dt>step1</dt>
+<dd>分配两个指针，分别指向数组的头尾
+<pre tabindex="0"><code class="language-nil" data-lang="nil">[1,8,6,2,5,4,8,3,7]
+ l               r
+</code></pre></dd>
+</dl>
+<p>step2计算面积并与全局最优解做比较，如果大于全局最优解，刷新全局最优解。并且移动对应数字较小的那个指针
+(向对应数字较大的方向移动)</p>
+<pre><code>```nil
+[1,8,6,2,5,4,8,3,7]
+   l             r
+```
+</code></pre>
+<p>重复上述操作直到指针相遇</p>
+<h4 id="certify">certify</h4>
+<p>需要该解法需要证明的是，为什么每次移动对应值较小的指针是正确的。
+双指针代表的是 <strong>可以作为容器边界的所有位置的范围</strong> 移动指针就代表这个指针不可能再作为容器的边界了。 <strong>为什么指向较小值的指针不可能再作为容器的边界了</strong> 。</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>
+<p>step1</p>
+<p>假设当前左指针和右指针指向的数分别为\(x\) 和\(y\), 不失一般性，我们假设 \(x \leq y\) 两个指针之间的距离为t。那么，他们组成的容器的容量为：</p>
+<p>\begin{equation}
+min(x,y)*t = x*t
+\end{equation}</p>
+<p>如果我们保持左指针的位置不变，那么无论右指针在哪里，这个容器的容量都不会超过 \(x*t\) 。为什么呢，这里我们只考虑当指针还指向左右边界的时候。
+我们任意向左移动右指针，指向的数为 \(y_{1}\) ，两个指针之间的距离为 \(t_{1}\) ，\(t_{1} &lt; t\) ，并且 \(min(x,y_{1}) \le min(x,y)\)</p>
+<ul>
+<li>如果 \(y_{1} \le y\), then \(min(x,y_{1}) \le min(x,y)\) ;</li>
+<li>如果 \(y_{1} \ge y\), then \(min(x,y_{1}) =x= min(x,y)\) ;</li>
+</ul>
+<p>所以有:</p>
+<p>\begin{equation}
+min(x,y_{t})*t_{1} &lt; min(x,y)*t
+\end{equation}</p>
+<p>这表明指向较小值的指针不可以再作为容器的边界，因为无论如何移动较大的指针，容器的容量都不会再变大。这个边界应该被舍弃。</p>
+</li>
+</ul>
+<h3 id="implementation">implementation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">//c++ version
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algrothim&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;math&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> maxArea(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>height) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> height.size()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> compacity <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (left <span style="color:#f92672">&lt;</span> right) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> fmin(height[left], height[right]);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> right <span style="color:#f92672">-</span> left;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> tmpCompacity <span style="color:#f92672">=</span> min <span style="color:#f92672">*</span> length;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (tmpCompacity <span style="color:#f92672">&gt;=</span> compacity)
+</span></span><span style="display:flex;"><span>                compacity <span style="color:#f92672">=</span> tmpCompacity;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (height[left] <span style="color:#f92672">&gt;=</span> height[right])
+</span></span><span style="display:flex;"><span>                right<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>                left<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> compacity;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">//go version
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;math&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">maxArea</span>(<span style="color:#a6e22e">height</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">front</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">end</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">height</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">maxCompacity</span> <span style="color:#66d9ef">float64</span> = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">front</span> &lt; <span style="color:#a6e22e">end</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">longSide</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Min</span>(float64(<span style="color:#a6e22e">height</span>[<span style="color:#a6e22e">front</span>]),float64(<span style="color:#a6e22e">height</span>[<span style="color:#a6e22e">end</span>]))
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">shotSide</span> <span style="color:#f92672">:=</span> float64(<span style="color:#a6e22e">end</span><span style="color:#f92672">-</span><span style="color:#a6e22e">front</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tmpCompacity</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">longSide</span><span style="color:#f92672">*</span><span style="color:#a6e22e">shotSide</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">maxCompacity</span> = <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Max</span>(<span style="color:#a6e22e">tmpCompacity</span>,<span style="color:#a6e22e">maxCompacity</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">height</span>[<span style="color:#a6e22e">front</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">height</span>[<span style="color:#a6e22e">end</span>] {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">end</span><span style="color:#f92672">--</span>
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">front</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> int(<span style="color:#a6e22e">maxCompacity</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="summery">summery</h3>
+<p>这道题用到了双指针+贪心算法。以后都可以用双指针对撞的思想去求解这类问题，重点在于如何找到应该移动的指针。当因子分布再数组的两边的时候，可以考虑使用双指针的方法求解。这题的贪心并不明显，只在更新最大的容量的时候进行了贪心。贪心的思想是每一步只选择当前认为的最优解。</p>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/4sum/">
+                                <h3 class="">leetcode-四数之和</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/double-point/">
+            <span class="layui-badge " style="vertical-align: 2px;">double-point</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/longest-palindromic-substring/">
+                                <h3 class="">最长回文子串</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/dynamic-programming/">
+            <span class="layui-badge " style="vertical-align: 2px;">dynamic-programming</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/add-two-number/">
+                                <h3 class="">两数之和</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/linked-list/">
+            <span class="layui-badge " style="vertical-align: 2px;">linked-list</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>

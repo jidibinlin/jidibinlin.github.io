@@ -1,0 +1,603 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jidibinlin`s blog Site - 返回两个有序数组中中间的数 </title>
+    
+    
+    <meta content="leetcode, array, binary_search, divide_and_conquer" name="keywords">
+    
+    <meta content="jidibinlin`s blog Site - Problems description Description Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m&#43;n)).
+来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+  Example 1:
+Input: nums1 = [1,3], nums2 = [2] Output: 2.00000 Explanation: merged array = [1,2,3] and median is 2.   Example 2:
+Input: nums1 = [1,2], nums2 = [3,4] Output: 2." name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/self/css/default.css">
+    <script src=" /layui/layui.js"></script>
+
+    <link rel="stylesheet" async href="/self/css/markdown.min.css">
+    <link rel="stylesheet" async href="/self/css/gallery.css">
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" integrity="sha256-PZEg+mIdptYTwWmLcBTsa99GIDZujyt7VHBZ9Lb2Jys=" crossorigin="anonymous"></script></head>
+
+<body>
+    
+    <header class="layui-header layui-bg-cyan">
+
+    
+    
+    <a class="nav-self-logo" href="/">
+        jidibinlin`s blog Site
+    </a>
+
+    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
+        
+        
+        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
+        
+
+        
+
+        
+        <li class="layui-nav-item" id="nav_small">
+            <a href="javascript:;">
+                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
+            </a>
+
+            <dl class="layui-nav-child">
+                
+                <dd><a href="/post/">Posts</a></dd>
+                
+
+                
+            </dl>
+        </li>
+    </ul>
+</header>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element;
+});
+</script>
+
+        <div id="content" style="min-height:80%">
+<div class="layui-container" style="margin-bottom: 10px">
+    
+
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card single-card">
+                <br />
+                <blockquote class="self-elem-quote  markdown-body single-title" >
+                    <h1>返回两个有序数组中中间的数</h1>
+                    <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/array/">
+            <span class="layui-badge " style="vertical-align: 2px;">array</span>
+        </a>
+    
+        <a href="/tags/binary_search/">
+            <span class="layui-badge " style="vertical-align: 2px;">binary_search</span>
+        </a>
+    
+        <a href="/tags/divide_and_conquer/">
+            <span class="layui-badge " style="vertical-align: 2px;">divide_and_conquer</span>
+        </a>
+    
+    
+</h3>
+
+                </blockquote>
+                <div class="layui-card-body markdown-body single-content">
+                    <h2 id="problems-description">Problems description</h2>
+<h3 id="description">Description</h3>
+<p>Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+The overall run time complexity should be O(log (m+n)).</p>
+<p>来源：力扣（LeetCode）
+链接：<a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays">https://leetcode-cn.com/problems/median-of-two-sorted-arrays</a>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<ul>
+<li>
+<p>Example 1:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+</code></pre></li>
+<li>
+<p>Example 2:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+</code></pre></li>
+<li>
+<p>Example 3:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">Input: nums1 = [0,0], nums2 = [0,0]
+Output: 0.00000
+</code></pre></li>
+<li>
+<p>Example 4:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">Input: nums1 = [], nums2 = [1]
+Output: 1.00000
+</code></pre></li>
+<li>
+<p>Example 5:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">Input: nums1 = [2], nums2 = []
+Output: 2.00000
+</code></pre></li>
+<li>
+<p>Constraints:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">nums1.length == m
+nums2.length == n
+0 &lt;= m &lt;= 1000
+0 &lt;= n &lt;= 1000
+1 &lt;= m + n &lt;= 2000
+-106 &lt;= nums1[i], nums2[i] &lt;= 106
+</code></pre></li>
+</ul>
+<h2 id="analyse">Analyse</h2>
+<p>这道题最简单的想法就是先归并到一个数组，然后再把中位数找到，但是此时的时间复杂度为\(o(m+n)\) 不符合题意。题目要求的是 \(o(\log(m+n))\) 。
+此时我们能想到的应该就只有二分法了，对于有序数组，二分法总能非常有效的降低算法的复杂度。但是如何二分成为一个问题。
+中位数指的是一个数列中间的数。设 len = len(array) 这里的/为整除</p>
+<p>\begin{equation}
+\label{中位数公式}
+medium =
+\begin{cases}
+\frac{array[len/2-1] + array[len/2]}{2} &amp;len \mod 2=0 \\
+\frac{array[len/2-1]}{2}&amp; len \mod 2\neq 0
+\end{cases}
+\end{equation}</p>
+<p>这道题是寻找两个有序数组的中位数，我们可以姑且假设他们已经合并后的数组为 <strong>nums3</strong> 我们要在nums3中寻找中位数。此时 <strong>nums3</strong> 的长度我们
+是知道的(m+n) 那么其中位数的应该为第 k= \(\frac{m+n}{2}\) 个数（这里我们先只看奇数情况。这时我们可以对k进行二分处理，分别找到两个s数组中第
+\(\frac{k}{2}\) 个数进行比较，然后排除较小的以及它所在数组中在它前面的数。因为他们是不可能成为中位数的。
+对于 nums1[k/2-1] 和 nums2[k/2-1] 在它们之前的只有 k/2-1 + k/2-1 = k -2 个数。即使算上较小的那个数，也只能到第k-1个数。
+所以他们是不可能成为第k个数的。这时我们让 k = k-A(A为已经排除的数的个数) 然后继续对剩下的数组进行同样的操作。 这里会出现两种情况</p>
+<ol>
+<li>如果 nums1[k/2-1] &gt;= nums2[k/2-1] 则直接排除nums1[k/2-1] 及其前面的数</li>
+<li>如果 nums1[k/2-1] &lt; nums2[k/2-1] 则直接排除nums2[k/2-1] 及其前面的数</li>
+</ol>
+<p>在排除过程中我们还会遇到几种情况</p>
+<ol>
+<li>k/2-1 越界，这种情况取最后一个元素</li>
+<li>k=1 直接返回较小的元素</li>
+<li>数组为空，直接去非空数组中寻找即可</li>
+</ol>
+<h2 id="implement">Implement</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">//c++ version
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    Solution s;
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> nums2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        nums1.push_back(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>;i<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>){
+</span></span><span style="display:flex;"><span>        nums2.push_back(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s.findMedianSortedArrays(nums1,nums2);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> findMedianSortedArrays(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums1, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums2) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> nums1.size() <span style="color:#f92672">+</span> nums2.size();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(k<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">min</span>(getKthElement(nums1, nums2, k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>),getKthElement(nums1, nums2,k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))<span style="color:#f92672">/</span><span style="color:#ae81ff">2.0</span>;
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getKthElement</span>(nums1,nums2,k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getKthElement</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums1, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums2,<span style="color:#66d9ef">int</span> k){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> index1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> index2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> nums1.size();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> nums2.size();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (true){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (index1 <span style="color:#f92672">==</span> m){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> nums2[index2<span style="color:#f92672">+</span>k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(index2 <span style="color:#f92672">==</span> n){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> nums1[index1 <span style="color:#f92672">+</span>k <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> min(nums1[index1],nums2[index2]);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> newIndex1 <span style="color:#f92672">=</span> min(index1<span style="color:#f92672">+</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> newIndex2 <span style="color:#f92672">=</span> min(index2<span style="color:#f92672">+</span>k<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(nums1[newIndex1] <span style="color:#f92672">&gt;=</span> nums2[newIndex2]){
+</span></span><span style="display:flex;"><span>                k <span style="color:#f92672">-=</span> newIndex2 <span style="color:#f92672">-</span> index2 <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                index2 <span style="color:#f92672">=</span> newIndex2<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                k <span style="color:#f92672">-=</span> newIndex1 <span style="color:#f92672">-</span> index1 <span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                index1 <span style="color:#f92672">=</span> newIndex1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">//GO version
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;math&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">findMedianSortedArrays</span>(<span style="color:#a6e22e">nums1</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">nums2</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">float64</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">k</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Ceil</span>((float64(len(<span style="color:#a6e22e">nums1</span>)) <span style="color:#f92672">+</span> float64(len(<span style="color:#a6e22e">nums2</span>))) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (len(<span style="color:#a6e22e">nums1</span>)<span style="color:#f92672">+</span>len(<span style="color:#a6e22e">nums2</span>))<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">foo1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">k</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">foo2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">k</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> float64(<span style="color:#a6e22e">foo1</span><span style="color:#f92672">+</span><span style="color:#a6e22e">foo2</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> float64(<span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">k</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">nums2</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">k</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nums1</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">nums2</span>[<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nums2</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">nums1</span>[<span style="color:#a6e22e">k</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">compareIdx</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">k</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">compareIdx</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">nums1</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">nums2</span>[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nums1Idx</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">min</span>(len(<span style="color:#a6e22e">nums1</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">compareIdx</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nums2Idx</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">min</span>(len(<span style="color:#a6e22e">nums2</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">compareIdx</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">nums1</span>[<span style="color:#a6e22e">nums1Idx</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">nums2</span>[<span style="color:#a6e22e">nums2Idx</span>] {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nums2</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">compareIdx</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>, []<span style="color:#66d9ef">int</span>{}, <span style="color:#a6e22e">k</span><span style="color:#f92672">-</span>(<span style="color:#a6e22e">nums2Idx</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>[<span style="color:#a6e22e">compareIdx</span>:], <span style="color:#a6e22e">k</span><span style="color:#f92672">-</span>(<span style="color:#a6e22e">nums2Idx</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">nums1</span>) <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">compareIdx</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getKthElement</span>([]<span style="color:#66d9ef">int</span>{}, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">k</span><span style="color:#f92672">-</span>(<span style="color:#a6e22e">nums1Idx</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getKthElement</span>(<span style="color:#a6e22e">nums1</span>[<span style="color:#a6e22e">compareIdx</span>:], <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">k</span><span style="color:#f92672">-</span>(<span style="color:#a6e22e">nums1Idx</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span> &lt; <span style="color:#a6e22e">y</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">y</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="analyze-problem">analyze problem</h3>
+<p>这道题第一想到思路是归并两个数组，然后找出中位数。但是这个思路的时间复杂为O(m+n),达不到题目的要求。如果是O(log(m+n))这样的复杂度，就需要考虑使用二分。问题是，这道题怎么使用二分。
+这道题让找出中位数，其实很容易就想到用二分去做这道题。</p>
+<ul>
+<li>二分法就是将数组通过中位数划分为两个数组</li>
+<li>二分法的时间复杂度正好也是o(log(n))级别的。</li>
+<li>这道题并不一定就需要直接归并两个数组具体看下面分析。</li>
+</ul>
+<p>假设两个数组为数组x，数组y 首先中位数是数组中间的数，既然数组长度已知。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> total_length <span style="color:#f92672">=</span> x.size() <span style="color:#f92672">+</span> y.size()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> middle <span style="color:#f92672">=</span> math.floor(total_length <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><p>middle就是中位数所在的位置（如果数组总长度为2的倍数，后面去取中位数的时候是需要特殊处理的，因为无法直接通过索引取到）。
+这个时候问题就变成了，怎么在不合并这两个数组的情况下，找到中位数的位置（废话）。
+这里提供一个思路，由于前提条件，归并两个数组这条路是走不通的。但是，我们可以知道x,y数组中，那些元素是属于归并后的数组的前半部份的（假设这里归并了两个数组，前半部份数组也就是以middle为划分，索引小于middle的数组， 这里我们把这个数组成为有效数组）。
+问题就是如何找到这个有效数组，可以先分别找到两个集合的中位数middle1，middle2并结合middle去调整middle1和middle2。直到middle1_idx + middle2_idx == middle。此时我们就找到了有效数组的所有元素。比如下面的例子。</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">1 3 5 6 7
+1 2 7 8 10
+
+第一次
+1 3 5 6 7
+    ^
+1 2 7 8 10
+    ^
+此时发现 middle1_idx + middle2_idx &gt; middle 我们调整middle2_idx 因为他比较大，不可能出现在有效数组里面。
+1 3 5 6 7
+    ^
+1 2 7 8 10
+  ^
+这个时候发现，middle1_idx + middle2_idx == middle 有效数组的所有元素已经找齐了
+</code></pre><p>下面要做的就是根据有效数组，找到正确的中位数
+通过比较x[middle1_idx] y[middle2_idx] 来确定谁是有效数组的最后一个元素，这个时候，其实中位数已经差不多找到了。如果两数组之和为奇数，那它就是中位数。为偶数，就取比较x[middle1_idx+1] y[middle2_idx+1] 以及最后一个元素，取比最后一个元素大，且离他最近的元素取求偶数情况下的中位数
+用上面的例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">6</span> 三者进行比较 <span style="color:#f92672">(</span>5+6<span style="color:#f92672">)</span>/2,就是中位数
+</span></span></code></pre></div><h3 id="implementation">implementation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">double</span> findMedianSortedArrays(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums1, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>nums2) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">int</span> total_length <span style="color:#f92672">=</span> nums1.size() <span style="color:#f92672">+</span> nums2.size();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">int</span> idx1 <span style="color:#f92672">=</span> nums1.size() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">int</span> idx2 <span style="color:#f92672">=</span> nums2.size() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> total_length <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (idx1 <span style="color:#f92672">+</span> idx2 <span style="color:#f92672">!=</span> mid) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (idx1 <span style="color:#f92672">+</span> idx2 <span style="color:#f92672">&lt;</span> mid) {
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">if</span>(idx1 <span style="color:#f92672">&lt;</span> idx2){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">else</span> <span style="color:#a6e22e">if</span>(idx1 <span style="color:#f92672">+</span> idx2 <span style="color:#f92672">&gt;</span> mid) {
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">if</span>(idx1 <span style="color:#f92672">&lt;</span> idx2){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>              }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>; }
+</span></span></code></pre></div><h3 id="summery">summery</h3>
+</div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
+            
+            <div class="layui-card single-card">
+                <h2 class="single-title">Relevant Topics</h2>
+                
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/container_with_most_water/">
+                                <h3 class="">leetcode-盛水最多的容器</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/double-point/">
+            <span class="layui-badge " style="vertical-align: 2px;">double-point</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/4sum/">
+                                <h3 class="">leetcode-四数之和</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/double-point/">
+            <span class="layui-badge " style="vertical-align: 2px;">double-point</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/longest-palindromic-substring/">
+                                <h3 class="">最长回文子串</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/dynamic-programming/">
+            <span class="layui-badge " style="vertical-align: 2px;">dynamic-programming</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                    <div style="margin-left: 10px;">
+                        <blockquote class="self-elem-quote " style="background-color:#FFFFFF;margin-top: 10px;">
+                            <a href="/posts/2022/03/add-two-number/">
+                                <h3 class="">两数之和</h3>
+                            </a>
+                            
+                            <h3 style="margin-top:10px; margin-bottom:10px"> 
+    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
+    <span>2022-03-28</span>
+
+    
+     
+    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
+    
+
+    
+        <a href="/categories/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+
+    
+    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
+    
+
+    
+        <a href="/tags/leetcode/">
+            <span class="layui-badge " style="vertical-align: 2px;">leetcode</span>
+        </a>
+    
+        <a href="/tags/linked-list/">
+            <span class="layui-badge " style="vertical-align: 2px;">linked-list</span>
+        </a>
+    
+    
+</h3>
+
+                        </blockquote>
+                    </div>
+                	
+                
+                <br />
+            </div>
+            
+
+            <div class="layui-card single-card">
+                <h2 class="single-title">Recent Posts</h2>
+            
+            <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+        </div><footer>
+    
+    
+    <div class="layui-container">
+        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+    </div>
+</footer>
+
+</body>
+</html>

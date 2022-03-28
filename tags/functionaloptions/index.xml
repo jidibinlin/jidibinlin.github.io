@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>functionalOptions on jidibinlin`s blog Site</title>
+    <link>https://jidibinlin.github.io/tags/functionaloptions/</link>
+    <description>Recent content in functionalOptions on jidibinlin`s blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Mar 2022 16:49:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/functionaloptions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go函数选项解决go没用冲在及默认参数的问题</title>
+      <link>https://jidibinlin.github.io/posts/2022/03/functional_options/</link>
+      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
+      
+      <guid>https://jidibinlin.github.io/posts/2022/03/functional_options/</guid>
+      <description>Functional Options   go语言的函数没有重载以及默认参数的功能，这个时候生成一个i对象会变得极其麻烦
+type Person struct{  Name string  Age int  Country string  Gender string  Height string  Address string } func main(){  person :=Person{  Name:&amp;#34;张三&amp;#34;,  Age: -1，  Country: &amp;#34;China&amp;#34;,  Gender: &amp;#34;Male&amp;#34;,  Height: &amp;#34;-1&amp;#34;,  Address: &amp;#34;unknown&amp;#34;,  } }   我们可以使用函数式选项来解决这一问题。
+type Person struct {  Name string  Age int  Country string  Gender string  Height string  Address string }  // 将func(*Person)这种类型的函数简化命名 type per func(*Person)  func Country(country string) per {  return func(person *Person) {  person.</description>
+    </item>
+    
+  </channel>
+</rss>

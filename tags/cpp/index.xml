@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cpp on jidibinlin`s blog Site</title>
+    <link>https://jidibinlin.github.io/tags/cpp/</link>
+    <description>Recent content in cpp on jidibinlin`s blog Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Mar 2022 16:46:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;单例的几种写法</title>
+      <link>https://jidibinlin.github.io/posts/2022/03/tips/</link>
+      <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
+      
+      <guid>https://jidibinlin.github.io/posts/2022/03/tips/</guid>
+      <description>单例的写法 单例是最常用的简单的一种设计模式，实现方法多样，根据不同的需求有不同的写法。这里只介绍几种比较好的写法。
+有缺陷的懒汉式 #include &amp;lt;iostream&amp;gt; using namespace std;  class Singleton{ private:  Singleton(){  cout&amp;lt;&amp;lt;&amp;#34;constructor called!&amp;#34;&amp;lt;&amp;lt;std::endl;  }   Singleton(Singleton&amp;amp;)=delete;// 此处使用delete可以禁用拷贝构造  Singleton&amp;amp; operator = (const Singleton&amp;amp;)=delete;  static Singleton * instance_ptr; public:  ~Singleton(){  cout&amp;lt;&amp;lt;&amp;#34;destructor called!&amp;#34;&amp;lt;&amp;lt;endl;  }   static Singleton* get_instance(){  if(instance_ptr==nullptr){  instance_ptr = new Singleton;  }  return instance_ptr;  } };  Singleton* Singleton::instance_ptr = nullptr;//所有静态成员必须在类外开辟空间  int main(int argc, char *argv[]) {  Singleton* instance = Singleton::get_instance();  Singleton* instance2 = Singleton::get_instance();  return 0; } 这种实现方式有两个问题</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; Template - Class Template</title>
+      <link>https://jidibinlin.github.io/posts/2022/03/reusing_code/</link>
+      <pubDate>Mon, 28 Mar 2022 16:19:00 +0800</pubDate>
+      
+      <guid>https://jidibinlin.github.io/posts/2022/03/reusing_code/</guid>
+      <description>Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&amp;ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
+Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable.</description>
+    </item>
+    
+  </channel>
+</rss>
