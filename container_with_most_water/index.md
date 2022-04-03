@@ -12,6 +12,8 @@
 
 这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。
 
+> fddddddddddddddd
+
 ---
 
 
@@ -55,7 +57,7 @@ min(x,y\_{t})\*t\_{1} < min(x,y)\*t
 
 ## 3 implementation {#3-implementation}
 
-```c++
+```cpp
 //c++ version
 #include <algrothim>
 #include <iostream>
