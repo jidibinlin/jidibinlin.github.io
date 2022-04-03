@@ -1,121 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>jidibinlin`s blog Site</title>
-    <link>https://jidibinlin.github.io/</link>
-    <description>Recent content on jidibinlin`s blog Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Mar 2022 20:39:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>三数之和</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/3sumcloset/</link>
-      <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/3sumcloset/</guid>
-      <description>3SumCloset description  analyze 这道题先排序，防止重复枚举，并且利用有序性，来使双指针的逼近产生可能。双指针的逼近其实和那题最大容量是类似的。 假设每轮枚举到的数分别为a,b,c，第二轮第三轮枚举的指针分别为i,pb,pc,令pb指向i+1,pc指向len(nums)-1
- 若a+b+c &amp;gt; target 则应该让pc左移，因为排完序后，pb不动的情况下 只有pc左移才会使a+b+c的值减小 才有可能更加靠近target 若a+b+c &amp;lt; target 则应该让pb右移，因为pc不动的情况下，只有pb右移，a+b+c的值才会增大，才有可能更加靠近target  implementation package main  import (  &amp;#34;fmt&amp;#34;  &amp;#34;math&amp;#34;  &amp;#34;sort&amp;#34; )  func threeSumClosest(nums []int, target int) int {  result := math.MaxInt64   distance := math.MaxFloat64  sort.Ints(nums)  for i := 0; i &amp;lt; len(nums); i++ {  if i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i-1] {  continue  }  third := len(nums) - 1  for j := i + 1; j &amp;lt; len(nums); j++ {   if j &amp;gt; i+1 &amp;amp;&amp;amp; nums[j] == nums[j-1] {  continue  }   for nums[i]+nums[j]+nums[third] &amp;gt; target &amp;amp;&amp;amp; third &amp;gt; j {  if third &amp;lt; len(nums)-1 &amp;amp;&amp;amp; nums[third] == nums[third+1] {  third--  continue  }  sum := nums[i] + nums[j] + nums[third]  tmpDistance := math.</description>
-    </item>
-    
-    <item>
-      <title>返回两个有序数组中中间的数</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/median_of_two_sorted_arrays/</link>
-      <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/median_of_two_sorted_arrays/</guid>
-      <description>Problems description Description Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
-来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-  Example 1:
-Input: nums1 = [1,3], nums2 = [2] Output: 2.00000 Explanation: merged array = [1,2,3] and median is 2.   Example 2:
-Input: nums1 = [1,2], nums2 = [3,4] Output: 2.</description>
-    </item>
-    
-    <item>
-      <title>leetcode-盛水最多的容器</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/container_with_most_water/</link>
-      <pubDate>Mon, 28 Mar 2022 19:56:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/container_with_most_water/</guid>
-      <description>Container_With_Most_Water Description https://leetcode-cn.com/problems/container-with-most-water/
- analyze problem 这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。
-slove step  step1 分配两个指针，分别指向数组的头尾 [1,8,6,2,5,4,8,3,7] l r   step2计算面积并与全局最优解做比较，如果大于全局最优解，刷新全局最优解。并且移动对应数字较小的那个指针 (向对应数字较大的方向移动)
-```nil [1,8,6,2,5,4,8,3,7] l r ```  重复上述操作直到指针相遇
-certify 需要该解法需要证明的是，为什么每次移动对应值较小的指针是正确的。 双指针代表的是 可以作为容器边界的所有位置的范围 移动指针就代表这个指针不可能再作为容器的边界了。 为什么指向较小值的指针不可能再作为容器的边界了 。
-  step1
-假设当前左指针和右指针指向的数分别为\(x\) 和\(y\), 不失一般性，我们假设 \(x \leq y\) 两个指针之间的距离为t。那么，他们组成的容器的容量为：
-\begin{equation} min(x,y)*t = x*t \end{equation}
-如果我们保持左指针的位置不变，那么无论右指针在哪里，这个容器的容量都不会超过 \(x*t\) 。为什么呢，这里我们只考虑当指针还指向左右边界的时候。 我们任意向左移动右指针，指向的数为 \(y_{1}\) ，两个指针之间的距离为 \(t_{1}\) ，\(t_{1} &amp;lt; t\) ，并且 \(min(x,y_{1}) \le min(x,y)\)
- 如果 \(y_{1} \le y\), then \(min(x,y_{1}) \le min(x,y)\) ; 如果 \(y_{1} \ge y\), then \(min(x,y_{1}) =x= min(x,y)\) ;  所以有:</description>
-    </item>
-    
-    <item>
-      <title>leetcode-四数之和</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/4sum/</link>
-      <pubDate>Mon, 28 Mar 2022 19:54:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/4sum/</guid>
-      <description>Problem Description  Analyse 这题和3数之和的解法几乎一样，使用双指针枚举最后两个数字，所以我直接偷懒，拿了3数之和的代码稍微改了一下解决了这一题。
-Implement func fourSum(nums []int, target int) [][]int {  result := [][]int{}  if len(nums) &amp;lt; 4 {  return result  }  sort.Ints(nums)  for i := 0; i &amp;lt; len(nums)-3; i++ {  if i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i-1] {  continue  }  ntarget := target - nums[i]  tmp := threeSum(nums[i+1:], nums[i], ntarget)  for _, value := range tmp {  result = append(result, value)  }  }  return result }  func threeSum(nums []int, first int, target int) [][]int {  result := [][]int{}  if len(nums) &amp;lt; 3 {  return result  }   for i := 0; i &amp;lt; len(nums); i++ {  if i &amp;gt; 0 &amp;amp;&amp;amp; nums[i] == nums[i-1] {  continue  }   k := len(nums) - 1  ntarget := target - nums[i]   for j := i + 1; j &amp;lt; len(nums); j++ {  if j &amp;gt; i+1 &amp;amp;&amp;amp; nums[j] == nums[j-1] {  continue  }   for j &amp;lt; k &amp;amp;&amp;amp; nums[j]+nums[k] &amp;gt; ntarget {  k--  }   if j == k {  break  }   if nums[j]+nums[k] == ntarget {  result = append(result, []int{first, nums[i], nums[j], nums[k]})  }  }  }  return result } Summery </description>
-    </item>
-    
-    <item>
-      <title>最长回文子串</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/longest-palindromic-substring/</link>
-      <pubDate>Mon, 28 Mar 2022 16:54:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/longest-palindromic-substring/</guid>
-      <description>Longest-Palindromic-Substring 题目描述 Given a string s,return the longest palindromic substring in s。 给定一个字符串s, 返回最长的回文子字符串。
-  example 1
-Input: s = &amp;#34;babad&amp;#34; Output: &amp;#34;bab&amp;#34; Note: &amp;#34;aba&amp;#34; is also a valid answer.   example 2
-Input: s = &amp;#34;cbbd&amp;#34; Output: &amp;#34;bb&amp;#34;   example 3
-Input: s = &amp;#34;a&amp;#34; Output: &amp;#34;a&amp;#34;   example 4
-Input: s = &amp;#34;ac&amp;#34; Output: &amp;#34;a&amp;#34;   限制
- 1&amp;lt;=s.length &amp;lt;=1000 s consist of only digits and english letters    https://leetcode-cn.</description>
-    </item>
-    
-    <item>
-      <title>两数之和</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/add-two-number/</link>
-      <pubDate>Mon, 28 Mar 2022 16:52:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/add-two-number/</guid>
-      <description>Add-Two-Number 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照?逆序?的方式存储的，并且每个节点只能存储一位数字。 请你将两个数相加，并以相同形式返回一个表示和的链表。
-你可以假设除了数字 0 之外，这两个数都不会以 0开头。
-来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/add-two-numbers
-题目解析 这一题，数字是以链表的形式存储的，并且是倒序的。倒序，也就是说链表头是正好对上数字的个位。 那么这题就好解了
- 直接遍历链表然后逐位相加 设置一个用来存储进位信息的变量carry，如果有进位，就将他存入carry当中 每次相加还需要带上carry 最后，要是carry不为零，还要为链表申请一个节点用来存储最高位  c++ 代码实现 /** * Definition for singly-linked list. * struct ListNode { * int val; * ListNode *next; * ListNode() : val(0), next(nullptr) {} * ListNode(int x) : val(x), next(nullptr) {} * ListNode(int x, ListNode *next) : val(x), next(next) {} * }; */ class Solution { public:  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {  ListNode *head = nullptr;  ListNode *tail = nullptr;  int carry = 0;  while (l1 || l2) { //有任意一个节点不为空，就需要继续遍历  int x = l1 ?</description>
-    </item>
-    
-    <item>
-      <title>go函数选项解决go没用冲在及默认参数的问题</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/functional_options/</link>
-      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/functional_options/</guid>
-      <description>Functional Options   go语言的函数没有重载以及默认参数的功能，这个时候生成一个i对象会变得极其麻烦
-type Person struct{  Name string  Age int  Country string  Gender string  Height string  Address string } func main(){  person :=Person{  Name:&amp;#34;张三&amp;#34;,  Age: -1，  Country: &amp;#34;China&amp;#34;,  Gender: &amp;#34;Male&amp;#34;,  Height: &amp;#34;-1&amp;#34;,  Address: &amp;#34;unknown&amp;#34;,  } }   我们可以使用函数式选项来解决这一问题。
-type Person struct {  Name string  Age int  Country string  Gender string  Height string  Address string }  // 将func(*Person)这种类型的函数简化命名 type per func(*Person)  func Country(country string) per {  return func(person *Person) {  person.</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;单例的几种写法</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/tips/</link>
-      <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/tips/</guid>
-      <description>单例的写法 单例是最常用的简单的一种设计模式，实现方法多样，根据不同的需求有不同的写法。这里只介绍几种比较好的写法。
-有缺陷的懒汉式 #include &amp;lt;iostream&amp;gt; using namespace std;  class Singleton{ private:  Singleton(){  cout&amp;lt;&amp;lt;&amp;#34;constructor called!&amp;#34;&amp;lt;&amp;lt;std::endl;  }   Singleton(Singleton&amp;amp;)=delete;// 此处使用delete可以禁用拷贝构造  Singleton&amp;amp; operator = (const Singleton&amp;amp;)=delete;  static Singleton * instance_ptr; public:  ~Singleton(){  cout&amp;lt;&amp;lt;&amp;#34;destructor called!&amp;#34;&amp;lt;&amp;lt;endl;  }   static Singleton* get_instance(){  if(instance_ptr==nullptr){  instance_ptr = new Singleton;  }  return instance_ptr;  } };  Singleton* Singleton::instance_ptr = nullptr;//所有静态成员必须在类外开辟空间  int main(int argc, char *argv[]) {  Singleton* instance = Singleton::get_instance();  Singleton* instance2 = Singleton::get_instance();  return 0; } 这种实现方式有两个问题</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; Template - Class Template</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/reusing_code/</link>
-      <pubDate>Mon, 28 Mar 2022 16:19:00 +0800</pubDate>
-      
-      <guid>https://jidibinlin.github.io/posts/2022/03/reusing_code/</guid>
-      <description>Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&amp;ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
-Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable.</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>LoveIt</title>
+        <link>https://jidibinlin.github.io/</link>
+        <description>About LoveIt Theme</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 02 Apr 2022 21:25:00 &#43;0800</lastBuildDate>
+            <atom:link href="https://jidibinlin.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>leetcode-盛水最多的容器</title>
+    <link>https://jidibinlin.github.io/container_with_most_water/</link>
+    <pubDate>Sat, 02 Apr 2022 21:25:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/container_with_most_water/</guid>
+    <description><![CDATA[1 Description https://leetcode-cn.com/problems/container-with-most-water/
+ 2 analyze problem 这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。
+ 2.1 slove step   分配两个指针，分别指向数组的头尾
+1 2  [1,8,6,2,5,4,8,3,7] l r     计算面积并与全局最优解做比较，如果大于全局最优解，刷新全局最优解。并且移动对应数字较小的那个指针(向对应数字较大的方向移动)
+1 2  [1,8,6,2,5,4,8,3,7] l r     重复上述操作直到指针相遇
+  2.2 certify 需要该解法需要证明的是，为什么每次移动对应值较小的指针是正确的。 双指针代表的是 可以作为容器边界的所有位置的范围 移动指针就代表这个指针不可能再作为容器的边界了。 为什么指向较小值的指针不可能再作为容器的边界了 。 假设当前左指针和右指针指向的数分别为\(x\) 和\(y\), 不失一般性，我们假设 \(x \leq y\) 两个指针之间的距离为t。那么，他们组成的容器的容量为： \[\begin{equation} min(x,y)*t = x*t \end{equation}\] 如果我们保持左指针的位置不变，那么无论右指针在哪里，这个容器的容量都不会超过 \(x*t\) 。为什么呢，这里我们只考虑当指针还指向左右边界的时候。 我们任意向左移动右指针，指向的数为 \(y_{1}\) ，两个指针之间的距离为 \(t_{1}\) ，\(t_{1} &lt; t\) ，并且 \(min(x,y_{1}) \le min(x,y)\)]]></description>
+</item></channel>
 </rss>

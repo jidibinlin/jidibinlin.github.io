@@ -1,233 +1,412 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43; Template - Class Template - Even - A super concise theme for Hugo</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    <title>jidibinlin`s blog Site - C&#43;&#43; Template - Class Template </title>
-    
-    
-    <meta content="cpp" name="keywords">
-    
-    <meta content="jidibinlin`s blog Site - Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
-Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable." name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-    
 
-    
+<meta name="author" content="olOwOlo" /><meta name="description" content="Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&amp;ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
+Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable." /><meta name="keywords" content="Hugo, theme, even" />
 
-    <link rel="stylesheet" href="/layui/css/layui.css">
-    <link rel="stylesheet" href="/self/css/default.css">
-    <script src=" /layui/layui.js"></script>
 
-    <link rel="stylesheet" async href="/self/css/markdown.min.css">
-    <link rel="stylesheet" async href="/self/css/gallery.css">
-    
-    
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-    <script async src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" integrity="sha256-PZEg+mIdptYTwWmLcBTsa99GIDZujyt7VHBZ9Lb2Jys=" crossorigin="anonymous"></script></head>
 
+
+
+<meta name="generator" content="Hugo 0.96.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/posts/2022/03/reusing_code/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C&#43;&#43; Template - Class Template" />
+<meta property="og:description" content="Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
+Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/2022/03/reusing_code/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-28T16:19:00+08:00" />
+<meta property="article:modified_time" content="2022-03-28T16:20:42+08:00" />
+
+<meta itemprop="name" content="C&#43;&#43; Template - Class Template">
+<meta itemprop="description" content="Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
+Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable."><meta itemprop="datePublished" content="2022-03-28T16:19:00+08:00" />
+<meta itemprop="dateModified" content="2022-03-28T16:20:42+08:00" />
+<meta itemprop="wordCount" content="609">
+<meta itemprop="keywords" content="cpp," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; Template - Class Template"/>
+<meta name="twitter:description" content="Class Templates Class Templates provide a way to generate generic class declarations.Templates provide parameterized types&ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.
+Define a Class Template The keyword template informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword class as serving as a type name for a variable that accept a type as value,and of Type is representing a name for this variable."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
 <body>
-    
-    <header class="layui-header layui-bg-cyan">
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
 
-    
-    
-    <a class="nav-self-logo" href="/">
-        jidibinlin`s blog Site
-    </a>
+  
 
-    <ul class="layui-nav layui-layout-right layui-bg-cyan" lay-filter="">
-        
-        
-        <li class="layui-nav-item" id="nav_big"><a href="/post/">Posts</a></li>
-        
 
-        
+</nav>
 
-        
-        <li class="layui-nav-item" id="nav_small">
-            <a href="javascript:;">
-                <i class="layui-icon layui-icon-app" style="font-size: 24px;"></i>
-            </a>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
 
-            <dl class="layui-nav-child">
-                
-                <dd><a href="/post/">Posts</a></dd>
-                
 
-                
-            </dl>
-        </li>
-    </ul>
-</header>
 
-<script>
-layui.use('element', function(){
-  var element = layui.element;
-});
-</script>
 
-        <div id="content" style="min-height:80%">
-<div class="layui-container" style="margin-bottom: 10px">
-    
 
-    <div class="layui-row layui-col-space10">
-        <div class="layui-col-md8 layui-col-sm12 layui-col-xs12">
-            <div class="layui-card single-card">
-                <br />
-                <blockquote class="self-elem-quote  markdown-body single-title" >
-                    <h1>C&#43;&#43; Template - Class Template</h1>
-                    <h3 style="margin-top:10px; margin-bottom:10px"> 
-    <i class="layui-icon layui-icon-date" style="font-size: 28px; vertical-align: -2px;"></i>
-    <span>2022-03-28</span>
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
 
-    
-     
-    <i class="layui-icon layui-icon-list" style="font-size: 32px; vertical-align: -3px;"></i>
-    
+    </header>
 
-    
-        <a href="/categories/cpp/">
-            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
-        </a>
-    
-
-    
-    <i class="layui-icon layui-icon-tabs" style="font-size: 22px; vertical-align: 1px;margin-right:2px;"></i>
-    
-
-    
-        <a href="/tags/cpp/">
-            <span class="layui-badge " style="vertical-align: 2px;">cpp</span>
-        </a>
-    
-    
-</h3>
-
-                </blockquote>
-                <div class="layui-card-body markdown-body single-content">
-                    <h2 id="class-templates">Class Templates</h2>
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <h2 id="class-templates">Class Templates</h2>
 <p><strong>Class Templates</strong> provide a way to generate generic class declarations.Templates provide <em>parameterized</em> types&ndash;that is, they are capable of passing a type name as an argument to a recipe for building a class or a function.</p>
 <h3 id="define-a-class-template">Define a Class Template</h3>
 <p>The keyword <strong>template</strong> informs the compiler that you`re about to define a template. The part in angle brackets is analogous to an argument list to a function. You can think of the keyword <strong>class</strong> as serving as a type name for a variable that accept a type as value,and of <strong>Type</strong> is representing a name for this variable.</p>
 <p>Using class here doesn`t mean that type must be a class; it just means that Type serves as a generic type specifier for which a real type will be substituted when the template is used.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Type</span><span style="color:#f92672">&gt;</span>;<span style="color:#75715e">// old
-</span></span></span></code></pre></div><p>Newer c++ implementations allow you to use the less confusing keyword typename instead of class in this context;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>;<span style="color:#75715e">//Newer c++ implementations
-</span></span></span></code></pre></div><p>Newer c++ implementations allow you to use the less confusing keyword typename instead of class in this context;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span><span class="p">;</span><span class="c1">// old
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Newer c++ implementations allow you to use the less confusing keyword typename instead of class in this context;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span><span class="p">;</span><span class="c1">//Newer c++ implementations
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Newer c++ implementations allow you to use the less confusing keyword typename instead of class in this context;</p>
 <p>You can use your choice of generic type name in the Type position; The name rules are the same as those for any other identifier. Popular choices include <strong>T</strong> and <strong>Type</strong> ;
 Let`s use the Stack class as a model to build a template.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">long</span> Item;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Stack</span>{
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">enum</span> {MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>};
-</span></span><span style="display:flex;"><span>    Item items[MAX];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> top;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    Stack();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isempty</span>() <span style="color:#66d9ef">const</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isfull</span>() <span style="color:#66d9ef">const</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">const</span> Item <span style="color:#f92672">&amp;</span>item);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">pop</span>(Item <span style="color:#f92672">&amp;</span> item);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>When a template is invoked, Type will be replaced with a specific type value,such as int or string. Within the template definition. You can use the generic type name to identify the type to be stored in the stack.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Item item[MAX]; <span style="color:#75715e">// original way
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Type item[MAX]; <span style="color:#75715e">// template way
-</span></span></span></code></pre></div><p>You can replace the class methods of the original class with template member functions. Each function heading will be prefaced with the same template announcemenmt;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>templace <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;::</span>push(<span style="color:#66d9ef">const</span> Type <span style="color:#f92672">&amp;</span> item){
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>if you define a method within the class declarations(an inline definition),you can omit the templace preface and the class qualifier.For some reason you should place all the templace in a header file and to include the header file in the file that will use the templaces;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// stackp.h -- a stack templace
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#ifndef STACKTP_H_
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define STACKTP_H_
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>templace <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Type</span><span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Stack</span>{
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">enum</span>{MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>};
-</span></span><span style="display:flex;"><span>    Type items[MAX];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> top;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    Stack();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isempty</span>();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isfull</span>();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">const</span> Type <span style="color:#f92672">&amp;</span> item);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">pop</span>(Type <span style="color:#f92672">&amp;</span> item);
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;::</span>Stack(){
-</span></span><span style="display:flex;"><span>    top <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;::</span>isempty(){
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> top <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;::</span>isfull(){
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> top <span style="color:#f92672">==</span> MAX;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;::</span>push(<span style="color:#66d9ef">const</span> Type <span style="color:#f92672">&amp;</span> item){
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(top <span style="color:#f92672">&lt;</span> MAX){
-</span></span><span style="display:flex;"><span>        items[top<span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> item;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true;
-</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Type<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> Stack<span style="color:#f92672">&lt;</span>Type<span style="color:#f92672">&gt;</span> <span style="color:#f92672">::</span> pop(Type <span style="color:#f92672">&amp;</span> item){
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(top <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>){
-</span></span><span style="display:flex;"><span>        item <span style="color:#f92672">=</span> items[<span style="color:#f92672">--</span>top];
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true;
-</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
-</span></span></span></code></pre></div><h3 id="using-a-template-class">Using a Template Class</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">Item</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span> <span class="p">{</span><span class="n">MAX</span> <span class="o">=</span> <span class="mi">10</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Item</span> <span class="n">items</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isempty</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isfull</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">push</span><span class="p">(</span><span class="k">const</span> <span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">pop</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When a template is invoked, Type will be replaced with a specific type value,such as int or string. Within the template definition. You can use the generic type name to identify the type to be stored in the stack.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Item</span> <span class="n">item</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span> <span class="c1">// original way
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Type</span> <span class="n">item</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span> <span class="c1">// template way
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can replace the class methods of the original class with template member functions. Each function heading will be prefaced with the same template announcemenmt;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">templace</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>if you define a method within the class declarations(an inline definition),you can omit the templace preface and the class qualifier.For some reason you should place all the templace in a header file and to include the header file in the file that will use the templaces;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// stackp.h -- a stack templace
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifndef STACKTP_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define STACKTP_H_
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">templace</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span><span class="p">{</span><span class="n">MAX</span> <span class="o">=</span> <span class="mi">10</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Type</span> <span class="n">items</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isempty</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">isfull</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">push</span><span class="p">(</span><span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">pop</span><span class="p">(</span><span class="n">Type</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">Stack</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">isempty</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">top</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">isfull</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">top</span> <span class="o">==</span> <span class="n">MAX</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">push</span><span class="p">(</span><span class="k">const</span> <span class="n">Type</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">top</span> <span class="o">&lt;</span> <span class="n">MAX</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">items</span><span class="p">[</span><span class="n">top</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span> <span class="o">::</span> <span class="n">pop</span><span class="p">(</span><span class="n">Type</span> <span class="o">&amp;</span> <span class="n">item</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">top</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">item</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="o">--</span><span class="n">top</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="using-a-template-class">Using a Template Class</h3>
 <p>To declare an object of the template class type,replacing the generic type name with the particular type you want.For example,here`s how you would create two stacks, one for stacking ints and one for stacking string objects;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Stack<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> kernels;
-</span></span><span style="display:flex;"><span>Stack<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> colonels;
-</span></span></code></pre></div></div>
-            </div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">kernels</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stack</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">colonels</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+  </div>
+</article>
         </div>
+        
 
-        <div class="layui-col-md4 layui-col-sm12 layui-col-xs12">
-            
+  
 
-            <div class="layui-card single-card">
-                <h2 class="single-title">Recent Posts</h2>
-            
-            <br />
-            </div>
-        </div>
+  
 
-    </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
 
-        </div><footer>
-    
-    
-    <div class="layui-container">
-        <p class="copyright">&copy; All rights reserved. Powered by <a href='https://gohugo.io' style='color:#FFFFFF'>Hugo</a> and <a href='https://github.com/ertuil/erblog' style='color:#FFFFFF'>Erblog</a>.</p>
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
     </div>
-</footer>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
 
 </body>
 </html>

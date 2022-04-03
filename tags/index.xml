@@ -1,108 +1,108 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on jidibinlin`s blog Site</title>
-    <link>https://jidibinlin.github.io/tags/</link>
-    <description>Recent content in Tags on jidibinlin`s blog Site</description>
+    <title>Tags on Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Mar 2022 20:39:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Mar 2022 20:39:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>double-point</title>
-      <link>https://jidibinlin.github.io/tags/double-point/</link>
+      <link>http://localhost:1313/tags/double-point/</link>
       <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/double-point/</guid>
+      <guid>http://localhost:1313/tags/double-point/</guid>
       <description></description>
     </item>
     
     <item>
       <title>leetcode</title>
-      <link>https://jidibinlin.github.io/tags/leetcode/</link>
+      <link>http://localhost:1313/tags/leetcode/</link>
       <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/leetcode/</guid>
+      <guid>http://localhost:1313/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>array</title>
-      <link>https://jidibinlin.github.io/tags/array/</link>
+      <link>http://localhost:1313/tags/array/</link>
       <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/array/</guid>
+      <guid>http://localhost:1313/tags/array/</guid>
       <description></description>
     </item>
     
     <item>
       <title>binary_search</title>
-      <link>https://jidibinlin.github.io/tags/binary_search/</link>
+      <link>http://localhost:1313/tags/binary_search/</link>
       <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/binary_search/</guid>
+      <guid>http://localhost:1313/tags/binary_search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>divide_and_conquer</title>
-      <link>https://jidibinlin.github.io/tags/divide_and_conquer/</link>
+      <link>http://localhost:1313/tags/divide_and_conquer/</link>
       <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/divide_and_conquer/</guid>
+      <guid>http://localhost:1313/tags/divide_and_conquer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dynamic-programming</title>
-      <link>https://jidibinlin.github.io/tags/dynamic-programming/</link>
+      <link>http://localhost:1313/tags/dynamic-programming/</link>
       <pubDate>Mon, 28 Mar 2022 16:54:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/dynamic-programming/</guid>
+      <guid>http://localhost:1313/tags/dynamic-programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linked-list</title>
-      <link>https://jidibinlin.github.io/tags/linked-list/</link>
+      <link>http://localhost:1313/tags/linked-list/</link>
       <pubDate>Mon, 28 Mar 2022 16:52:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/linked-list/</guid>
+      <guid>http://localhost:1313/tags/linked-list/</guid>
       <description></description>
     </item>
     
     <item>
       <title>functionalOptions</title>
-      <link>https://jidibinlin.github.io/tags/functionaloptions/</link>
+      <link>http://localhost:1313/tags/functionaloptions/</link>
       <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/functionaloptions/</guid>
+      <guid>http://localhost:1313/tags/functionaloptions/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://jidibinlin.github.io/tags/go/</link>
+      <link>http://localhost:1313/tags/go/</link>
       <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/go/</guid>
+      <guid>http://localhost:1313/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cpp</title>
-      <link>https://jidibinlin.github.io/tags/cpp/</link>
+      <link>http://localhost:1313/tags/cpp/</link>
       <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/cpp/</guid>
+      <guid>http://localhost:1313/tags/cpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>singleton</title>
-      <link>https://jidibinlin.github.io/tags/singleton/</link>
+      <link>http://localhost:1313/tags/singleton/</link>
       <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/tags/singleton/</guid>
+      <guid>http://localhost:1313/tags/singleton/</guid>
       <description></description>
     </item>
     

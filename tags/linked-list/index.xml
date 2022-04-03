@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>linked-list on jidibinlin`s blog Site</title>
-    <link>https://jidibinlin.github.io/tags/linked-list/</link>
-    <description>Recent content in linked-list on jidibinlin`s blog Site</description>
+    <title>linked-list on Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/linked-list/</link>
+    <description>Recent content in linked-list on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 28 Mar 2022 16:52:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Mar 2022 16:52:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/linked-list/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>两数之和</title>
-      <link>https://jidibinlin.github.io/posts/2022/03/add-two-number/</link>
+      <link>http://localhost:1313/posts/2022/03/add-two-number/</link>
       <pubDate>Mon, 28 Mar 2022 16:52:00 +0800</pubDate>
       
-      <guid>https://jidibinlin.github.io/posts/2022/03/add-two-number/</guid>
-      <description>Add-Two-Number 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照?逆序?的方式存储的，并且每个节点只能存储一位数字。 请你将两个数相加，并以相同形式返回一个表示和的链表。
-你可以假设除了数字 0 之外，这两个数都不会以 0开头。
-来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/add-two-numbers
-题目解析 这一题，数字是以链表的形式存储的，并且是倒序的。倒序，也就是说链表头是正好对上数字的个位。 那么这题就好解了
- 直接遍历链表然后逐位相加 设置一个用来存储进位信息的变量carry，如果有进位，就将他存入carry当中 每次相加还需要带上carry 最后，要是carry不为零，还要为链表申请一个节点用来存储最高位  c++ 代码实现 /** * Definition for singly-linked list. * struct ListNode { * int val; * ListNode *next; * ListNode() : val(0), next(nullptr) {} * ListNode(int x) : val(x), next(nullptr) {} * ListNode(int x, ListNode *next) : val(x), next(next) {} * }; */ class Solution { public:  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {  ListNode *head = nullptr;  ListNode *tail = nullptr;  int carry = 0;  while (l1 || l2) { //有任意一个节点不为空，就需要继续遍历  int x = l1 ?</description>
+      <guid>http://localhost:1313/posts/2022/03/add-two-number/</guid>
+      <description>Add-Two-Number 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照?逆序?的方式存储的，并且每个节点只能存储一位数字。 请你将两个数相加，并以相同</description>
     </item>
     
   </channel>
