@@ -4,10 +4,10 @@
         <link>https://jidibinlin.github.io/categories/leetcode/</link>
         <description>leetcode - Category - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 02 Apr 2022 21:25:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/leetcode/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 04 Apr 2022 16:32:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/leetcode/" rel="self" type="application/rss+xml" /><item>
     <title>leetcode-盛水最多的容器</title>
     <link>https://jidibinlin.github.io/container_with_most_water/</link>
-    <pubDate>Sat, 02 Apr 2022 21:25:00 &#43;0800</pubDate>
+    <pubDate>Mon, 04 Apr 2022 16:32:00 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://jidibinlin.github.io/container_with_most_water/</guid>
     <description><![CDATA[这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。]]></description>
