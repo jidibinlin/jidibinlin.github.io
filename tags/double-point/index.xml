@@ -4,7 +4,14 @@
         <link>https://jidibinlin.github.io/tags/double-point/</link>
         <description>double-point - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 04 Apr 2022 16:32:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/double-point/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 04 Apr 2022 17:42:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/double-point/" rel="self" type="application/rss+xml" /><item>
+    <title>leetcode-最接近目标值得三数之和</title>
+    <link>https://jidibinlin.github.io/3sumcloset/</link>
+    <pubDate>Mon, 04 Apr 2022 17:42:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/3sumcloset/</guid>
+    <description><![CDATA[leetcode-三数之和的解法]]></description>
+</item><item>
     <title>leetcode-盛水最多的容器</title>
     <link>https://jidibinlin.github.io/container_with_most_water/</link>
     <pubDate>Mon, 04 Apr 2022 16:32:00 &#43;0800</pubDate>

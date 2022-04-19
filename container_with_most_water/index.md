@@ -11,7 +11,7 @@
 {{< figure src="/ox-hugo/2022-02-09_17-16-12_screenshot.png" >}}
 
 
-## 2 analyze problem {#2-analyze-problem}
+## 2.analyze problem {#2-dot-analyze-problem}
 
 这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。
 

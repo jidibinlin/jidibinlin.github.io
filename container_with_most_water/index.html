@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jidibinlin.github.io/container_with_most_water/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-04T16:32:00+08:00" />
-<meta property="article:modified_time" content="2022-04-03T19:44:26+08:00" />
+<meta property="article:modified_time" content="2022-04-17T14:02:35+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
@@ -23,7 +23,7 @@
 <meta name="twitter:title" content="leetcode-盛水最多的容器"/>
 <meta name="twitter:description" content="这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。"/>
 <meta name="application-name" content="jidibinlin`s blog site">
-<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/container_with_most_water/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/container_with_most_water/" /><link rel="prev" href="https://jidibinlin.github.io/median_of_two_sorted_arrays/" /><link rel="next" href="https://jidibinlin.github.io/3sumcloset/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -32,8 +32,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jidibinlin.github.io\/container_with_most_water\/"
-        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "leetcode, double-point","wordcount":  269 ,
-        "url": "https:\/\/jidibinlin.github.io\/container_with_most_water\/","datePublished": "2022-04-04T16:32:00+08:00","dateModified": "2022-04-03T19:44:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "leetcode, double-point","wordcount":  268 ,
+        "url": "https:\/\/jidibinlin.github.io\/container_with_most_water\/","datePublished": "2022-04-04T16:32:00+08:00","dateModified": "2022-04-17T14:02:35+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -113,7 +113,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">leetcode-盛水最多的容器</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/leetcode/"><i class="far fa-folder fa-fw"></i>leetcode</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-04">2022-04-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;269 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-04">2022-04-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;268 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;<span id="/container_with_most_water/" class="leancloud_visitors" data-flag-title="leetcode-盛水最多的容器">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -125,7 +125,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-description">1 Description</a></li>
-    <li><a href="#2-analyze-problem">2 analyze problem</a>
+    <li><a href="#2-dot-analyze-problem">2.analyze problem</a>
       <ul>
         <li><a href="#2-dot-1-slove-step">2.1 slove step</a></li>
         <li><a href="#2-dot-2-certify">2.2 certify</a></li>
@@ -140,7 +140,7 @@
 <figure><img src="/ox-hugo/2022-02-09_17-16-12_screenshot.png"/>
 </figure>
 
-<h2 id="2-analyze-problem">2 analyze problem</h2>
+<h2 id="2-dot-analyze-problem">2.analyze problem</h2>
 <p>这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。</p>
 <hr>
 <h3 id="2-dot-1-slove-step">2.1 slove step</h3>
@@ -317,8 +317,8 @@ min(x,y_{t})*t_{1} &lt; min(x,y)*t
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-04-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/05c06ffc6658648d15a27f3bb2edccbb61f76a25" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 05c06ffc6658648d15a27f3bb2edccbb61f76a25: 使用loveit 主题">
-                                    <i class="fas fa-hashtag fa-fw"></i>05c06ff</a></span>
+                <span>Updated on 2022-04-17&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/7f95cba872dfd544d1894b9798508e58cbdff162" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 7f95cba872dfd544d1894b9798508e58cbdff162: 博客换主题">
+                                    <i class="fas fa-hashtag fa-fw"></i>7f95cba</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -339,7 +339,8 @@ min(x,y_{t})*t_{1} &lt; min(x,y)*t
         </section>
     </div>
 
-    <div class="post-nav"></div>
+    <div class="post-nav"><a href="/median_of_two_sorted_arrays/" class="prev" rel="prev" title="返回两个有序数组中中间的数"><i class="fas fa-angle-left fa-fw"></i>返回两个有序数组中中间的数</a>
+            <a href="/3sumcloset/" class="next" rel="next" title="leetcode-最接近目标值得三数之和">leetcode-最接近目标值得三数之和<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
