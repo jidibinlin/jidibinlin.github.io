@@ -689,6 +689,9 @@ Closures 允许捕获词法绑定的值
 这里可以看到my-repeater 和my-repeater之间是相互隔离的 各自拥有自己的counter. 这是因为repeater 被执行了两次而 lambda 表达式被定义了两次，而被let包裹的函数会去其定义的环境中寻找值，所以两者的counter是隔离的。
 
 
+## <span class="org-todo todo TODO">TODO</span> setf functions {#setf-functions}
+
+
 ## 柯里化 currying {#柯里化-currying}
 
 维基百科上的解释是，把接受多个参数的函数转换成接受一个单一参数的函数
