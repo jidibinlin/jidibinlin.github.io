@@ -1,0 +1,1254 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>common lisp strings - jidibinlin`s blog site</title><meta name="Description" content="有关common-lisp string的知识以及操作"><meta property="og:title" content="common lisp strings" />
+<meta property="og:description" content="有关common-lisp string的知识以及操作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/strings/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-22T10:36:00+08:00" />
+<meta property="article:modified_time" content="2022-04-22T16:05:25+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="common lisp strings"/>
+<meta name="twitter:description" content="有关common-lisp string的知识以及操作"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/strings/" /><link rel="prev" href="https://jidibinlin.github.io/data_structures/" /><link rel="next" href="https://jidibinlin.github.io/numbers/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "common lisp strings",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/strings\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  1932 ,
+        "url": "https:\/\/jidibinlin.github.io\/strings\/","datePublished": "2022-04-22T10:36:00+08:00","dateModified": "2022-04-22T16:05:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "有关common-lisp string的知识以及操作"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/strings/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/strings/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">common lisp strings</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-22">2022-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1932 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;<span id="/strings/" class="leancloud_visitors" data-flag-title="common lisp strings">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建-字符串">创建 字符串</a></li>
+    <li><a href="#访问子串">访问子串</a></li>
+    <li><a href="#访问单个字符">访问单个字符</a></li>
+    <li><a href="#从string中删除和替换">从string中删除和替换</a></li>
+    <li><a href="#拼接字符串--concatenating-string">拼接字符串 (Concatenating string)</a></li>
+    <li><a href="#一次操作一个字符">一次操作一个字符</a></li>
+    <li><a href="#根据word-或-character翻转string">根据word 或 character翻转string</a></li>
+    <li><a href="#breaking-strings-into-graphenes-sentences-lines-and-words">Breaking strings into graphenes,sentences,lines and words</a></li>
+    <li><a href="#controlling-case-控制大小写">Controlling Case 控制大小写</a>
+      <ul>
+        <li><a href="#使用format函数控制">使用format函数控制</a></li>
+      </ul>
+    </li>
+    <li><a href="#将字符串左右的空格截掉">将字符串左右的空格截掉</a></li>
+    <li><a href="#在symbol-和-字符串之间转换">在symbol 和 字符串之间转换</a></li>
+    <li><a href="#在string-和-character之间转换">在string 和 character之间转换</a></li>
+    <li><a href="#在string中寻找一个元素">在string中寻找一个元素</a></li>
+    <li><a href="#在字符串中查找一个子串">在字符串中查找一个子串</a></li>
+    <li><a href="#将string-转换成number">将string 转换成number</a></li>
+    <li><a href="#转换成float">转换成float</a></li>
+    <li><a href="#number-转-string">number 转 string</a></li>
+    <li><a href="#字符串比较">字符串比较</a></li>
+    <li><a href="#string-formatting">String formatting</a></li>
+    <li><a href="#捕获哪些东西被打印进了stream">捕获哪些东西被打印进了stream</a></li>
+    <li><a href="#删除标点符号">删除标点符号</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>你应该知道，string 在 common lisp 中它既是arrays 也是 sequences. 也就是说，arrays 和 sequences的操作都可以应用在string上。如果你找不到某个string特有的函数，你应该去找一找arrays 和 sequences的函数。</p>
+<p>还有一些额外的libraries 托管在 quicklisp上，这里只给出英文介绍
+ASDF3, which is included with almost all Common Lisp implementations, includes Utilities for Implementation- and OS- Portability (UIOP), which defines functions to work on strings (strcat, string-prefix-p, string-enclosed-p, first-char, last-char, split-string, stripln).
+Some external libraries available on Quicklisp bring some more functionality or some shorter ways to do.</p>
+<ul>
+<li>str defines trim, words, unwords, lines, unlines, concat, split, shorten, repeat, replace-all, starts-with?, ends-with?, blankp, emptyp, …</li>
+<li>Serapeum is a large set of utilities with many string manipulation functions.</li>
+<li>cl-change-case has functions to convert strings between camelCase, param-case, snake_case and more. They are also included into str.</li>
+<li>mk-string-metrics has functions to calculate various string metrics efficiently (Damerau-Levenshtein, Hamming, Jaro, Jaro-Winkler, Levenshtein, etc),</li>
+<li>and cl-ppcre can come in handy, for example ppcre:replace-regexp-all. See the regexp section.</li>
+</ul>
+<p>Last but not least, when you’ll need to tackle the format construct, don’t miss the following resources:</p>
+<p>the official CLHS documentation</p>
+<ul>
+<li>a quick reference</li>
+<li>a CLHS summary on HexstreamSoft</li>
+<li>plus a Slime tip: type C-c C-d ~ plus a letter of a format directive to open up its documentation. Again more useful with ivy-mode or helm-mode.</li>
+</ul>
+<h2 id="创建-字符串">创建 字符串</h2>
+<p>最简单的，我们可以使用双引号创建string.但是其实我们还有别的方法:</p>
+<ul>
+<li>
+<p>使用format nil</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">person</span> <span class="s">&#34;you&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">format</span> <span class="no">nil</span> <span class="s">&#34;hello ~a&#34;</span> <span class="nv">person</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;hello you&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>make-string count 创建指定长度的字符串。 :initial-element 字符会被重复count次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-string</span> <span class="mi">3</span> <span class="ss">:initial-element</span> <span class="sc">#\♥</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;♥♥♥&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="访问子串">访问子串</h2>
+<p>string 是一个sequence,你可以使用subseq 来访问它的子串
+先给出一个比较易懂的签名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subseq</span> <span class="nv">my-string</span> <span class="nv">start</span> <span class="nv">end</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里是调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">0</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Groucho&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">1</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;rouc&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以像序列那样用setf 和 subseq 配合来操作字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Harpo Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">)</span> <span class="s">&#34;Chico&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Chico&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Chico Marx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>string isn`t stretchable<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>字符串的长度是不可变的，如果新的子串的长度和原始子串的长度不同，短的那一个将决定多少个字符将被替换，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Karl Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Karl&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span> <span class="s">&#34;Harpo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harp Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34; Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">subseq</span> <span class="vg">*my-string*</span> <span class="mi">4</span><span class="p">)</span> <span class="s">&#34;o Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;o Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">*</span> <span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo Mar&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h2 id="访问单个字符">访问单个字符</h2>
+<p>char函数专门用来访问字符串中的单个字符，char也可以和setf配合使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">char</span> <span class="vg">*my-string*</span> <span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\x</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">char</span> <span class="vg">*my-string*</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\Space</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">char</span> <span class="vg">*my-string*</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\o</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">char</span> <span class="vg">*my-string*</span> <span class="mi">6</span><span class="p">)</span> <span class="sc">#\y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\y</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Grouchy Marx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还有一个schar也可以做到同样的事情，但是在特定情况下，schar会更快一些
+因为strings 既是 arrays 也是 sequence. 你也可以用更加通用的aref 和 elt (但是char的效率会更高)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">aref</span> <span class="vg">*my-string*</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\u</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">elt</span> <span class="vg">*my-string*</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\M</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="从string中删除和替换">从string中删除和替换</h2>
+<p>可以使用 sequence的函数来对string中的子串进行删除和替换操作</p>
+<ul>
+<li>从string中删除一个字符</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="sc">#\o</span> <span class="s">&#34;Harpo Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harp Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="sc">#\a</span> <span class="s">&#34;Harpo Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Hrpo Mrx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="sc">#\a</span> <span class="s">&#34;Harpo Marx&#34;</span> <span class="ss">:start</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo Mrx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove-if</span> <span class="nf">#&#39;upper-case-p</span> <span class="s">&#34;Harpo Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;arpo arx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用substitute(non destructive) 或者 replace (destructive) 来替换一个字符</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">substitute</span> <span class="sc">#\u</span> <span class="sc">#\o</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Gruuchu Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">substitute-if</span> <span class="sc">#\_</span> <span class="nf">#&#39;upper-case-p</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;_roucho _arx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Zeppo Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="vg">*my-string*</span> <span class="s">&#34;Harpo&#34;</span> <span class="ss">:end1</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Harpo Marx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="拼接字符串--concatenating-string">拼接字符串 (Concatenating string)</h2>
+<p>concatenate 是sequence的通用函数，在对string进行操作时，应该指定返回值的类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">concatenate</span> <span class="ss">&#39;string</span> <span class="s">&#34;karl&#34;</span> <span class="s">&#34; &#34;</span> <span class="s">&#34;Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;Karl Marx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">concatenate</span> <span class="ss">&#39;list</span> <span class="s">&#34;Karl&#34;</span> <span class="s">&#34; &#34;</span> <span class="s">&#34;Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (#\K #\a #\r #\l #\Space #\M #\a #\r #\x)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用UIOP库的话，可以用strcat:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:strcat</span> <span class="s">&#34;karl&#34;</span> <span class="s">&#34; &#34;</span> <span class="nv">marx</span><span class="err">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者是str library 使用concat:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">str:concat</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="一次操作一个字符">一次操作一个字符</h2>
+<p>使用Map函数一次操作一个字符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;Groucho Marx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">map</span> <span class="ss">&#39;string</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">c</span><span class="p">))</span> <span class="vg">*my-string*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\G</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\r</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\o</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\u</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\c</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\h</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\o</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\Space</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\M</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\a</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\r</span>
+</span></span><span class="line"><span class="cl"><span class="sc">#\x</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;Groucho Marx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者使用loop 函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nf">char</span> <span class="nv">across</span> <span class="s">&#34;Zeppo&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nf">char</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="sc">#\Z</span> <span class="sc">#\e</span> <span class="sc">#\p</span> <span class="sc">#\p</span> <span class="sc">#\o</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="根据word-或-character翻转string">根据word 或 character翻转string</h2>
+<p>使用reverse (或者destructive 版的 nreverse) 来根据character反转字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;DSL&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">reverse</span> <span class="vg">*my-string*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;LSD&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在CL中 没有直接根据word反转字符串的函数，你可以使用第三方库 比如SPLIT-SEQUENCE 或者你自己实现一套解决方案
+我们可以使用str库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*singing*</span> <span class="s">&#34;singing in the rain&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*SINGING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">str:words</span> <span class="vg">*SINGING*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;singing&#34; &#34;in&#34; &#34;the&#34; &#34;rain&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">str:unwords</span> <span class="p">(</span><span class="nf">reverse</span> <span class="p">(</span><span class="nv">str:words</span> <span class="vg">*singing*</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;rain the in singing&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="breaking-strings-into-graphenes-sentences-lines-and-words">Breaking strings into graphenes,sentences,lines and words</h2>
+<p>These functions use SBCL’s sb-unicode: they are SBCL specific.</p>
+<ul>
+<li>sb-unicode:sentences 将string 以段落切割，根据他默认的段落分割规则</li>
+<li>sb-unicode:lines 将string 分割成行（长度不会超过:margin 指定的参数 默认80）</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">sb-unicode:lines</span> <span class="s">&#34;A first sentence. A second somewhat long one.&#34;</span> <span class="ss">:margin</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;A first&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;sentence.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;A second&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;somewhat&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;long one.&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>sb-unicode:words 和 sb-unicode:graphenes 可以自己去查看</li>
+</ul>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>确保运行在sbcl中<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">#+</span><span class="nv">sbcl</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">runs</span> <span class="nv">on</span> <span class="nv">sbcl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">#-</span><span class="nv">sbcl</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">runs</span> <span class="nv">on</span> <span class="nv">other</span> <span class="nv">implementations</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h2 id="controlling-case-控制大小写">Controlling Case 控制大小写</h2>
+<p>Common lisp 提供了大量的函数来控制字符串的大小写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-upcase</span> <span class="s">&#34;cool&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;COOL&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-upcase</span> <span class="s">&#34;Cool&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;COOL&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-downcase</span> <span class="s">&#34;COOL&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;cool&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-downcase</span> <span class="s">&#34;Cool&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;cool&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-capitalize</span> <span class="s">&#34;cool&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;Cool&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-capitalize</span> <span class="s">&#34;cool example&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;Cool Example&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些函数可以接受:start 和 :key 所以你可以只对字符串的指定部分进行操作。 这些函数也有destructive的版本都以n开头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-capitalize</span> <span class="s">&#34;cool example&#34;</span> <span class="ss">:start</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;cool Example&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-capitalize</span> <span class="s">&#34;cool example&#34;</span> <span class="ss">:end</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;Cool example&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-string*</span> <span class="p">(</span><span class="nc">string</span> <span class="s">&#34;BIG&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; *MY-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-downcase-string*</span> <span class="p">(</span><span class="nf">nstring-downcase</span> <span class="vg">*my-string*</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; *MY-DOWNCASE-STRING*</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-downcase-string*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;big&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-string*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;big&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">对于 string-upcase,string-downcase 和 string-capitalize,string 是没有被修改的。但是如果在string中没有任何字符需要转换，那么返回值有可能是源string 或者 源string的副本</div>
+        </div>
+    </div>
+<div class="details admonition tips open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>tips<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">在CL中 n开头的函数一般是destructive的</div>
+        </div>
+    </div>
+<h3 id="使用format函数控制">使用format函数控制</h3>
+<ul>
+<li>
+<p>To lower case:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~(~a~)&#34;</span> <span class="s">&#34;HELLO WORLD&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; hello world</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Capitalize every word:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~:(~a~)&#34;</span> <span class="s">&#34;HELLO WORLD&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; Hello World</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Capitalize the first word:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~@(~a~)&#34;</span> <span class="s">&#34;hello world&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; Hello world</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>To upper case</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~@:(~a~)&#34;</span> <span class="s">&#34;hello world&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; HELLO WORLD</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="将字符串左右的空格截掉">将字符串左右的空格截掉</h2>
+<p>其实不单单可以截掉空格，还可以丢弃一些不需要的字符。string-trim,string-left-trim,string-right-trim 返回一个子串，子串不包含第一个参数中的字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-trim</span> <span class="s">&#34; &#34;</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;trim me&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-trim</span> <span class="s">&#34; et&#34;</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;rim m&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-left-trim</span> <span class="s">&#34; et&#34;</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;rim me &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-right-trim</span> <span class="s">&#34; et&#34;</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34; trim m&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-right-trim</span> <span class="o">&#39;</span><span class="p">(</span><span class="sc">#\Space</span> <span class="sc">#\e</span> <span class="sc">#\t</span><span class="p">)</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; = &gt;&#34; trim m&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-right-trim</span> <span class="o">&#39;</span><span class="p">(</span><span class="sc">#\Space</span> <span class="sc">#\e</span> <span class="sc">#\t</span> <span class="sc">#\m</span><span class="p">)</span> <span class="s">&#34; trim me &#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="在symbol-和-字符串之间转换">在symbol 和 字符串之间转换</h2>
+<ul>
+<li>
+<p>intern 将string转化成symbol</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">in-package</span> <span class="s">&#34;COMMON-LISP-USER&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #&lt;The COMMON-LISP-USER package, 35/44 internal, 0/9 external&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;MY-SYMBOL&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; MY-SYMBOL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;MY-SYMBOL&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; MY-SYMBOL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;:INTERNAL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">export</span> <span class="ss">&#39;MY-SYMBOL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;MY-SYMBOL&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; MY-SYMBOL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :EXTERNAL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;My-Symbol&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; |My-Symbol|</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;MY-SYMBOL&#34;</span> <span class="s">&#34;KEYWORD&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :MY-SYMBOL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intern</span> <span class="s">&#34;MY-SYMBOL&#34;</span> <span class="s">&#34;KEYWORD&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :MY-SYMBOL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :EXTERNAL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>symbol-name 和 string 将symbol 转换成 string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">symbol-name</span> <span class="ss">&#39;MY-SYMBOL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;MY-SYMBOL&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">symbol-name</span> <span class="ss">&#39;my-symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;MY-SYMBOL&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">symbol-name</span> <span class="ss">&#39;|my-symbol|</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;my-symbol&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nc">string</span> <span class="ss">&#39;howdy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;HOWDY&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="在string-和-character之间转换">在string 和 character之间转换</h2>
+<ul>
+<li>
+<p>coerce 将string(长度为1)转换成character.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">coerce</span> <span class="s">&#34;a&#34;</span> <span class="ss">&#39;character</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #\a</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">coerce</span> <span class="p">(</span><span class="nf">subseq</span> <span class="s">&#34;cool&#34;</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="ss">&#39;character</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #\o</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>coerce 将字符串转换中字符list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">coerce</span> <span class="s">&#34;cool&#34;</span> <span class="ss">&#39;list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (#\c #\o #\o #\l)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>coerce 将字符list转换成string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">coerce</span> <span class="o">&#39;</span><span class="p">(</span><span class="sc">#\h</span> <span class="sc">#\e</span> <span class="sc">#\y</span><span class="p">)</span> <span class="ss">&#39;string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;hey&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>coerce 将array 转换成string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-array*</span> <span class="p">(</span><span class="nf">make-array</span> <span class="mi">5</span> <span class="ss">:initial-element</span> <span class="sc">#\x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; *MY-ARRAY*</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-array*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #(#\x #\x #\x #\x #\x)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">coerce</span> <span class="vg">*my-array*</span> <span class="ss">&#39;string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;xxxxx&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="在string中寻找一个元素">在string中寻找一个元素</h2>
+<p>使用find,position 和他们的-if后缀的函数 查找string中的character</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #\t</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equalp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #\T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="sc">#\z</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equalp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;=&gt; #\1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:from-end</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #\0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">position</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 17</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">position</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equalp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">position-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 37</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">position-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:from-end</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 43</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用count族函数计算字符在字符串中出现的次数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">count</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">count</span> <span class="sc">#\t</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;equalp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">count-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 6</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">count-if</span> <span class="nf">#&#39;digit-char-p</span> <span class="s">&#34;The Hyperspec contains approximately 110,000 hyperlinks.&#34;</span> <span class="ss">:start</span> <span class="mi">38</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="在字符串中查找一个子串">在字符串中查找一个子串</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;we&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;we&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span> <span class="ss">:from-end</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 20</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;we&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span> <span class="ss">:start2</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 20</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;we&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span> <span class="ss">:end2</span> <span class="mi">5</span> <span class="ss">:from-end</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;FREE&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;FREE&#34;</span> <span class="s">&#34;If we can&#39;t be free we can at least be cheap&#34;</span> <span class="ss">:test</span> <span class="nf">#&#39;char-equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 15</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="将string-转换成number">将string 转换成number</h2>
+<ul>
+<li>
+<p>to integer 会返回两个值，一个是被转换后的值，另一个是转换停止的位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34;42&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 42</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34;42&#34;</span> <span class="ss">:start</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34;42&#34;</span> <span class="ss">:end</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34;42&#34;</span> <span class="ss">:radix</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 34</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34; 42 &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 42</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34; 42 is forty-two&#34;</span> <span class="ss">:junk-allowed</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 42</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">parse-integer</span> <span class="s">&#34; 42 is forty-two&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">Error</span> <span class="nv">in</span> <span class="nc">function</span> <span class="nv">PARSE-INTEGER:</span>
+</span></span><span class="line"><span class="cl"><span class="nv">There</span><span class="ss">&#39;s</span> <span class="nv">junk</span> <span class="nv">in</span> <span class="nv">this</span> <span class="nv">string:</span> <span class="s">&#34; 42 is forty-two&#34;</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>转换成任意number: read-from-string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;#X23&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 35,4</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;4.5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 4.5,3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;6/8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3/4,3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;#C(6/8 1)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #C(3/4 1),9</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;1.2e2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 120.00001,5</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;symbol&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; SYMBOL.6</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*foo*</span> <span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; *FOO*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">read-from-string</span> <span class="s">&#34;#.(setq *foo* \&#34;gotcha\&#34;)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;gotcha&#34;,23</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*foo*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;gotcha&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="转换成float">转换成float</h2>
+<p>parse-float 库提供转换成float的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;parse-float&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">parse-float:parse-float</span> <span class="s">&#34;1.2e2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 120.00001,5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="number-转-string">number 转 string</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">write-to-string</span> <span class="mi">250</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;250&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">write-to-string</span> <span class="mf">250.02</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;250.02&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">write-to-string</span> <span class="mi">250</span> <span class="ss">:base</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;2000&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">write-to-string</span> <span class="p">(</span><span class="nf">/</span> <span class="mi">1</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;1/3&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串比较">字符串比较</h2>
+<p>equal 和 equalp 都可以比较两个字符串是否相同，但是equal是大小写敏感的，而equalp不是。还有一些string专用的函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string=</span> <span class="s">&#34;Marx&#34;</span> <span class="s">&#34;Marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string=</span> <span class="s">&#34;Marx&#34;</span> <span class="s">&#34;marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-equal</span> <span class="s">&#34;Marx&#34;</span> <span class="s">&#34;marx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string&lt;</span> <span class="s">&#34;Groucho&#34;</span> <span class="s">&#34;Zeppo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string&lt;</span> <span class="s">&#34;groucho&#34;</span> <span class="s">&#34;Zeppo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">string-lessp</span> <span class="s">&#34;groucho&#34;</span> <span class="s">&#34;Zeppo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mismatch</span> <span class="s">&#34;Harpo Marx&#34;</span> <span class="s">&#34;Zeppo Marx&#34;</span> <span class="ss">:from-end</span> <span class="no">t</span> <span class="ss">:test</span> <span class="nf">#&#39;char=</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="string-formatting">String formatting</h2>
+<p>see <a href="https://lispcookbook.github.io/cl-cookbook/strings.html#string-formatting" target="_blank" rel="noopener noreffer">https://lispcookbook.github.io/cl-cookbook/strings.html#string-formatting</a></p>
+<h2 id="捕获哪些东西被打印进了stream">捕获哪些东西被打印进了stream</h2>
+<p>在(with-output-to-string (mystream) &hellip;) 中任何打印进stream中的内容都会被捕获</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">name</span> <span class="k">&amp;key</span> <span class="p">(</span><span class="nc">stream</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">;; by default, print to standard output.</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="nc">stream</span> <span class="s">&#34;hello ~a&#34;</span> <span class="nv">name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">output</span> <span class="p">(</span><span class="nb">with-output-to-string</span> <span class="p">(</span><span class="nc">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">(</span><span class="nv">greet</span> <span class="s">&#34;you&#34;</span> <span class="ss">:stream</span> <span class="nc">stream</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Output is: &#39;~a&#39;. It is indeed a ~a, aka a string.~&amp;&#34;</span> <span class="nv">output</span> <span class="p">(</span><span class="nf">type-of</span> <span class="nv">output</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Output is: &#39;hello you&#39;. It is indeed a (SIMPLE-ARRAY CHARACTER (9)), aka a string.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="删除标点符号">删除标点符号</h2>
+<p>使用(str:remove-punctuation s) 或者 (str:no-case s)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">str:remove-punctuation</span> <span class="s">&#34;HEY! What&#39;s up ??&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;HEY What s up&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">str:no-case</span> <span class="s">&#34;HEY! What&#39;s up ??&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;hey what s up&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-22</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/strings/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/strings/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/data_structures/" class="prev" rel="prev" title="common lisp 数据结构"><i class="fas fa-angle-left fa-fw"></i>common lisp 数据结构</a>
+            <a href="/numbers/" class="next" rel="next" title="common lisp numbers">common lisp numbers<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.97.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
