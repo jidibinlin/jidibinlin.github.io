@@ -1,0 +1,513 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>common lisp macros - jidibinlin`s blog site</title><meta name="Description" content="common lisp 中的 macros"><meta property="og:title" content="common lisp macros" />
+<meta property="og:description" content="common lisp 中的 macros" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/macros/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-01T18:49:00+08:00" />
+<meta property="article:modified_time" content="2022-05-03T21:11:51+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="common lisp macros"/>
+<meta name="twitter:description" content="common lisp 中的 macros"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/macros/" /><link rel="prev" href="https://jidibinlin.github.io/fundamentals-of-clos/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "common lisp macros",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/macros\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  579 ,
+        "url": "https:\/\/jidibinlin.github.io\/macros\/","datePublished": "2022-05-01T18:49:00+08:00","dateModified": "2022-05-03T21:11:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "common lisp 中的 macros"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/macros/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/macros/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">common lisp macros</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-01">2022-05-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;579 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;<span id="/macros/" class="leancloud_visitors" data-flag-title="common lisp macros">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#macros-是如何工作的">macros 是如何工作的</a></li>
+    <li><a href="#quote">Quote</a></li>
+    <li><a href="#macroexpand">Macroexpand</a></li>
+    <li><a href="#evaluation-context">Evaluation Context</a></li>
+    <li><a href="#backquote-and-comma">Backquote and comma</a>
+      <ul>
+        <li><a href="#comma-splice">comma-splice ,@</a></li>
+        <li><a href="#quote-comma">Quote-comma &lsquo;,</a></li>
+      </ul>
+    </li>
+    <li><a href="#gensym">Gensym</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>macro 在计算机科学中的意义是语言语法上的拓展。lisp 的 macro非常强大，但是需要多实践。</p>
+<h2 id="macros-是如何工作的">macros 是如何工作的</h2>
+<p>一个macro 是一段原始的lisp代码，它对另一段假定的lisp代码进行操作，将其转换成更接近于可执行的Lisp代码。有点复杂，举个例子。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">setq2</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当lisp解释器看到这段代码时，会将它视为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="k">progn</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">v1</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际上，这并不完全正确。macro允许我们通过一段程序，将输入的代码加工成另一个代码</p>
+<h2 id="quote">Quote</h2>
+<p>我们可以这样定义seq2macro:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq2</span> <span class="p">(</span><span class="nv">v1</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;progn</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v1</span> <span class="nv">e</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段macro接受两个variables 和 一个expression
+他会返回一段代码。在lisp中，code是用lists表示的，所以 返回list也就代表一段code.</p>
+<p>我们使用了quote符号，一个非常特殊的操作符
+每个被quated的对象会被运算成它自己</p>
+<ul>
+<li>(+ 1 2) evaluates to 3 但是 (quote (+ 1 2)) evalutes to (+ 1 2)</li>
+<li>(quote (foo bar baz)) evalutes to (foo bar baz)</li>
+<li>&rsquo; 是quote的所缩写 &lsquo;foo 和 (quote foo 是一样的)</li>
+</ul>
+<p>还记得之前说过 &lsquo;用来保护表达式不被求值。&lsquo;开头的表达式都会保持原样
+所以最后生成的代码是这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="k">progn</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">v1</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这时我们就可以使用他了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">v1</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">v2</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">v1</span> <span class="nv">v2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="macroexpand">Macroexpand</h2>
+<p>当你开始写macro的时候，你肯定想知道macro究竟生成了哪些代码。macroexpandkey可以做到这样的事情。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">setq2</span> <span class="nv">v1</span> <span class="nv">v2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (PROGN (SETQ V1 3) (SETQ V2 3))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更复杂一点的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">setq2</span> <span class="nv">v1</span> <span class="nv">v2</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">z</span> <span class="mi">3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (PROGN (SETQ V1 (+ z 3)) (SETQ V2 (+ z 3)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到，e并没有被evaluated 而是保持原样。 我们会需要一个comma(,)符号，用来将被保护的表达式求值</p>
+<h2 id="evaluation-context">Evaluation Context</h2>
+<p>在宏定义中，不能再次调用宏，这会导致宏嵌套。如果需要调用某些功能，可以重新定义一个函数，而不是宏。这是因为在执行态时执行的是编译时宏的展开。也就是说，在编译一个函数时，中途遇到了表达式 (setq2 x y (+ z 3)，编译器就会将 setq2 宏展开并编译成可执行状态（如机器语言或是字节码）。也就是说，当编译器遇到 setq2 表达式时，他就要切换去执行 setq2 主体内容。而如果在 setq2 里面再嵌套宏时，编译器就会去处理另一个宏，然后就出不来了，导致 setq2 无法继续执行。</p>
+<p>在编译时，所有代码都是可以处理的，但是宏嵌套打破了这个规则
+错误示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq2</span> <span class="p">(</span><span class="nv">v1</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">e1</span> <span class="p">(</span><span class="nv">some-computation</span> <span class="nv">e</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;progn</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v1</span> <span class="nv">e1</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v2</span> <span class="nv">e1</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">some-computation</span> <span class="p">(</span><span class="nf">exp</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span> <span class="c1">;; _Wrong!_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正确示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq2</span> <span class="p">(</span><span class="nv">v1</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">e1</span> <span class="p">(</span><span class="nv">some-compatation</span> <span class="nv">e</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;progn</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v1</span> <span class="nv">e1</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v2</span> <span class="nv">e1</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">some-computation</span> <span class="p">(</span><span class="nf">exp</span><span class="p">)</span> <span class="o">...</span><span class="p">)</span> <span class="c1">;; _Right!_</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们必须要告诉macro 参数是如何传递给幕后函数的。在函数调用中我们很容易做到这样的事情，我们使用lambda-list 语法，例如&amp;optional, &amp;rest, &amp;key，但是在macro中所有的形参都是macro形式的，而不是他们的值。看下面的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">foo</span> <span class="p">(</span><span class="nv">x</span> <span class="k">&amp;optional</span> <span class="nv">y</span> <span class="k">&amp;key</span> <span class="p">(</span><span class="nv">ctx</span> <span class="ss">&#39;null</span><span class="p">))</span> <span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">_If</span> <span class="nv">we</span> <span class="nv">call</span> <span class="nv">it</span> <span class="nv">thus</span> <span class="o">...</span><span class="nv">_</span>     <span class="nv">|_The parameters&#39; values are ..._
+</span></span></span><span class="line"><span class="cl"><span class="nv">-----------------------------|-----------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="nv">foo</span> <span class="nv">a</span><span class="p">)</span><span class="o">`</span>                    <span class="nv">| `x=a`, `y=nil`, `cxt=null`
+</span></span></span><span class="line"><span class="cl"><span class="nv">`(foo (+ a 1) (- y 1))`      |</span><span class="o">`</span><span class="nv">x=</span><span class="p">(</span><span class="nf">+</span> <span class="nv">a</span> <span class="mi">1</span><span class="p">)</span><span class="o">`,</span> <span class="o">`</span><span class="nv">y=</span><span class="p">(</span><span class="nf">-</span> <span class="nv">y</span> <span class="mi">1</span><span class="p">)</span><span class="o">`,</span> <span class="o">`</span><span class="nv">cxt=null</span><span class="o">`</span>
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="nv">foo</span> <span class="nv">a</span> <span class="nv">b</span> <span class="ss">:cxt</span> <span class="p">(</span><span class="nv">zap</span> <span class="nv">zip</span><span class="p">))</span><span class="o">`</span>   <span class="err">|</span><span class="o">`</span><span class="nv">x=a</span><span class="o">`,</span> <span class="o">`</span><span class="nv">y=b</span><span class="o">`,</span> <span class="o">`</span><span class="nv">cxt=</span><span class="p">(</span><span class="nv">zap</span> <span class="nv">zip</span><span class="p">)</span><span class="o">`</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你需要清楚的是在宏中变量是不会被求值的，只会保持原样。</p>
+<p>看下面的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq-reversible</span> <span class="p">(</span><span class="nv">e1</span> <span class="nv">e2</span> <span class="nv">direction</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">case</span> <span class="nv">direction</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="ss">:normal</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">e1</span> <span class="nv">e2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="ss">:backward</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">e2</span> <span class="nv">e1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="kt">error</span> <span class="s">&#34;Unknown direction: ~a&#34;</span> <span class="nv">direction</span><span class="p">))))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看他的展开</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">setq-reversible</span> <span class="nv">x</span> <span class="nv">y</span> <span class="ss">:normal</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;(SETQ X Y)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">setq-reversible</span> <span class="nv">x</span> <span class="nv">y</span> <span class="ss">:backward</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;(SETQ Y X)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你传递了一个错误的参数, 宏展开就会报错</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">setq-reversible</span> <span class="nv">x</span> <span class="nv">y</span> <span class="ss">:other-way-around</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以使用backquote 和 comma 来解决宏展开时报错的问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq-reversible</span> <span class="p">(</span><span class="nv">v1</span> <span class="nv">v2</span> <span class="nv">direction</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">case</span> <span class="nv">direction</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="ss">:normal</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v1</span> <span class="nv">v2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="ss">:backward</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;setq</span> <span class="nv">v2</span> <span class="nv">v1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="no">t</span> <span class="o">`</span><span class="p">(</span><span class="kt">error</span> <span class="s">&#34;Unknown direction: ~a&#34;</span> <span class="o">,</span><span class="nv">direction</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">;; ^^ backquote                    ^^ comma: get the value inside the backquote.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">macroexpand</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">SETQ-REVERSIBLE</span> <span class="nv">v1</span> <span class="nv">v2</span> <span class="ss">:other-way-around</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (ERROR &#34;Unknown direction: ~a&#34; :OTHER-WAY-AROUND)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用宏的时候传入错误的方向还是会报错，但是在展开宏的时候，不会报错。</p>
+<h2 id="backquote-and-comma">Backquote and comma</h2>
+<p>backquote(`)字符表明，在他后面的expression,任何不以comma为前缀的表达式都会被quoted,而以comma为前缀的将会被evaluate</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl">  <span class="o">`</span><span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="k">setq</span> <span class="o">,</span><span class="nv">v1</span> <span class="o">,</span><span class="nv">e</span><span class="p">)</span> <span class="p">(</span><span class="k">setq</span> <span class="o">,</span><span class="nv">v2</span> <span class="o">,</span><span class="nv">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;^ backquote   ^   ^         ^   ^ commas</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="nv">v1</span> <span class="nf">=</span> <span class="o">,</span><span class="nv">v1</span><span class="p">)</span> <span class="c1">;; =&gt; (V1 = 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="comma-splice">comma-splice ,@</h3>
+<p>,@会将（本来应该是列表的）参数展开。将列表的元素插入模板来取代列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">lst</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (A B C)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="nv">lst</span> <span class="nv">is</span> <span class="o">,</span><span class="nv">lst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (LST IS (A B C))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="nv">its</span> <span class="nv">elements</span> <span class="nv">are</span> <span class="o">,@</span><span class="nv">lst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (ITS ELEMENTS ARE A B C)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="quote-comma">Quote-comma &lsquo;,</h3>
+<p>如果想把表达式的字面打出来，我们需要使用&rsquo;,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">explain-exp</span> <span class="p">(</span><span class="nf">exp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">`</span><span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~s = ~s&#34;</span> <span class="ss">&#39;,exp</span> <span class="o">,</span><span class="nf">exp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">explain-exp</span> <span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (+ 2 3) = 5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="gensym">Gensym</h2>
+<p>如果想创建零时变量，我们使用gensym function. 他会返回一个全新的变量，并且不会在别的地方出现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">setq2</span> <span class="p">(</span><span class="nv">v1</span> <span class="nv">v2</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">tempvar</span> <span class="p">(</span><span class="nf">gensym</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="o">,</span><span class="nv">tempvar</span> <span class="o">,</span><span class="nv">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="k">setq</span> <span class="o">,</span><span class="nv">v1</span> <span class="o">,</span><span class="nv">tempvar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="k">setq</span> <span class="o">,</span><span class="nv">v2</span> <span class="o">,</span><span class="nv">tempvar</span><span class="p">)))))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在 (setq2 x y (+ x 2)) 会被展开成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="ss">#:g2003</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">x</span> <span class="mi">2</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">x</span> <span class="ss">#:g2003</span><span class="p">)</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">y</span> <span class="ss">#:g2003</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614" target="_blank" title="commit by jidibinlin(2694273649@qq.com) cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614: ...">
+                                    <i class="fas fa-hashtag fa-fw"></i>cdcf2ca</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/macros/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/macros/" data-title="common lisp macros" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/macros/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/macros/" data-title="common lisp macros"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/macros/" data-title="common lisp macros"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/macros/" data-title="common lisp macros"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fundamentals-of-clos/" class="prev" rel="prev" title="CLOS基础"><i class="fas fa-angle-left fa-fw"></i>CLOS基础</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

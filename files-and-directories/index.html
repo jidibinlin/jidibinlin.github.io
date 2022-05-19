@@ -1,0 +1,600 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Common Lisp Files and Directories - jidibinlin`s blog site</title><meta name="Description" content="common lisp 的文件和文件夹操作"><meta property="og:title" content="Common Lisp Files and Directories" />
+<meta property="og:description" content="common lisp 的文件和文件夹操作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/files-and-directories/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-29T14:10:00+08:00" />
+<meta property="article:modified_time" content="2022-05-03T21:11:51+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Common Lisp Files and Directories"/>
+<meta name="twitter:description" content="common lisp 的文件和文件夹操作"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/files-and-directories/" /><link rel="prev" href="https://jidibinlin.github.io/loop-iteration-mapping/" /><link rel="next" href="https://jidibinlin.github.io/error-and-exception-handling/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Common Lisp Files and Directories",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/files-and-directories\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  430 ,
+        "url": "https:\/\/jidibinlin.github.io\/files-and-directories\/","datePublished": "2022-04-29T14:10:00+08:00","dateModified": "2022-05-03T21:11:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "common lisp 的文件和文件夹操作"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/files-and-directories/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/files-and-directories/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Common Lisp Files and Directories</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-29">2022-04-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;430 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;<span id="/files-and-directories/" class="leancloud_visitors" data-flag-title="Common Lisp Files and Directories">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#测试文件是否存在">测试文件是否存在</a></li>
+    <li><a href="#展开-家目录环境变量">展开~（家目录环境变量）</a></li>
+    <li><a href="#创建文件夹">创建文件夹</a></li>
+    <li><a href="#删除文件夹">删除文件夹</a></li>
+    <li><a href="#合并文件和文件夹">合并文件和文件夹</a></li>
+    <li><a href="#获取当前目录--cwd">获取当前目录(CWD)</a></li>
+    <li><a href="#获取以lisp工程为根目录的相对路径的绝对路径">获取以lisp工程为根目录的相对路径的绝对路径</a></li>
+    <li><a href="#opening-a-file">opening a file</a></li>
+    <li><a href="#reading-files">Reading files</a>
+      <ul>
+        <li><a href="#将文件读入string-或-行list中">将文件读入string 或 行list中</a></li>
+        <li><a href="#read-line-or-read-char">read-line or read-char</a></li>
+        <li><a href="#以utf-8的格式读取">以utf-8的格式读取</a></li>
+        <li><a href="#将sbcl的默认字符集设为utf-8">将SBCL的默认字符集设为utf-8</a></li>
+        <li><a href="#向文件中写入内容">向文件中写入内容</a>
+          <ul>
+            <li><a href="#使用库">使用库</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#获取文件后缀">获取文件后缀</a></li>
+    <li><a href="#获取文件属性--size-access-time-dot-dot-dot-dot">获取文件属性(size,access time,&hellip;.)</a></li>
+    <li><a href="#列出所有的文件和文件夹">列出所有的文件和文件夹</a>
+      <ul>
+        <li><a href="#返回文件夹中的文件--不包括文件夹">返回文件夹中的文件(不包括文件夹)</a></li>
+        <li><a href="#返回所有的子文件夹">返回所有的子文件夹</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>本节主要介绍UIOP中的一些有关文件和文件操作方面的使用。获取你也应该直接看一看UIOP的官方文档.</p>
+<ul>
+<li><a href="https://asdf.common-lisp.dev/uiop.html#Top" target="_blank" rel="noopener noreffer">UIOP</a></li>
+</ul>
+<p>当然，也别忘了</p>
+<ul>
+<li><a href="http://gigamonkeys.com/book/files-and-file-io.html" target="_blank" rel="noopener noreffer">Files and File I/O in Practicial Common Lisp</a></li>
+</ul>
+<h2 id="测试文件是否存在">测试文件是否存在</h2>
+<p>probe-file 专门用来测试文件是否存在。如果返回Nil文件不存在，返回truename则文件存在</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>truename<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Many file systems permit more than one filename to designate a particular file.</p>
+<p>Even where multiple names are possible, most file systems have a convention for generating a canonical filename in such situations. Such a canonical filename (or the pathname representing such a filename) is called a truename.</p>
+</div>
+        </div>
+    </div>
+<p>为了可移植性，可以使用返回pathname的uiop:probe-file* 或者uiop:file-exists-p（如果文件存在的话）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">$</span> <span class="nv">ln</span> <span class="nv">-s</span> <span class="nv">/etc/passwd</span> <span class="nv">foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">probe-file</span> <span class="s">&#34;/etc/passwd&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="l">#p&#34;/etc/passwd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">probe-file</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="l">#p&#34;/etc/passwd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">probe-file</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="展开-家目录环境变量">展开~（家目录环境变量）</h2>
+<p>我们使用uiop:native-namestring:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:native-namestring</span> <span class="s">&#34;~/.emacs.d/&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果文件不存在，他也会被展开</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:native-namestring</span> <span class="s">&#34;~/foo987.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;/home/me/foo987.txt&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在许多lisp实现上(CCL,ABCL,ECL,CLISP,LispWorks),namestring 很像。在 SBCL上，如果文件不存在，或者目录不存在，namestring不会展开path 而是直接返回参数</p>
+<p>要测试文件是否存在也可以使用truename,但是在SBCL上，如果文件不存在，会直接返回错误。</p>
+<h2 id="创建文件夹">创建文件夹</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">ensure-directories-exist</span> <span class="s">&#34;fbbboo/bar/baz/&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样会创建fbbboo bar baz 不要忘记在尾部加上斜杠</p>
+<h2 id="删除文件夹">删除文件夹</h2>
+<p>uiop:delete-directory-tree 和一个pathname(#p),一个尾部斜杠 和:validate</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:delete-directory-tree</span> <span class="l">#p&#34;dirtest/&#34;</span> <span class="ss">:validate</span> <span class="no">t</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以使用pathname 函数创建一个pathname</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">rmdir</span> <span class="p">(</span><span class="nv">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">uiop:delete-directory-tree</span> <span class="p">(</span><span class="nc">pathname</span> <span class="nv">path</span><span class="p">)</span> <span class="ss">:validate</span> <span class="no">t</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>uiop 还有一个delete-empty-directory 用来删除空的文件夹</p>
+<h2 id="合并文件和文件夹">合并文件和文件夹</h2>
+<p>merge-pathnames 专用来合并路径，如果你想在后面添加一个文件夹，第二个参数必须带上末尾斜杠</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">merge-pathnames</span> <span class="s">&#34;otherpath&#34;</span> <span class="s">&#34;/home/vince/projects/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #p&#34;/home/vince/projects/otherpath&#34; 这里otherpath被当做文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">merge-pathnames</span> <span class="s">&#34;otherpath&#34;</span> <span class="s">&#34;/home/vince/projects&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #P&#34;/home/vince/otherpath&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;               ^^ no &#34;projects&#34;, because it was seen as a file.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">merge-pathnames</span> <span class="s">&#34;otherpath/&#34;</span> <span class="s">&#34;/home/vince/projects&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #P&#34;/home/vince/otherpath/projects&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;                ^^ inserted here</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取当前目录--cwd">获取当前目录(CWD)</h2>
+<p>使用uiop/os:getcwd:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop/os:getcwd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #P&#34;/home/vince/projects/cl-cookbook/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;                                    ^ with a trailing slash, useful for merge-pathnames</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取以lisp工程为根目录的相对路径的绝对路径">获取以lisp工程为根目录的相对路径的绝对路径</h2>
+<p>使用asdf:system-relative-pathname system path.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">asdf:system-relative-pathname</span> <span class="s">&#34;mysystem&#34;</span> <span class="s">&#34;src/web&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #P&#34;/home/vince/projects/mysystem/src/web/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="opening-a-file">opening a file</h2>
+<p>打开文件其实之前有写过，这里不赘述。直接给出cookbook 的连接（主要，我自己已经看过了,不想多写哈哈哈哈）
+<a href="https://lispcookbook.github.io/cl-cookbook/files.html#opening-a-file" target="_blank" rel="noopener noreffer">opening a file</a>
+也可以去看看我之前写的Input-Output</p>
+<h2 id="reading-files">Reading files</h2>
+<h3 id="将文件读入string-或-行list中">将文件读入string 或 行list中</h3>
+<ul>
+<li>
+<p>read-file-string</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:read-file-string</span> <span class="s">&#34;file.txt&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>read-file-lines</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:read-file-lines</span> <span class="s">&#34;file.txt&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="read-line-or-read-char">read-line or read-char</h3>
+<p>这两个函数的性能不高，可以加入缓冲区解决这个问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-output-to-string</span> <span class="p">(</span><span class="nv">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nv">in</span> <span class="s">&#34;/path/to/big/file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">loop</span> <span class="nv">with</span> <span class="nv">buffer</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">make-array</span> <span class="mi">8192</span> <span class="ss">:element-type</span> <span class="ss">&#39;character</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">for</span> <span class="nv">n-characters</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">read-sequence</span> <span class="nv">buffer</span> <span class="nv">in</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">while</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="mi">0</span> <span class="nv">n-characters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">do</span> <span class="p">(</span><span class="nf">write-sequence</span> <span class="nv">buffer</span> <span class="nv">out</span> <span class="ss">:start</span> <span class="mi">0</span> <span class="ss">:end</span> <span class="nv">n-characters</span><span class="p">))))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="以utf-8的格式读取">以utf-8的格式读取</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nv">in</span> <span class="s">&#34;/path/to/big/file&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="ss">:external-format</span> <span class="ss">:utf-8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="将sbcl的默认字符集设为utf-8">将SBCL的默认字符集设为utf-8</h3>
+<p>在~/.sbclrc中加入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">sb-impl::*default-external-format*</span> <span class="ss">:utf-8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">或者</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">sb-alien::*default-c-string-external-format*</span> <span class="ss">:utf-8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="向文件中写入内容">向文件中写入内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nv">f</span> <span class="nv">&lt;pathname&gt;</span> <span class="ss">:direction</span> <span class="ss">:output</span>
+</span></span><span class="line"><span class="cl">                              <span class="ss">:if-exists</span> <span class="ss">:supersede</span>
+</span></span><span class="line"><span class="cl">                              <span class="ss">:if-does-not-exist</span> <span class="ss">:create</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">write-sequence</span> <span class="nv">s</span> <span class="nv">f</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果文件存在，你也可以使用:append 来追加内容</p>
+<h4 id="使用库">使用库</h4>
+<p>Alexandria 有一个函数叫write-string-into-file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">alexandria:write-string-into-file</span> <span class="nv">content</span> <span class="s">&#34;file.txt&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取文件后缀">获取文件后缀</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">pathname-type</span> <span class="s">&#34;~/foo.org&#34;</span><span class="p">)</span>  <span class="c1">;; =&gt; &#34;org&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取文件属性--size-access-time-dot-dot-dot-dot">获取文件属性(size,access time,&hellip;.)</h2>
+<p>Osicat(in quicklisp)是一个轻量级操作系统接口。使用Osicat 可以获取环境变量，操作files directories pathnames</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;osicat&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">stat</span> <span class="p">(</span><span class="nv">osicat-posix:stat</span> <span class="l">#P&#34;./files.md&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">osicat-posix:stat-size</span> <span class="nv">stat</span><span class="p">))</span>  <span class="c1">;; =&gt; 10629</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以使用以下函数获取更多的属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-dev</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-gid</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-ino</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-uid</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-mode</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-rdev</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-size</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-atime</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-ctime</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-mtime</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-nlink</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-blocks</span>
+</span></span><span class="line"><span class="cl"><span class="nv">osicat-posix:stat-blksize</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="列出所有的文件和文件夹">列出所有的文件和文件夹</h2>
+<p>有些函数可以返回pathnames</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">namestring</span> <span class="l">#p&#34;/foo/bar/baz.txt&#34;</span><span class="p">)</span>           <span class="nv">==&gt;</span> <span class="s">&#34;/foo/bar/baz.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">directory-namestring</span> <span class="l">#p&#34;/foo/bar/baz.txt&#34;</span><span class="p">)</span> <span class="nv">==&gt;</span> <span class="s">&#34;/foo/bar/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">file-namestring</span> <span class="l">#p&#34;/foo/bar/baz.txt&#34;</span><span class="p">)</span>      <span class="nv">==&gt;</span> <span class="s">&#34;baz.txt&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="返回文件夹中的文件--不包括文件夹">返回文件夹中的文件(不包括文件夹)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:directory-files</span> <span class="s">&#34;./&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回一连串的pathnames:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="l">#P&#34;/home/vince/projects/cl-cookbook/.emacs&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/.gitignore&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/AppendixA.jpg&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/AppendixB.jpg&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/AppendixC.jpg&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/CHANGELOG&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="l">#P&#34;/home/vince/projects/cl-cookbook/CONTRIBUTING.md&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">[</span><span class="err">…</span><span class="nv">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="返回所有的子文件夹">返回所有的子文件夹</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">uiop:subdirectories</span> <span class="s">&#34;/Users/qibinyang/test&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="l">#P&#34;/Users/qibinyang/test/assertTest/&#34;</span> <span class="l">#P&#34;/Users/qibinyang/test/center/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="l">#P&#34;/Users/qibinyang/test/client1/&#34;</span> <span class="l">#P&#34;/Users/qibinyang/test/client2/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="l">#P&#34;/Users/qibinyang/test/test/&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614" target="_blank" title="commit by jidibinlin(2694273649@qq.com) cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614: ...">
+                                    <i class="fas fa-hashtag fa-fw"></i>cdcf2ca</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/files-and-directories/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/files-and-directories/" data-title="Common Lisp Files and Directories" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/files-and-directories/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/files-and-directories/" data-title="Common Lisp Files and Directories"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/files-and-directories/" data-title="Common Lisp Files and Directories"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/files-and-directories/" data-title="Common Lisp Files and Directories"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/loop-iteration-mapping/" class="prev" rel="prev" title="common lisp 循环操作"><i class="fas fa-angle-left fa-fw"></i>common lisp 循环操作</a>
+            <a href="/error-and-exception-handling/" class="next" rel="next" title="Common Lisp Error and Exception Handling">Common Lisp Error and Exception Handling<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.98.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
