@@ -35,6 +35,13 @@
     <guid>https://jidibinlin.github.io/files-and-directories/</guid>
     <description><![CDATA[common lisp 的文件和文件夹操作]]></description>
 </item><item>
+    <title>common lisp input/output</title>
+    <link>https://jidibinlin.github.io/input-output/</link>
+    <pubDate>Fri, 29 Apr 2022 11:18:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/input-output/</guid>
+    <description><![CDATA[common lisp io操作]]></description>
+</item><item>
     <title>common lisp 循环操作</title>
     <link>https://jidibinlin.github.io/loop-iteration-mapping/</link>
     <pubDate>Fri, 22 Apr 2022 16:27:00 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>Author</author>
     <guid>https://jidibinlin.github.io/function/</guid>
     <description><![CDATA[]]></description>
-</item><item>
-    <title>leetcode-最接近目标值得三数之和</title>
-    <link>https://jidibinlin.github.io/3sumcloset/</link>
-    <pubDate>Mon, 04 Apr 2022 17:42:00 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://jidibinlin.github.io/3sumcloset/</guid>
-    <description><![CDATA[leetcode-三数之和的解法]]></description>
 </item></channel>
 </rss>

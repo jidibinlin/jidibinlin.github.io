@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/categories/"
@@ -16,8 +16,8 @@
                     href="https://jidibinlin.github.io/categories/"
                     /></url><url>
             <loc>https://jidibinlin.github.io/macros/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/common-lisp/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/tags/common-lisp/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/"
@@ -30,9 +30,9 @@
                     hreflang="en"
                     href="https://jidibinlin.github.io/"
                     /></url><url>
-            <loc>https://jidibinlin.github.io/categories/lisp/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/posts/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/categories/lisp/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/posts/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/tags/"
@@ -49,6 +49,7 @@
             <loc>https://jidibinlin.github.io/fundamentals-of-clos/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://jidibinlin.github.io/error-and-exception-handling/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://jidibinlin.github.io/files-and-directories/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://jidibinlin.github.io/input-output/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jidibinlin.github.io/loop-iteration-mapping/</loc><lastmod>2022-05-19T15:31:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jidibinlin.github.io/numbers/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://jidibinlin.github.io/strings/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
