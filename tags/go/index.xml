@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>go on Even - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/go/</link>
-    <description>Recent content in go on Even - A super concise theme for Hugo</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 28 Mar 2022 16:49:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>go函数选项解决go没用冲在及默认参数的问题</title>
-      <link>http://localhost:1313/posts/2022/03/functional_options/</link>
-      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/posts/2022/03/functional_options/</guid>
-      <description>Functional Options go语言的函数没有重载以及默认参数的功能，这个时候生成一个i对象会变得极其麻烦 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type Person struct{ Name string Age int Country string Gender string</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>go - Tag - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/tags/go/</link>
+        <description>go - Tag - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 30 Mar 2022 23:01:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>effective_go</title>
+    <link>https://jidibinlin.github.io/post/2022/03/effectivego/</link>
+    <pubDate>Wed, 30 Mar 2022 23:01:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/post/2022/03/effectivego/</guid>
+    <description><![CDATA[this artical is copied from golang official
+Formatting Go let the machine take care of most formatting issues. The gofmt program(also available as go fmt,which operates at the package level rather than source file level) emits the source in a standard style of indentation and vertical alignment,retaining and if necessary reformatting comments.
+before formatted 1 2 3 4 type T struct{ name string //name of the object value int//its value } after formatted 1 2 3 4 type T struct { name string // name of the object value int // its value } Commentary Go Support C++ style comments.]]></description>
+</item></channel>
 </rss>

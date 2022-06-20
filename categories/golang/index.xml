@@ -11,5 +11,14 @@
     <author>Author</author>
     <guid>https://jidibinlin.github.io/golang-syntax/</guid>
     <description><![CDATA[golang的语法基础: 编程语言的语法总是离不开三件套，变量，函数，控制结构. 这里着重介绍golang这三部分的基础知识.]]></description>
+</item><item>
+    <title>effective_go</title>
+    <link>https://jidibinlin.github.io/post/2022/03/effectivego/</link>
+    <pubDate>Wed, 30 Mar 2022 23:01:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/post/2022/03/effectivego/</guid>
+    <description><![CDATA[this artical is copied from golang official
+Formatting Go let the machine take care of most formatting issues. The gofmt program(also available as go fmt,which operates at the package level rather than source file level) emits the source in a standard style of indentation and vertical alignment,retaining and if necessary reformatting comments.
+before formatted 1 2 3 4 type T struct{ name string //name of the object value int//its value } after formatted 1 2 3 4 type T struct { name string // name of the object value int // its value } Commentary Go Support C++ style comments.]]></description>
 </item></channel>
 </rss>

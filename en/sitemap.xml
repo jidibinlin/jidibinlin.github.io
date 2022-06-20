@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/categories/"
@@ -16,9 +16,9 @@
                     href="https://jidibinlin.github.io/categories/"
                     /></url><url>
             <loc>https://jidibinlin.github.io/tags/golang/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/golang/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/golang/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://jidibinlin.github.io/golang-syntax/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/"
@@ -32,7 +32,7 @@
                     href="https://jidibinlin.github.io/"
                     /></url><url>
             <loc>https://jidibinlin.github.io/posts/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/tags/"
@@ -66,4 +66,7 @@
             <loc>https://jidibinlin.github.io/tags/array/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jidibinlin.github.io/tags/binary_search/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://jidibinlin.github.io/tags/divide_and_conquer/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/median_of_two_sorted_arrays/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://jidibinlin.github.io/median_of_two_sorted_arrays/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://jidibinlin.github.io/post/2022/03/effectivego/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/go/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/post/</loc><lastmod>2022-06-20T21:01:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

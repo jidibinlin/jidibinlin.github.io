@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on jidibinlin`s blog site</title>
+    <link>https://jidibinlin.github.io/post/</link>
+    <description>Recent content in Posts on jidibinlin`s blog site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+    <webMaster>2694273649@qq.com (jidibinlin)</webMaster>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 30 Mar 2022 23:01:00 +0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>effective_go</title>
+      <link>https://jidibinlin.github.io/post/2022/03/effectivego/</link>
+      <pubDate>Wed, 30 Mar 2022 23:01:00 +0800</pubDate>
+      <author>2694273649@qq.com (jidibinlin)</author>
+      <guid>https://jidibinlin.github.io/post/2022/03/effectivego/</guid>
+      <description>this artical is copied from golang official
+Formatting Go let the machine take care of most formatting issues. The gofmt program(also available as go fmt,which operates at the package level rather than source file level) emits the source in a standard style of indentation and vertical alignment,retaining and if necessary reformatting comments.
+before formatted 1 2 3 4 type T struct{ name string //name of the object value int//its value } after formatted 1 2 3 4 type T struct { name string // name of the object value int // its value } Commentary Go Support C++ style comments.</description>
+    </item>
+    
+  </channel>
+</rss>
