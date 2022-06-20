@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>golang - Category - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/categories/golang/</link>
+        <description>golang - Category - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 Jun 2022 17:24:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>golang语法基础</title>
+    <link>https://jidibinlin.github.io/golang-syntax/</link>
+    <pubDate>Sun, 12 Jun 2022 17:24:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/golang-syntax/</guid>
+    <description><![CDATA[golang的语法基础: 编程语言的语法总是离不开三件套，变量，函数，控制结构. 这里着重介绍golang这三部分的基础知识.]]></description>
+</item></channel>
+</rss>
