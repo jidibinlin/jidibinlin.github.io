@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>actor - Category - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/categories/actor/</link>
+        <description>actor - Category - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 29 Jun 2022 09:40:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/actor/" rel="self" type="application/rss+xml" /><item>
+    <title>GoGameActor-101 actor intruduction</title>
+    <link>https://jidibinlin.github.io/actorintroduction/</link>
+    <pubDate>Wed, 29 Jun 2022 09:40:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/actorintroduction/</guid>
+    <description><![CDATA[这篇文章主要作为我准备写的GoGameActor框架 有关actor模型的引言。]]></description>
+</item></channel>
+</rss>
