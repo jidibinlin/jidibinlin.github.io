@@ -1,0 +1,205 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>GoGameActor-102 hotfix intruduction - jidibinlin`s blog site</title><meta name="Description" content="有关游戏中热更代码的一些思考"><meta property="og:title" content="GoGameActor-102 hotfix intruduction" />
+<meta property="og:description" content="有关游戏中热更代码的一些思考" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/gamehotfix/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-29T15:18:00+08:00" />
+<meta property="article:modified_time" content="2022-07-03T21:02:53+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="GoGameActor-102 hotfix intruduction"/>
+<meta name="twitter:description" content="有关游戏中热更代码的一些思考"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/gamehotfix/" /><link rel="prev" href="https://jidibinlin.github.io/actorintroduction/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GoGameActor-102 hotfix intruduction",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/gamehotfix\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "game-framework, hotfix","wordcount":  24 ,
+        "url": "https:\/\/jidibinlin.github.io\/gamehotfix\/","datePublished": "2022-06-29T15:18:00+08:00","dateModified": "2022-07-03T21:02:53+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "有关游戏中热更代码的一些思考"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/gamehotfix/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/gamehotfix/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">GoGameActor-102 hotfix intruduction</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/game-framework/"><i class="far fa-folder fa-fw"></i>game-framework</a>&nbsp;<a href="/categories/hotfix/"><i class="far fa-folder fa-fw"></i>hotfix</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;24 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;<span id="/gamehotfix/" class="leancloud_visitors" data-flag-title="GoGameActor-102 hotfix intruduction">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是热更">什么是热更</a></li>
+    <li><a href="#为什么要有热更">为什么要有热更</a></li>
+    <li><a href="#热更的方案">热更的方案</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>上周在思考框架该不该上热更，以及如何适配热更的时候（其实一行代码都还没写呢😕），迫使我不断去思考如何去热更才能做到正确。但是，热更这个事情即使是lua,也需要加上很多的限制。而且，热更这件事情不但和语言层面相关联，和框架的设计也有很密切的关系。最近在网上看了很多博客，所以这里做个思考记录。</p>
+<h2 id="什么是热更">什么是热更</h2>
+<p>热更就是在不中断服务的情况下（注意是不中断服务而不是不重启进程或服务器），对程序的行为进行修改。简单来说，如果已经部署的代码执行的逻辑是1+1=2, 那么热更就可以改变1+1=2这个行为，比如该更1+1=3，并且对外的服务是不能中断的（因为用户会无法访问业务）。在用户无感知的情况下，改变原有的代码逻辑，我们也可以这么说。</p>
+<h2 id="为什么要有热更">为什么要有热更</h2>
+<p>对于互联网行业来说，有流量才有可能变现。流量意味着有人在使用产品，有人使用产品我们才能着手诱导用户进行消费。试想，一个酒楼没有一个顾客（流量），他的酒，服务，饭菜要如何销售变现？而对于互联网产品来说，一秒钟的流量就可能高达千万，而这一秒的流量转化，即便只有1%，也是很多的。</p>
+<p>试想一下，现在这一秒有1千万的流量，转化率是1%,那就意味着这一秒中有100个人在下单，假设此时一单的流水是1块，那这一秒钟的流水就是100块。 注意这里只是这1秒钟，如果时间拉长到1小时，12小时，24小时。乞丐都会知道要是每秒有人给自己扔100块，一天自己就可以🏠靠海了。</p>
+<p>如果这时停机维护1小时，要损失多少钱？这大概就是为什么互联网行业都非常忌讳停机维护，因为&quot;时间&quot;约等于&quot;流量&quot;约等于&quot;钱&quot;。而对于游戏这种纯靠流量来赚钱的行业更是如此了，不停机维护已经是游戏行业的标配了。</p>
+<h2 id="热更的方案">热更的方案</h2>
+<ol>
+<li>
+<p>服务器无状态，快速重启。这种方案的痛点是，服务器的重启必须尽可能的快。慢了，客户端就要考虑重登和重发协议。而且由于无状态，业务的编写更倾向于web那一套。</p>
+<p>服务器不好维护用户状态，业务的性能和编码的难易程度一得看项目是如何架构的，二得看有没有有意识的迭代代码。如果两者都做不到，性能就由数据库决定（不做cache的话），编码就有可能要不断处理操作数据库所有可能带来的异常。因为无状态是不可能将业务的状态存储在内存的，多数是直接入库或者入cache。</p>
+<p>对于go来说，你得时刻注意操作数据库时抛出来的error,如果不能从框架上先行对这种error进行过滤，会因为频繁的写重复代码而控制不住的觉得烦。比如，很多rpc的接口都需要用到usr这张表的信息，如果不能在rpc来的时候，自动去获取usr，那就需要程序员自己去编写。程序员的时间就浪费在了这种事情上面，未免有些亏。但是，又不是每个rpc都要用到usr表的信息，如果每个都去查一遍usr表，又会浪费数据库那有限的吞吐。所以做无状态，架构代码的人必须足够牛🍺，项目成员要时刻有迭代代码的意识。有的时候项目老大还要在编码和性能之间做权衡。</p>
+</li>
+<li>
+<p>服务器无状态，将新的流量导入新的进程或者新的服务器。这种方案得在router层做好流量的转发，而且如果有些逻辑是有状态的话，还得做好状态的移交（虽是无状态服务器，但是有的逻辑有状态是难免的）。</p>
+</li>
+<li>
+<p>服务器无状态，直接将代码打进正在运行的进程中，这种就比较难了。需要工程师足够了解语言特性,和框架，知道如何去替换运行时的函数。</p>
+</li>
+<li>
+<p>服务器有状态，直接将代码打进正在运行的进程，这个难度比三要大。而且由于有状态，不但得做到3提到的全部，而且得做到运行时状态的转化，热更代码的编写会异常的复杂。一般来说这种方案都会在架构上加上各种限制来保证热更的正确性，所以缺点就是有各种限制。比如逻辑和数据必须严格分离，最好只热更纯函数, 对于弱类型语言会好做一些比如(lua,js)这种，允许数据结构修改的同时去更改逻辑函数做到热更正确，但是对于强类型语言(go,c++)当需要修改数据类型的时候可能不得不重启服务器，而且可能会带来动态链接模块版本控制等一系列问题(我的框架可能会选择这种方式)。</p>
+</li>
+<li>
+<p>只热更策划表，这种就比较容易了，做好所有业务逻辑从统一的地方拿配置就行。对于静态语言来说，配表结构更改还是免不了需要重启服务器。编码的时候预留控制台接口，需要更新时由控制台发送reload配置的命令，程序先锁住配表服务然后直接reload所有的配表再解锁就可以了。</p>
+</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>静态语言虽然性能上要好过动态语言，但是灵活性上大大弱于动态语言。无状态虽然能做到无感知，但是吃重启速度，还得客户端配合，想要性能和愉快的编码，你得找好点的搭档，架构得好好设计别偷懒。</p>
+<p>热更会带来很多的限制，引入新的特性，新的技术都会带来新的副作用和问题。引入之前必须做好权衡，想好了再做。框架编写非常吃架构师的能力，你得给他足够的时间去思考架构上的问题。</p>
+<p>我就遇到无状态服务器频繁操作数据库（因为当时后端环境非常恶劣，只有他一个人，他来的时候没有框架，还得尽快对接业务,后端1v8非常惨烈，而且说好一个服只有4000的导量，所以没有上cache），老大担心性能上会遇到瓶颈, 所以让我去做一些热表（数据库中需要频繁访问的表）的cache。但是我做完了热表的cache后，发现热表的cache会影响一些跨服的业务。这个时候修改跨服的代码代价会比较大，而且也没到非上不可的时候（导量还是不会突破4000的）所以这个事情只能暂时搁置, 我还得去写别的业务。但是就怕有一天性能会遇到瓶颈，遇到了我那写了挺多跨服业务的同事就得忙一会了，我最近也写了一些，我也得忙一下了😂。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-07-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/gamehotfix/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/gamehotfix/" data-title="GoGameActor-102 hotfix intruduction" data-hashtags="game-framework,hotfix"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/gamehotfix/" data-hashtag="game-framework"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/gamehotfix/" data-title="GoGameActor-102 hotfix intruduction"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/gamehotfix/" data-title="GoGameActor-102 hotfix intruduction"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/gamehotfix/" data-title="GoGameActor-102 hotfix intruduction"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/game-framework/">game-framework</a>,&nbsp;<a href="/tags/hotfix/">hotfix</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/actorintroduction/" class="prev" rel="prev" title="GoGameActor-101 actor intruduction"><i class="fas fa-angle-left fa-fw"></i>GoGameActor-101 actor intruduction</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
