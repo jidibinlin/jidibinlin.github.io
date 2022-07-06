@@ -4,9 +4,16 @@
         <link>https://jidibinlin.github.io/</link>
         <description>a heart boy`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 29 Jun 2022 15:18:00 &#43;0800</lastBuildDate>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jidibinlin.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>golang plugin 性能分析</title>
+    <link>https://jidibinlin.github.io/plugin/</link>
+    <pubDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/plugin/</guid>
+    <description><![CDATA[有关golang plugin的基本使用方法，注意事项 和性能分析]]></description>
+</item><item>
     <title>GoGameActor-102 hotfix intruduction</title>
     <link>https://jidibinlin.github.io/gamehotfix/</link>
     <pubDate>Wed, 29 Jun 2022 15:18:00 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>Author</author>
     <guid>https://jidibinlin.github.io/loop-iteration-mapping/</guid>
     <description><![CDATA[有关common lisp 的循环，和一些小技巧]]></description>
-</item><item>
-    <title>common lisp numbers</title>
-    <link>https://jidibinlin.github.io/numbers/</link>
-    <pubDate>Fri, 22 Apr 2022 15:35:00 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://jidibinlin.github.io/numbers/</guid>
-    <description><![CDATA[common-lisp 中与number相关的知识点]]></description>
 </item></channel>
 </rss>
