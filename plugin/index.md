@@ -189,32 +189,25 @@ func BenchmarkCallInDirect(b *testing.B) {
 差不多是三倍的差距，但是这里，测试素材比较简单。如果让测试素材里面跑一些比较耗时的逻辑呢。
 
 -   CallDirect
+    ```go
+    func CallDirect() {
+        for i := 0; i < 1000; i++ {
 
-<!--listend-->
-
-```go
-func CallDirect() {
-    for i := 0; i < 1000; i++ {
-
+        }
+        // i := 10
+        // i++
     }
-    // i := 10
-    // i++
-}
-```
-
+    ```
 -   CallInDirect
+    ```go
+    func CallInDirect() {
+        for i := 0; i < 1000; i++ {
 
-<!--listend-->
-
-```go
-func CallInDirect() {
-    for i := 0; i < 1000; i++ {
-
+        }
+        // i := 10
+        // i++
     }
-    // i := 10
-    // i++
-}
-```
+    ```
 
 跑分结果
 
