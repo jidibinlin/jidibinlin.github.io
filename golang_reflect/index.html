@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jidibinlin.github.io/golang_reflect/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-08T19:21:00+08:00" />
-<meta property="article:modified_time" content="2022-07-13T16:23:01+08:00" />
+<meta property="article:modified_time" content="2022-07-13T16:24:47+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
@@ -32,8 +32,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jidibinlin.github.io\/golang_reflect\/"
-        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "golang","wordcount":  1347 ,
-        "url": "https:\/\/jidibinlin.github.io\/golang_reflect\/","datePublished": "2022-07-08T19:21:00+08:00","dateModified": "2022-07-13T16:23:01+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "golang","wordcount":  1350 ,
+        "url": "https:\/\/jidibinlin.github.io\/golang_reflect\/","datePublished": "2022-07-08T19:21:00+08:00","dateModified": "2022-07-13T16:24:47+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -113,7 +113,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">golang反射</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw"></i>golang</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-08">2022-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1347 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-07-08">2022-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1350 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;<span id="/golang_reflect/" class="leancloud_visitors" data-flag-title="golang反射">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -287,7 +287,8 @@
         </div>
     </div>
 <h3 id="反射的类型对象-reflect-dot-type">反射的类型对象 reflect.Type</h3>
-<p>reflect包提供reflect.TypeOf()获取任意值的类型对象(reflect.Type), 通过类型对象，我们就可以知道任意值的类型信息</p>
+<p>reflect包提供reflect.TypeOf()获取任意值的类型对象(reflect.Type), 通过类型对象，我们就可以知道任意值的类型信息
+但是你可能会疑惑，为什么我直接传原值就可以，而不需要传接口值。因为reflect.TypeOf()的函数签名是这样的reflect.TypeOf(interface{})在参数被传入的时候，会自动生成接口值</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -327,6 +328,14 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Name(),Kind()是类型对象的成员函数分别用来获取类型名，和类型的种类</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>约定<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">文章里reflect.TypeOf()和reflect.ValueOf()都是reflect.TypeOf(interface{})和reflect.ValueOf(interface{})的简写</div>
+        </div>
+    </div>
 <h3 id="反射的类型-type-和-种类-kind">反射的类型 type 和 种类 Kind</h3>
 <p>Type指的是原生go 数据类型和使用type关键字定义的类型的集合,而Kind指的是种类要比Type更加范化。在需要区分大品种的时候，我们会用到Kind。</p>
 <h4 id="kind的定义">Kind的定义</h4>
@@ -1263,7 +1272,8 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-07-13</span>
+                <span>Updated on 2022-07-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/d3febc0398eb92670e95218bef76bb0bb0f461da" target="_blank" title="commit by jidibinlin(2694273649@qq.com) d3febc0398eb92670e95218bef76bb0bb0f461da: golang reflect">
+                                    <i class="fas fa-hashtag fa-fw"></i>d3febc0</a></span>
             </div>
             <div class="post-info-license"></div>
         </div>

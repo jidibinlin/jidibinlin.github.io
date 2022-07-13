@@ -98,6 +98,7 @@ fmt.Println(x == x) // panic: comparing uncomparable type []int
 ### 反射的类型对象 reflect.Type {#反射的类型对象-reflect-dot-type}
 
 reflect包提供reflect.TypeOf()获取任意值的类型对象(reflect.Type), 通过类型对象，我们就可以知道任意值的类型信息
+但是你可能会疑惑，为什么我直接传原值就可以，而不需要传接口值。因为reflect.TypeOf()的函数签名是这样的reflect.TypeOf(interface{})在参数被传入的时候，会自动生成接口值
 
 ```go
 package main
@@ -119,6 +120,10 @@ int int
 ```
 
 Name(),Kind()是类型对象的成员函数分别用来获取类型名，和类型的种类
+
+{{< admonition type="note" title="约定" open="true" >}}
+文章里reflect.TypeOf()和reflect.ValueOf()都是reflect.TypeOf(interface{})和reflect.ValueOf(interface{})的简写
+{{< /admonition >}}
 
 
 ### 反射的类型 type 和 种类 Kind {#反射的类型-type-和-种类-kind}
