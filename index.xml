@@ -4,9 +4,16 @@
         <link>https://jidibinlin.github.io/</link>
         <description>a heart boy`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</lastBuildDate>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 08 Jul 2022 19:21:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jidibinlin.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>golang反射</title>
+    <link>https://jidibinlin.github.io/golang_reflect/</link>
+    <pubDate>Fri, 08 Jul 2022 19:21:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/golang_reflect/</guid>
+    <description><![CDATA[golang反射, 接口值，基本使用]]></description>
+</item><item>
     <title>golang plugin 性能分析</title>
     <link>https://jidibinlin.github.io/plugin/</link>
     <pubDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</pubDate>
@@ -69,12 +76,5 @@
     <author>Author</author>
     <guid>https://jidibinlin.github.io/input-output/</guid>
     <description><![CDATA[common lisp io操作]]></description>
-</item><item>
-    <title>common lisp 循环操作</title>
-    <link>https://jidibinlin.github.io/loop-iteration-mapping/</link>
-    <pubDate>Fri, 22 Apr 2022 16:27:00 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://jidibinlin.github.io/loop-iteration-mapping/</guid>
-    <description><![CDATA[有关common lisp 的循环，和一些小技巧]]></description>
 </item></channel>
 </rss>

@@ -4,7 +4,14 @@
         <link>https://jidibinlin.github.io/categories/golang/</link>
         <description>golang - Category - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 08 Jul 2022 19:21:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>golang反射</title>
+    <link>https://jidibinlin.github.io/golang_reflect/</link>
+    <pubDate>Fri, 08 Jul 2022 19:21:00 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://jidibinlin.github.io/golang_reflect/</guid>
+    <description><![CDATA[golang反射, 接口值，基本使用]]></description>
+</item><item>
     <title>golang plugin 性能分析</title>
     <link>https://jidibinlin.github.io/plugin/</link>
     <pubDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</pubDate>
