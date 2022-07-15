@@ -8,8 +8,9 @@
     <title>GoGameActor-103 对比golang 的两种actor实现———protoactor-go 和 gonet</title>
     <link>https://jidibinlin.github.io/golang_actor_compare/</link>
     <pubDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/golang_actor_compare/</guid>
     <description><![CDATA[对比golang 的两种actor实现————protoactor-go 和 gonet]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>

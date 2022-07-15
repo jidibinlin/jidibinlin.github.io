@@ -8,15 +8,17 @@
     <title>GoGameActor-103 对比golang 的两种actor实现———protoactor-go 和 gonet</title>
     <link>https://jidibinlin.github.io/golang_actor_compare/</link>
     <pubDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/golang_actor_compare/</guid>
     <description><![CDATA[对比golang 的两种actor实现————protoactor-go 和 gonet]]></description>
-</item><item>
+</item>
+<item>
     <title>GoGameActor-101 actor intruduction</title>
     <link>https://jidibinlin.github.io/actorintroduction/</link>
     <pubDate>Wed, 29 Jun 2022 09:40:00 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/actorintroduction/</guid>
     <description><![CDATA[这篇文章主要作为我准备写的GoGameActor框架 有关actor模型的引言。]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>

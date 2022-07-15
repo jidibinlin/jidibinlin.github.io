@@ -8,15 +8,17 @@
     <title>leetcode-最接近目标值得三数之和</title>
     <link>https://jidibinlin.github.io/3sumcloset/</link>
     <pubDate>Mon, 04 Apr 2022 17:42:00 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/3sumcloset/</guid>
     <description><![CDATA[leetcode-三数之和的解法]]></description>
-</item><item>
+</item>
+<item>
     <title>leetcode-盛水最多的容器</title>
     <link>https://jidibinlin.github.io/container_with_most_water/</link>
     <pubDate>Mon, 04 Apr 2022 16:32:00 &#43;0800</pubDate>
-    <author>Author</author>
+    <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/container_with_most_water/</guid>
     <description><![CDATA[这道题的核心是双指针和贪心算法，通过不断移动两个指针，找到局部最优解，如果局部最优解优于全局最优解，则刷新全局最优解。]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
