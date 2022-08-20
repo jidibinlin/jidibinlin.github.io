@@ -13,14 +13,6 @@
     <description><![CDATA[如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试]]></description>
 </item>
 <item>
-    <title>GoGameActor104 再谈热更（为什么lua这种脚本语言在游戏中受青睐）</title>
-    <link>https://jidibinlin.github.io/gamehotfixagain/</link>
-    <pubDate>Sun, 17 Jul 2022 19:47:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/gamehotfixagain/</guid>
-    <description><![CDATA[为什么lua这种动态类型的语言会在游戏中备受青睐]]></description>
-</item>
-<item>
     <title>GoGameActor-103 对比golang 的两种actor实现———protoactor-go 和 gonet</title>
     <link>https://jidibinlin.github.io/golang_actor_compare/</link>
     <pubDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</pubDate>
@@ -83,6 +75,14 @@
     <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/fundamentals-of-clos/</guid>
     <description><![CDATA[Common Lisp Object System 的使用]]></description>
+</item>
+<item>
+    <title>Common Lisp Error and Exception Handling</title>
+    <link>https://jidibinlin.github.io/error-and-exception-handling/</link>
+    <pubDate>Sat, 30 Apr 2022 15:31:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/error-and-exception-handling/</guid>
+    <description><![CDATA[common lisp 的错误和异常处理]]></description>
 </item>
 </channel>
 </rss>
