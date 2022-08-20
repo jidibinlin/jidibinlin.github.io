@@ -1,0 +1,412 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>libfaketime &#43; roswell &#43; emacs 时间测试尝试 - jidibinlin`s blog site</title><meta name="Description" content="如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试"><meta property="og:title" content="libfaketime &#43; roswell &#43; emacs 时间测试尝试" />
+<meta property="og:description" content="如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/libfaketime/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-20T17:41:00+08:00" />
+<meta property="article:modified_time" content="2022-08-20T19:17:07+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="libfaketime &#43; roswell &#43; emacs 时间测试尝试"/>
+<meta name="twitter:description" content="如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/libfaketime/" /><link rel="prev" href="https://jidibinlin.github.io/gamehotfixagain/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "libfaketime + roswell + emacs 时间测试尝试",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/libfaketime\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "game-develop, libfaketime, roswell, common-lisp, emacs","wordcount":  332 ,
+        "url": "https:\/\/jidibinlin.github.io\/libfaketime\/","datePublished": "2022-08-20T17:41:00+08:00","dateModified": "2022-08-20T19:17:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/libfaketime/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/libfaketime/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">libfaketime + roswell + emacs 时间测试尝试</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/game-develop/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>game-develop</a>&nbsp;<a href="/categories/common-lisp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>common-lisp</a>&nbsp;<a href="/categories/emacs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>emacs</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-20">2022-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;332 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/libfaketime/" class="leancloud_visitors" data-flag-title="libfaketime &#43; roswell &#43; emacs 时间测试尝试">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#libfaketime-安装">libfaketime 安装</a></li>
+    <li><a href="#如何使用libfaketime">如何使用libfaketime</a></li>
+    <li><a href="#如何使用roswell-初始化一个libfaketime环境">如何使用roswell 初始化一个libfaketime环境</a></li>
+    <li><a href="#emacs集成">emacs集成</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>如果你写的程序经常依赖时间去做一些逻辑控制，那么你可能对调时间这件事比较敏感，你可能说不上讨厌，但是一定不喜欢。电脑频繁调时间会导致一些意想不到的问题，比如在我使用的mac m1 mini 上就会有交换内存暴涨40个g的问题。还会导致梯子失效无法访问外网。再比如你以为才上午12点，实际上已经晚上都已经下班了,你对时间没有概念了。如果往回调时间我的emacs还会卡死😮‍💨。 总之调时间好像是一件小事，但是影响却很大。</p>
+<p>所以我一直在尝试如何在不调时间的情况下，给指定程序一个假的时间。我曾试过用容器来解决这个问题，不过容器内的时间会定时和宿主机同步，并不能解决时间问题。后来我发现了libfaketime这个工具，不过弄了半天一直没能在我的mac m1 上正常使用。最近我又遇到了要频繁调时间的情况，所以下定决心要解决这个问题。</p>
+<p>那么在这篇blog中，你将看到如何使用libfaketime,如何使用roswell脚本制作指定程序的libfaketime 环境（先初始化时间环境，再启动指定程序），最后是如何使用emacs一键启动。</p>
+<h2 id="libfaketime-安装">libfaketime 安装</h2>
+<p>对于不同的环境，libfaketime的安装方法也不相同。</p>
+<ul>
+<li>
+<p>对于mac如果你使用homebrew(homebrew如何安装我就不赘述了)</p>
+<blockquote>
+<p>brew install libfaketime</p>
+</blockquote>
+</li>
+<li>
+<p>对于linux 你可以研究下自己发行版的包管理器，比如ubuntu</p>
+<blockquote>
+<p>sudo apt-get install libfaketime</p>
+</blockquote>
+</li>
+<li>
+<p>windows嘛，我讨厌windows抵制程序员使用windows。所以就不介绍了（不过我建议你用wsl,把windows当作linux的子系统😝）</p>
+</li>
+<li>
+<p>还有一种源码编译的安装方式，你们可以看下libfaketime 的自述文件<a href="https://github.com/wolfcw/libfaketime/blob/master/README" target="_blank" rel="noopener noreffer ">libfaketime-readme</a></p>
+</li>
+</ul>
+<h2 id="如何使用libfaketime">如何使用libfaketime</h2>
+<p>安装完成后，你有两件事情要做。</p>
+<ul>
+<li>第一个读一遍libfaketime的readme。对于mac来说你应该读一遍<a href="https://github.com/wolfcw/libfaketime/blob/master/README.OSX" target="_blank" rel="noopener noreffer ">libfaketime-mac-readme</a></li>
+<li>第二个，你需要知道libfaketime的动态链接库被发到了哪个目录下面(brew安装的是 /opt/homebrew/lib/faketime/libfaketime.1.dylib)</li>
+</ul>
+<p>libfaketime大概的原理就是，让程序链接libfaketime的库达到改时间的目的（允许我这么潦草😄，毕竟这个库不是我写的）。所以我们应该让程序自己链接libfaketime。
+在unix环境下，我们可以通过设置环境变量的方式来达到这个目的</p>
+<ul>
+<li>
+<p>mac下你需要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DYLD_FORCE_FLAT_NAMESPACE</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DYLD_INSERT_LIBRARIES</span><span class="o">=</span>/path/to/libfaketime.1.dylib
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>linux下你需要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LDPRELOAD</span><span class="o">=</span>/path/to/libfaketime.1.so
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在你正确设置了上面的环境变量后（mac 下最好通过export 设置环境变量，我试过直接在程序前面设置但是没成功）,你可以通过在程序启动前设置 &ldquo;faketime&rdquo; 这个环境变量来达到控制程序时间的目的。</p>
+<p>faketime有很多中设置格式，我只介绍如何设置指定时间，并让时间自然流逝的方法。libfaketime还有很多用法，都可以在官方的自述文件里面看到。</p>
+<p>现在直接上命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">faketime_dont_reset</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">faketime</span><span class="o">=</span><span class="s2">&#34;@2022-08-20 00:00:00&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&ldquo;@&ldquo;字符很关键，没有&rdquo;&rdquo;@&ldquo;时间将不会自动流逝,另外faketime_dont_reset这个变量有时候也不用设置，但是如果你发现程序时间和你预期的不一样，你应该把faketime_dont_reset设置为1(具体原因你可以去看自述文件)</p>
+</li>
+<li>
+<p>最后一步就是启动程序，不需要我教你吧😊</p>
+</li>
+</ul>
+<h2 id="如何使用roswell-初始化一个libfaketime环境">如何使用roswell 初始化一个libfaketime环境</h2>
+<p>先介绍一下roswell。roswell 是一个common lisp 的实现管理工具，但是他自身有挺多的附带功能。其中一个就是可以作为bash 脚本的替代品，用common lisp 去写脚本。这样的好处是，common lisp要比shell脚本好写一点（主要是不像shell那么容易出错shell脚本一个空格不对都不行😒）。再者就是，利用repl,你可以非常方便的调试roswell脚本（动态语言的repl简直不要太香，开发效率真的要比go那种静态语言高，这也是我不选go的原因）。</p>
+<p>如果你不喜欢common lisp, 你也可以使用python这样的脚本语言，也能达到一样甚至更好的效果。我简单介绍一下我的思路，其实就一句话，使用脚本语言去设置libfaketime的一系列环境变量，然后启动程序。你可以给脚本语言加上几个参数 比如程序的路径，你想要设置的时间等等去控制脚本的行为这都取决于你自己了</p>
+<p>使用roswell作为脚本，你就需要知道如何使用common lisp的一些与系统交互的库，比如如何解析命令行的参数可以使用 unix-opts这个库。看代码喽(看不懂也没关系，你可以用你喜欢的语言甚至shell脚本自己研究下，很好写的)</p>
+<p>这段脚本的行为是， 接受一个-e参数 用来指定程序的路径,以及一个-t参数用来指定时间</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="err">#</span><span class="nv">!/bin/sh</span>
+</span></span><span class="line"><span class="cl"><span class="cm">#|-*- mode:lisp -*-|#</span>
+</span></span><span class="line"><span class="cl"><span class="cm">#|
+</span></span></span><span class="line"><span class="cl"><span class="cm">exec ros -Q -- $0 &#34;$@&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">|#</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">progn</span> <span class="c1">;;init forms</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">ros:ensure-asdf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">#+</span><span class="nv">quicklisp</span><span class="p">(</span><span class="nv">ql:quickload</span> <span class="o">&#39;</span><span class="p">()</span> <span class="ss">:silent</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defpackage</span> <span class="ss">:ros.script.luna_time_tast.3869869288</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:use</span> <span class="ss">:cl</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">in-package</span> <span class="ss">:ros.script.luna_time_tast.3869869288</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;unix-opts&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;uiop&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; 定义命令行参数</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">opts:define-opts</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:name</span> <span class="ss">:bin-path</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:description</span> <span class="s">&#34;binary path to be executed&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:short</span> <span class="sc">#\e</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:long</span> <span class="s">&#34;bin_path&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:arg-parser</span> <span class="nf">#&#39;</span><span class="nv">uiop:native-namestring</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:name</span> <span class="ss">:time</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:description</span> <span class="s">&#34;time to be used&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:short</span> <span class="sc">#\t</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:long</span> <span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:arg-parser</span> <span class="nf">#&#39;</span><span class="nc">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">main</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">argv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">argv</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; 解析命令行参数</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">multiple-value-bind</span> <span class="p">(</span><span class="nv">options</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">opts:get-opts</span> <span class="nv">argv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">binary-path</span> <span class="p">(</span><span class="nf">getf</span> <span class="nv">options</span> <span class="ss">:bin-path</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">           <span class="c1">;;找到程序的父目录</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nv">dir</span> <span class="p">(</span><span class="nv">uiop:pathname-directory-pathname</span> <span class="nv">binary-path</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nb">time</span> <span class="p">(</span><span class="nf">getf</span> <span class="nv">options</span> <span class="ss">:time</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">;; 设置libfaketime环境变量</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">sb-posix:setenv</span> <span class="s">&#34;DYLD_FORCE_FLAT_NAMESPACE&#34;</span> <span class="s">&#34;1&#34;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">sb-posix:setenv</span> <span class="s">&#34;DYLD_INSERT_LIBRARIES&#34;</span> <span class="s">&#34;/opt/homebrew/lib/faketime/libfaketime.1.dylib&#34;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">sb-posix:setenv</span> <span class="s">&#34;FAKETIME_DONT_RESET&#34;</span> <span class="s">&#34;1&#34;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">sb-posix:setenv</span> <span class="s">&#34;FAKETIME&#34;</span> <span class="nb">time</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="c1">;; 切换到程序目录</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">uiop:chdir</span> <span class="nv">dir</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">;;执行程序</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">uiop:run-program</span> <span class="p">(</span><span class="nc">list</span> <span class="s">&#34;./game&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="emacs集成">emacs集成</h2>
+<p>其实我会用common lisp当作脚本语言是因为我比较喜欢用emacs, hack emacs需要用到lisp 这样的语言。emacs 需要做的是封装interactive函数去异步调用上述的脚本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="c1">;; 一个时间变量，后面会带入脚本</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">luna_time</span> <span class="s">&#34;@2022-08-23 23:59:20&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 脚本的路径</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">luna_run</span> <span class="s">&#34;/Users/qibinyang/Data/luna_time_test/luna_time_tast.ros&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">cycle-rank-test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;test luna game&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">;; 异步调用脚本执行我想要调时间的程序 我的工作是游戏开发，最近在做跨服业务所以会开三个</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">start-process</span> <span class="s">&#34;run_game&#34;</span> <span class="p">(</span><span class="nv">get-buffer</span> <span class="s">&#34;*Messages*&#34;</span><span class="p">)</span> <span class="nv">luna_run</span> <span class="s">&#34;-e&#34;</span> <span class="s">&#34;/opt/cycle_test/game/game&#34;</span> <span class="s">&#34;-t&#34;</span> <span class="nv">luna_time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">start-process</span> <span class="s">&#34;run_game&#34;</span> <span class="p">(</span><span class="nv">get-buffer</span> <span class="s">&#34;*Messages*&#34;</span><span class="p">)</span> <span class="nv">luna_run</span> <span class="s">&#34;-e&#34;</span> <span class="s">&#34;/opt/cycle_test/game2/game&#34;</span> <span class="s">&#34;-t&#34;</span> <span class="nv">luna_time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">start-process</span> <span class="s">&#34;run_game&#34;</span> <span class="p">(</span><span class="nv">get-buffer</span> <span class="s">&#34;*Messages*&#34;</span><span class="p">)</span> <span class="nv">luna_run</span> <span class="s">&#34;-e&#34;</span> <span class="s">&#34;/opt/cycle_test/game_center/game&#34;</span> <span class="s">&#34;-t&#34;</span> <span class="nv">luna_time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样我就可以在emacs 中 M-x cycle-rank-test 将&quot;20200-08-23 23:59:20&rdquo; 这个时间带入到程序中。如果我想换一个时间，只需要修改luna_time这个变量，然后重启程序即可。</p>
+<h2 id="总结">总结</h2>
+<p>毕业到工作有一年的时间了，经历了挺多的事情的。印象最深的是失恋以后，又慢慢的重整旗鼓，健身改造自己，和自己对话慢慢的走出以前的漩涡。保持积极的心态，慢慢的接受新的思想，新的理念。锻炼身体，也锻炼自己的内心。慢慢接受变化，向着不惧怕变化前进。这些改变确实给我带来了我没有想到的好处。</p>
+<p>最近有断时间没写博客了，所以今天补上一篇工作日记。从高中的时候就接触到linux，在linux和编辑器上浪费了大量的时间。现在逐渐稳定下来，未来的半年应该把重点放在算法和后端架构的理解上，兼顾开发一些小工具，提升自己的效率。最近对自己的编码风格也不是很满意，写的程序有点乱还得注意一下。</p>
+<p>最怕懒在床上，困在手机里，被低级趣味消磨意志。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/libfaketime/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/libfaketime/" data-title="libfaketime &#43; roswell &#43; emacs 时间测试尝试" data-hashtags="game-develop,libfaketime,roswell,common-lisp,emacs"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/libfaketime/" data-hashtag="game-develop"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/libfaketime/" data-title="libfaketime &#43; roswell &#43; emacs 时间测试尝试"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/libfaketime/" data-title="libfaketime &#43; roswell &#43; emacs 时间测试尝试"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/libfaketime/" data-title="libfaketime &#43; roswell &#43; emacs 时间测试尝试"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/game-develop/">game-develop</a>,&nbsp;<a href="/tags/libfaketime/">libfaketime</a>,&nbsp;<a href="/tags/roswell/">roswell</a>,&nbsp;<a href="/tags/common-lisp/">common-lisp</a>,&nbsp;<a href="/tags/emacs/">emacs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/gamehotfixagain/" class="prev" rel="prev" title="GoGameActor104 再谈热更（为什么lua这种脚本语言在游戏中受青睐）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GoGameActor104 再谈热更（为什么lua这种脚本语言在游戏中受青睐）</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

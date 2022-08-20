@@ -4,7 +4,15 @@
         <link>https://jidibinlin.github.io/tags/common-lisp/</link>
         <description>common-lisp - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 May 2022 18:49:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/common-lisp/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Aug 2022 17:41:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/common-lisp/" rel="self" type="application/rss+xml" /><item>
+    <title>libfaketime &#43; roswell &#43; emacs 时间测试尝试</title>
+    <link>https://jidibinlin.github.io/libfaketime/</link>
+    <pubDate>Sat, 20 Aug 2022 17:41:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/libfaketime/</guid>
+    <description><![CDATA[如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试]]></description>
+</item>
+<item>
     <title>common lisp macros</title>
     <link>https://jidibinlin.github.io/macros/</link>
     <pubDate>Sun, 01 May 2022 18:49:00 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
     <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/data_structures/</guid>
     <description><![CDATA[关于common lisp的一些常用数据结构 list sequences hash-table Alist structures Tree Set 介绍及其基本操作]]></description>
-</item>
-<item>
-    <title>common lisp 函数</title>
-    <link>https://jidibinlin.github.io/function/</link>
-    <pubDate>Sun, 17 Apr 2022 14:07:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/function/</guid>
-    <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>
