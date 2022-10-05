@@ -1,4 +1,4 @@
-# common lisp numbers
+# Common-Lisp numbers
 
 
 <!--more-->
@@ -19,7 +19,6 @@ most-negative-fixnum
 integer 相关的函数有
 
 -   isqrt, 返回小于且最接近于指定数的平方根
-
     ```lisp
     (isqrt 10)
     ;; => 3

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>divide-and-conquer - Category - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/categories/divide-and-conquer/</link>
+        <description>divide-and-conquer - Category - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Oct 2022 23:39:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/divide-and-conquer/" rel="self" type="application/rss+xml" /><item>
+    <title>Median of Two Sorted Arrays</title>
+    <link>https://jidibinlin.github.io/median_of_two_sorted_arrays/</link>
+    <pubDate>Tue, 04 Oct 2022 23:39:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/median_of_two_sorted_arrays/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

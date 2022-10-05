@@ -1,4 +1,4 @@
-# common lisp strings
+# Common-Lisp strings
 
 
 <!--more-->
@@ -29,13 +29,11 @@ the official CLHS documentation
 最简单的，我们可以使用双引号创建string.但是其实我们还有别的方法:
 
 -   使用format nil
-
     ```lisp
     (defparameter person "you")
     (format nil "hello ~a" person) ;; => "hello you"
     ```
 -   make-string count 创建指定长度的字符串。 :initial-element 字符会被重复count次
-
     ```lisp
     (make-string 3 :initial-element #\♥) ;; => "♥♥♥"
     ```
@@ -325,25 +323,21 @@ Common lisp 提供了大量的函数来控制字符串的大小写
 ### 使用format函数控制 {#使用format函数控制}
 
 -   To lower case:
-
     ```lisp
     (format t "~(~a~)" "HELLO WORLD")
     ;; => hello world
     ```
 -   Capitalize every word:
-
     ```lisp
     (format t "~:(~a~)" "HELLO WORLD")
     ;; => Hello World
     ```
 -   Capitalize the first word:
-
     ```lisp
     (format t "~@(~a~)" "hello world")
     ;; => Hello world
     ```
 -   To upper case
-
     ```lisp
     (format t "~@:(~a~)" "hello world")
     ;; => HELLO WORLD
@@ -372,7 +366,6 @@ Common lisp 提供了大量的函数来控制字符串的大小写
 ## 在symbol 和 字符串之间转换 {#在symbol-和-字符串之间转换}
 
 -   intern 将string转化成symbol
-
     ```lisp
     (in-package "COMMON-LISP-USER")
     ;; => #<The COMMON-LISP-USER package, 35/44 internal, 0/9 external>
@@ -397,7 +390,6 @@ Common lisp 提供了大量的函数来控制字符串的大小写
     ;; => :EXTERNAL
     ```
 -   symbol-name 和 string 将symbol 转换成 string
-
     ```lisp
     (symbol-name 'MY-SYMBOL)
     ;; => "MY-SYMBOL"
@@ -413,7 +405,6 @@ Common lisp 提供了大量的函数来控制字符串的大小写
 ## 在string 和 character之间转换 {#在string-和-character之间转换}
 
 -   coerce 将string(长度为1)转换成character.
-
     ```lisp
     (coerce "a" 'character)
     ;; => #\a
@@ -421,19 +412,16 @@ Common lisp 提供了大量的函数来控制字符串的大小写
     ;; => #\o
     ```
 -   coerce 将字符串转换中字符list
-
     ```lisp
     (coerce "cool" 'list)
     ;; => (#\c #\o #\o #\l)
     ```
 -   coerce 将字符list转换成string
-
     ```lisp
     (coerce '(#\h #\e #\y) 'string)
     ;; => "hey"
     ```
 -   coerce 将array 转换成string
-
     ```lisp
     (defparameter *my-array* (make-array 5 :initial-element #\x))
     ;; => *MY-ARRAY*
@@ -504,7 +492,6 @@ Common lisp 提供了大量的函数来控制字符串的大小写
 ## 将string 转换成number {#将string-转换成number}
 
 -   to integer 会返回两个值，一个是被转换后的值，另一个是转换停止的位置
-
     ```lisp
     (parse-integer "42")
     ;; => 42
@@ -530,7 +517,6 @@ Common lisp 提供了大量的函数来控制字符串的大小写
     There's junk in this string: " 42 is forty-two".
     ```
 -   转换成任意number: read-from-string
-
     ```lisp
     (read-from-string "#X23")
     ;; => 35,4

@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/categories/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/categories/"
@@ -15,13 +15,11 @@
                     hreflang="en"
                     href="https://jidibinlin.github.io/categories/"
                     /></url><url>
-            <loc>https://jidibinlin.github.io/tags/common-lisp/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/common-lisp/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/emacs/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/emacs/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/game-develop/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/game-develop/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/tags/frame_sync/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/frame_sync/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/gamedev/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/gamedev/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/"
@@ -34,11 +32,8 @@
                     hreflang="en"
                     href="https://jidibinlin.github.io/"
                     /></url><url>
-            <loc>https://jidibinlin.github.io/tags/libfaketime/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/libfaketime/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/posts/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/roswell/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-08-20T19:17:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://jidibinlin.github.io/posts/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="https://jidibinlin.github.io/zh-cn/tags/"
@@ -51,43 +46,43 @@
                     hreflang="en"
                     href="https://jidibinlin.github.io/tags/"
                     /></url><url>
-            <loc>https://jidibinlin.github.io/tags/actor/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/actor/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/game-framework/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/game-framework/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/golang_actor_compare/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/golang/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/golang/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/gonet/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/gonet/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/protoactor/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/protoactor/</loc><lastmod>2022-07-14T21:13:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/golang_reflect/</loc><lastmod>2022-07-13T16:29:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/plugin/</loc><lastmod>2022-07-06T21:34:36&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/gamehotfix/</loc><lastmod>2022-07-03T21:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/hotfix/</loc><lastmod>2022-07-03T21:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/hotfix/</loc><lastmod>2022-07-03T21:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/actorintroduction/</loc><lastmod>2022-06-29T15:02:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/golang-syntax/</loc><lastmod>2022-06-20T20:47:59&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/macros/</loc><lastmod>2022-05-19T15:40:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/lisp/</loc><lastmod>2022-05-19T15:43:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/clos/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/fundamentals-of-clos/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/error-and-exception-handling/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/files-and-directories/</loc><lastmod>2022-05-19T15:43:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/input-output/</loc><lastmod>2022-05-19T15:41:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/loop-iteration-mapping/</loc><lastmod>2022-05-19T15:31:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/numbers/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/strings/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/data_structures/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/function/</loc><lastmod>2022-05-03T21:11:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/double-point/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/leetcode/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/categories/leetcode/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/3sumcloset/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/container_with_most_water/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/array/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/binary_search/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/tags/divide_and_conquer/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/median_of_two_sorted_arrays/</loc><lastmod>2022-04-17T14:02:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://jidibinlin.github.io/effectivego/</loc><lastmod>2022-06-20T21:04:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://jidibinlin.github.io/tags/dynamic-programming/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/leetcode/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/longest_palindromic_substring/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/3sum/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/leetcode/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/divide-and-conquer/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/divide-and-conquer/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/median_of_two_sorted_arrays/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/container_with_most_water/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/interval-scheduling/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/common-lisp/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/emacs/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/libfaketime/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/lisp/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/tools/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/tools/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/game-dev/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/gogameactor/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/hotfix/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/hotfix/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/actor/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/introduction/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/golang/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/golang/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/syntax/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/functional_options/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tips/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/reflect/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/plugin/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/strings/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/categories/lisp/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/numbers/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/loop_and_iteration/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/function/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/data_structure/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/input_output/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/fundamental_clos/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/tags/common_lisp/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/error_and_exception_handlering/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://jidibinlin.github.io/file_and_directory/</loc><lastmod>2022-10-05T16:32:25&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

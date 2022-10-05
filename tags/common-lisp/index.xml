@@ -4,85 +4,78 @@
         <link>https://jidibinlin.github.io/tags/common-lisp/</link>
         <description>common-lisp - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Aug 2022 17:41:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/common-lisp/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/common-lisp/" rel="self" type="application/rss+xml" /><item>
     <title>libfaketime &#43; roswell &#43; emacs 时间测试尝试</title>
     <link>https://jidibinlin.github.io/libfaketime/</link>
-    <pubDate>Sat, 20 Aug 2022 17:41:00 &#43;0800</pubDate>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/libfaketime/</guid>
     <description><![CDATA[如何将时间调试工具libfaketiem , roswell, 和emacs 结合起来方便的做时间测试]]></description>
 </item>
 <item>
-    <title>common lisp macros</title>
-    <link>https://jidibinlin.github.io/macros/</link>
-    <pubDate>Sun, 01 May 2022 18:49:00 &#43;0800</pubDate>
+    <title>Common-Lisp strings</title>
+    <link>https://jidibinlin.github.io/strings/</link>
+    <pubDate>Tue, 04 Oct 2022 21:39:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/macros/</guid>
-    <description><![CDATA[common lisp 中的 macros]]></description>
+    <guid>https://jidibinlin.github.io/strings/</guid>
+    <description><![CDATA[common lisp 字符串]]></description>
 </item>
 <item>
-    <title>CLOS基础</title>
-    <link>https://jidibinlin.github.io/fundamentals-of-clos/</link>
-    <pubDate>Sat, 30 Apr 2022 16:44:00 &#43;0800</pubDate>
+    <title>Common-Lisp numbers</title>
+    <link>https://jidibinlin.github.io/numbers/</link>
+    <pubDate>Tue, 04 Oct 2022 21:38:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/fundamentals-of-clos/</guid>
-    <description><![CDATA[Common Lisp Object System 的使用]]></description>
+    <guid>https://jidibinlin.github.io/numbers/</guid>
+    <description><![CDATA[common lisp number 数值]]></description>
 </item>
 <item>
-    <title>Common Lisp Error and Exception Handling</title>
-    <link>https://jidibinlin.github.io/error-and-exception-handling/</link>
-    <pubDate>Sat, 30 Apr 2022 15:31:00 &#43;0800</pubDate>
+    <title>Common-Lisp loop and iteration</title>
+    <link>https://jidibinlin.github.io/loop_and_iteration/</link>
+    <pubDate>Tue, 04 Oct 2022 21:34:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/error-and-exception-handling/</guid>
-    <description><![CDATA[common lisp 的错误和异常处理]]></description>
-</item>
-<item>
-    <title>Common Lisp Files and Directories</title>
-    <link>https://jidibinlin.github.io/files-and-directories/</link>
-    <pubDate>Fri, 29 Apr 2022 14:10:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/files-and-directories/</guid>
-    <description><![CDATA[common lisp 的文件和文件夹操作]]></description>
-</item>
-<item>
-    <title>common lisp input/output</title>
-    <link>https://jidibinlin.github.io/input-output/</link>
-    <pubDate>Fri, 29 Apr 2022 11:18:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/input-output/</guid>
-    <description><![CDATA[common lisp io操作]]></description>
-</item>
-<item>
-    <title>common lisp 循环操作</title>
-    <link>https://jidibinlin.github.io/loop-iteration-mapping/</link>
-    <pubDate>Fri, 22 Apr 2022 16:27:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/loop-iteration-mapping/</guid>
+    <guid>https://jidibinlin.github.io/loop_and_iteration/</guid>
     <description><![CDATA[有关common lisp 的循环，和一些小技巧]]></description>
 </item>
 <item>
-    <title>common lisp numbers</title>
-    <link>https://jidibinlin.github.io/numbers/</link>
-    <pubDate>Fri, 22 Apr 2022 15:35:00 &#43;0800</pubDate>
+    <title>Common-Lisp function</title>
+    <link>https://jidibinlin.github.io/function/</link>
+    <pubDate>Tue, 04 Oct 2022 21:33:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/numbers/</guid>
-    <description><![CDATA[common-lisp 中与number相关的知识点]]></description>
+    <guid>https://jidibinlin.github.io/function/</guid>
+    <description><![CDATA[common lisp 定义 和 调用]]></description>
 </item>
 <item>
-    <title>common lisp strings</title>
-    <link>https://jidibinlin.github.io/strings/</link>
-    <pubDate>Fri, 22 Apr 2022 10:36:00 &#43;0800</pubDate>
+    <title>Common-Lisp data_structure</title>
+    <link>https://jidibinlin.github.io/data_structure/</link>
+    <pubDate>Tue, 04 Oct 2022 21:32:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/strings/</guid>
-    <description><![CDATA[有关common-lisp string的知识以及操作]]></description>
+    <guid>https://jidibinlin.github.io/data_structure/</guid>
+    <description><![CDATA[common lisp 的一些基本数据结构]]></description>
 </item>
 <item>
-    <title>common lisp 数据结构</title>
-    <link>https://jidibinlin.github.io/data_structures/</link>
-    <pubDate>Tue, 19 Apr 2022 11:13:00 &#43;0800</pubDate>
+    <title>Common-Lisp Input-Output</title>
+    <link>https://jidibinlin.github.io/input_output/</link>
+    <pubDate>Tue, 04 Oct 2022 21:31:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/data_structures/</guid>
-    <description><![CDATA[关于common lisp的一些常用数据结构 list sequences hash-table Alist structures Tree Set 介绍及其基本操作]]></description>
+    <guid>https://jidibinlin.github.io/input_output/</guid>
+    <description><![CDATA[common lisp I/O 操作]]></description>
+</item>
+<item>
+    <title>Common-Lisp Fundamental CLOS</title>
+    <link>https://jidibinlin.github.io/fundamental_clos/</link>
+    <pubDate>Tue, 04 Oct 2022 20:32:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/fundamental_clos/</guid>
+    <description><![CDATA[  "Common Lisp Object System使用"
+  ]]></description>
+</item>
+<item>
+    <title>Common-Lisp File and Directory</title>
+    <link>https://jidibinlin.github.io/file_and_directory/</link>
+    <pubDate>Tue, 04 Oct 2022 20:00:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/file_and_directory/</guid>
+    <description><![CDATA[common lisp 的文件和文件夹操作]]></description>
 </item>
 </channel>
 </rss>

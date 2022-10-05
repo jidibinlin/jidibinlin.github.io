@@ -1,0 +1,1612 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Common-Lisp Fundamental CLOS - jidibinlin`s blog site</title><meta name="Description" content="  &#34;Common Lisp Object System使用&#34;
+  "><meta property="og:title" content="Common-Lisp Fundamental CLOS" />
+<meta property="og:description" content="  &#34;Common Lisp Object System使用&#34;
+  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/fundamental_clos/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-04T20:32:00+08:00" />
+<meta property="article:modified_time" content="2022-10-05T16:32:25+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Common-Lisp Fundamental CLOS"/>
+<meta name="twitter:description" content="  &#34;Common Lisp Object System使用&#34;
+  "/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/fundamental_clos/" /><link rel="prev" href="https://jidibinlin.github.io/error_and_exception_handlering/" /><link rel="next" href="https://jidibinlin.github.io/input_output/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Common-Lisp Fundamental CLOS",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/fundamental_clos\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  2663 ,
+        "url": "https:\/\/jidibinlin.github.io\/fundamental_clos\/","datePublished": "2022-10-04T20:32:00+08:00","dateModified": "2022-10-05T16:32:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "  \"Common Lisp Object System使用\"\n  "
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/fundamental_clos/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/fundamental_clos/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Common-Lisp Fundamental CLOS</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-04">2022-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2663 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/fundamental_clos/" class="leancloud_visitors" data-flag-title="Common-Lisp Fundamental CLOS">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#classes-and-instances">Classes and instances</a></li>
+    <li><a href="#defining-classes--defclass">Defining classes (defclass)</a></li>
+    <li><a href="#创建对象--make-instance">创建对象(make-instance)</a></li>
+    <li><a href="#slots">Slots</a>
+      <ul>
+        <li><a href="#a-function-that-always-works--slot-value">A function that always works(slot-value)</a></li>
+        <li><a href="#初始化和默认值--initarg-initform">初始化和默认值(initarg,initform)</a></li>
+        <li><a href="#getters-and-setters--accessor-reader-writer">Getters and Setters (accessor,reader,writer)</a></li>
+        <li><a href="#class-vs-instance-slots">Class VS instance slots</a></li>
+        <li><a href="#slot-documentation">Slot documentation</a></li>
+        <li><a href="#slot-type">Slot type</a></li>
+      </ul>
+    </li>
+    <li><a href="#find-class-class-name-class-of">find-class,class-name,class-of</a></li>
+    <li><a href="#subclasses-和-inheritance">Subclasses 和 inheritance</a></li>
+    <li><a href="#multiple-inheritance">Multiple inheritance</a></li>
+    <li><a href="#redefining-and-changing-a-class">Redefining and changing a class</a></li>
+    <li><a href="#pretty-printing">Pretty printing</a></li>
+    <li><a href="#classes-of-traditional-lisp-types">Classes of traditional lisp types</a></li>
+    <li><a href="#introspection">Introspection</a></li>
+    <li><a href="#see-also">See also</a>
+      <ul>
+        <li><a href="#defclass-std-write-shorter-classes">defclass/std: write shorter classes</a></li>
+      </ul>
+    </li>
+    <li><a href="#methods">Methods</a>
+      <ul>
+        <li><a href="#先来个潜入">先来个潜入</a></li>
+        <li><a href="#generic-functions--defgeneric-defmethod">Generic functions (defgeneric,defmethod)</a></li>
+      </ul>
+    </li>
+    <li><a href="#multimethods">Multimethods</a></li>
+    <li><a href="#控制setters--setf-ing-methods">控制setters (setf-ing methods)</a></li>
+    <li><a href="#dispatch-mechanism-and-next-methods">Dispatch mechanism and next methods</a></li>
+    <li><a href="#method-qualifiers--before-after-around">Method qualifiers (before,after,around)</a></li>
+    <li><a href="#other-method-combinations">Other method combinations</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>CLOS is the “Common Lisp Object System”, arguably one of the most powerful object systems available in any language.
+Some of its features include:</p>
+<ul>
+<li>it is dynamic, making it a joy to work with in a Lisp REPL. For example, changing a class definition will update the existing objects, given certain rules which we have control upon.</li>
+<li>it supports multiple dispatch and multiple inheritance,</li>
+<li>it is different from most object systems in that class and method definitions are not tied together,</li>
+<li>it has excellent introspection capabilities,</li>
+<li>it is provided by a meta-object protocol, which provides a standard interface to the CLOS, and can be used to create new object systems.</li>
+<li>The functionality belonging to this name was added to the Common Lisp language between the publication of Steele’s first edition of “Common Lisp, the Language” in 1984 and the formalization of the language as an ANSI standard ten years later.</li>
+</ul>
+<p>This page aims to give a good understanding of how to use CLOS, but only a brief introduction to the MOP.</p>
+<p>To learn the subjects in depth, you will need two books:</p>
+<ul>
+<li><a href="http://www.communitypicks.com/r/lisp/s/17592186046723-object-oriented-programming-in-common-lisp-a-programmer" target="_blank" rel="noopener noreffer ">Object-Oriented Programming in Common Lisp: a Programmer`s Guide to CLOS</a></li>
+<li><a href="http://www.communitypicks.com/r/lisp/s/17592186045709-the-art-of-the-metaobject-protocol" target="_blank" rel="noopener noreffer ">the Art of the Metaobject Protocol</a></li>
+<li></li>
+</ul>
+<h2 id="classes-and-instances">Classes and instances</h2>
+<p>先来个简单的例子 包含class的定义，对象的创建，slot的访问，methods的指定，以及继承</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">lisper</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">lisper</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #&lt;STANDARD-CLASS PERSON&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="nv">p1</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;me&#34;</span> <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;                                 ^^^^ initarg</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #&lt;PERSON {1006234593}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">name</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;^^^ accessor</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;me&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">lisper</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; nil</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;    ^^ initform (slot unbound by default)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">lisper</span> <span class="nv">p1</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">child</span> <span class="p">(</span><span class="nv">person</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">child</span> <span class="p">(</span><span class="nv">person</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">can-walk-p</span>
+</span></span><span class="line"><span class="cl">     <span class="ss">:accessor</span> <span class="nv">can-walk-p</span>
+</span></span><span class="line"><span class="cl">     <span class="ss">:initform</span> <span class="no">t</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-CLASS CHILD&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">can-walk-p</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="defining-classes--defclass">Defining classes (defclass)</h2>
+<p>CLOS中定义一个新的数据类型使用defclass macro</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">lisper</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">lisper</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样我们就得到了一个CLOS 类型（class）叫做person,person 有两个slot 一个叫做name 一个叫做lisper。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">class-of</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="nv">&lt;STANDARD-CLASS</span> <span class="nv">PERSON&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">type-of</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PERSON</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>defclass 的通用形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">&lt;class-name&gt;</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">of</span> <span class="nv">super</span> <span class="nv">classes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">slot-1</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:slot-option</span> <span class="nv">slot-argument</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">slot-2,etc</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:optional-class-option</span>
+</span></span><span class="line"><span class="cl">   <span class="ss">:another-optional-class-option</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以person class 并没有显式的继承任何class. 但是他默认继承了standard-object.</p>
+<p>我们也可以写一个非常小的class 不用slot options</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">point</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>甚至都不需要slot (defclass point()())</p>
+<h2 id="创建对象--make-instance">创建对象(make-instance)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="nv">p1</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;me&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更实用的方法是定义构造函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">make-person</span> <span class="p">(</span><span class="nv">name</span> <span class="k">&amp;key</span> <span class="nv">lisper</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="nv">name</span> <span class="ss">:lisper</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="slots">Slots</h2>
+<h3 id="a-function-that-always-works--slot-value">A function that always works(slot-value)</h3>
+<p>在任何时候都可以用来用来访问slot的函数时 (slot-value &lt;object&gt; &lt;slot-name&gt;)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="nv">pt</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;point</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">inspect</span> <span class="nv">pt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">The</span> <span class="nv">object</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">STANDARD-OBJECT</span> <span class="nv">of</span> <span class="k">type</span> <span class="nv">POINT.</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0.</span> <span class="nv">X:</span> <span class="s">&#34;unbound&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1.</span> <span class="nv">Y:</span> <span class="s">&#34;unbound&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2.</span> <span class="nv">Z:</span> <span class="s">&#34;unbound&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样你可以获得一个point对象，但是他的slots 默认是没有绑定的，尝试访问他们会导致UNBOUND-SLOT condition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">slot-value</span> <span class="nv">pt</span> <span class="ss">&#39;x</span><span class="p">)</span> <span class="c1">;; =&gt; condition: the slot is unbound</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>slot-value 是可以被setf 的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">slot-value</span> <span class="nv">pt</span> <span class="ss">&#39;x</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">slot-value</span> <span class="nv">pt</span> <span class="ss">&#39;x</span><span class="p">)</span> <span class="c1">;; =&gt; 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="初始化和默认值--initarg-initform">初始化和默认值(initarg,initform)</h3>
+<ul>
+<li>
+<p>:initarg :foo 是用来传给make-instance 让make-instance 给slot 设置值的关键字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;me&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>:initform &lt;val&gt; 是当我们没有显式指定initarg时，设置的默认值。在defclass的词法作用域中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">foo</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">a</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:a</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="p">(</span><span class="kt">error</span> <span class="s">&#34;you didn`t supply an initial value for slot a&#34;</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;foo</span><span class="p">)</span> <span class="c1">;; =&gt; enters the debugger</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="getters-and-setters--accessor-reader-writer">Getters and Setters (accessor,reader,writer)</h3>
+<ul>
+<li>:accessor foo: accessor 既是getter 也是 setter.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">name</span> <span class="nv">p1</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;me&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">type-of</span> <span class="nf">#&#39;</span><span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">STANDARD-GENERIC-FUNCTION</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>reader and writer 就是他们描述的功能，只有:writer是setf-able的</li>
+</ul>
+<p>如果你不指定他们，你仍然可以使用slot-value
+呢可以指定不止一个:accessor,:reader 或者 :initarg</p>
+<p>这里介绍两个macros 让访问slot更加简洁</p>
+<ol>
+<li>with-slots 可以一次访问多个slot-value
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-slots</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">lisper</span><span class="p">)</span> <span class="nv">c1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;got ~a, ~a~&amp;&#34;</span> <span class="nv">name</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>or
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-slots</span> <span class="p">((</span><span class="nv">n</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="nv">l</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">c1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;got ~a, ~a~&amp;&#34;</span> <span class="nv">n</span> <span class="nv">l</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>with-accessor 也差不多，但是使用的accessor
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-accessors</span> <span class="p">((</span><span class="nv">name</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="p">(</span><span class="nv">lisper</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">p1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;name: ~a, lisper: ~a&#34;</span> <span class="nv">name</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="class-vs-instance-slots">Class VS instance slots</h3>
+<p>:allocation 用来说明这个slot是local的还是shared</p>
+<ul>
+<li>local slot 是默认的，也就是说，实例之间是不共享的 这时:allocation == :instance</li>
+<li>shared slot 在实例间是共享的，我们可以用:allocation :class 来设置</li>
+</ul>
+<p>在下面的例子中，注意 p2的species槽的值是如何变化的，以及是如何影响所有class的instance的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span> <span class="ss">:initarg</span> <span class="ss">:name</span> <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">species</span>
+</span></span><span class="line"><span class="cl">      <span class="ss">:initform</span> <span class="ss">&#39;homo-sapiens</span>
+</span></span><span class="line"><span class="cl">      <span class="ss">:accessor</span> <span class="nv">species</span>
+</span></span><span class="line"><span class="cl">      <span class="ss">:allocation</span> <span class="ss">:class</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; Note that the slot &#34;lisper&#34; was removed in existing instances.</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">inspect</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; The object is a STANDARD-OBJECT of type PERSON.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0. NAME: &#34;me&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1. SPECIES: HOMO-SAPIENS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &gt; q</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defvar</span> <span class="nv">p2</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">species</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">species</span> <span class="nv">p2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-SAPIENS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">species</span> <span class="nv">p2</span><span class="p">)</span> <span class="ss">&#39;homo-numericus</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-NUMERICUS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">species</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-NUMERICUS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">species</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-NUMERICUS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">temp</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">species</span> <span class="nv">temp</span><span class="p">)</span> <span class="ss">&#39;homo-lisper</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-LISPER</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">species</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; HOMO-LISPER</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="slot-documentation">Slot documentation</h3>
+<p>任何slot 都可以接受一个:documentation option</p>
+<h3 id="slot-type">Slot type</h3>
+<p>:type 用来检查slot的类型，但是只有很少一部分的实现支持:type 类型检查</p>
+<h2 id="find-class-class-name-class-of">find-class,class-name,class-of</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find-class</span> <span class="ss">&#39;point</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-CLASS POINT 275B78DC&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">class-name</span> <span class="p">(</span><span class="nf">find-class</span> <span class="ss">&#39;point</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; POINT</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">class-of</span> <span class="nv">my-point</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-CLASS POINT 275B78DC&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">typep</span> <span class="nv">my-point</span> <span class="p">(</span><span class="nf">class-of</span> <span class="nv">my-point</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="subclasses-和-inheritance">Subclasses 和 inheritance</h2>
+<p>child 是 person 的子类, 所有object 都继承自standard-object and t.
+所有child instance 也是 person 的 instance</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">type-of</span> <span class="nv">cl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; child</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subtypep</span> <span class="p">(</span><span class="k">type</span> <span class="nv">of</span> <span class="nv">cl</span><span class="p">)</span> <span class="ss">&#39;person</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;closer-mop&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">closer-mop:subclassp</span> <span class="p">(</span><span class="nf">class-of</span> <span class="nv">cl</span><span class="p">)</span> <span class="ss">&#39;person</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个subclass 继承了他所有的 parents` 的slots, 并且，他可以覆盖父类们的任何slot options.</p>
+<p>child class的优先级是这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">child</span> <span class="nv">&lt;-</span> <span class="nv">person</span> <span class="nv">&lt;--</span> <span class="nc">standard-object</span> <span class="nv">&lt;-</span> <span class="no">t</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以用closer-mop:class-precedence-list 去查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">closer-mop:class-precedence-list</span> <span class="p">(</span><span class="nf">class-of</span> <span class="nv">c1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (#&lt;standard-class child&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;  #&lt;standard-class person&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;  #&lt;standard-class standard-object&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;  #&lt;sb-pcl::slot-class sb-pcl::slot-object&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;  #&lt;sb-pcl:system-class t&gt;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是child的直接父类只是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">closer-mop:class-direct-superclasses</span> <span class="p">(</span><span class="nf">class-of</span> <span class="nv">c1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (#&lt;standard-class person&gt;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们还可以用更多的方法来inspect classes,比如class-direct-[subclasses, slots, default-initargs]</p>
+<p>slots 以如下方式结合</p>
+<ul>
+<li>
+<p>:accessor and :reader are combined by the union of accessors and readers from all the inherited slots.</p>
+</li>
+<li>
+<p>:initarg: the union of initialization arguments from all the inherited slots.</p>
+</li>
+<li>
+<p>:initform: we get the most specific default initial value form, i.e. the first :initform for that slot in the precedence list.</p>
+</li>
+<li>
+<p>:allocation is not inherited. It is controlled solely by the class being defined and defaults to :instance.</p>
+</li>
+</ul>
+<h2 id="multiple-inheritance">Multiple inheritance</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">baby</span> <span class="p">(</span><span class="nv">child</span> <span class="nv">person</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>现代语言不提倡多重继承</p>
+<h2 id="redefining-and-changing-a-class">Redefining and changing a class</h2>
+<p>这一节简短的包含两个话题</p>
+<ul>
+<li>重定义已经存在的class</li>
+<li>改变已经一个class 的instance</li>
+</ul>
+<p>要重定义一个class,只需要在执行榆次defclass, 他会替换所有的旧的定义，包括实例，继承。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">lisper</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">lisper</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">pl</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;me&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>changing,adding,removing slots&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">lisper</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">lisper</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">t</span>        <span class="c1">;; &lt;-- from nil to t</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">lisper</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">lisper</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL (of course!)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">lisper</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;You&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">lisper</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">lisper</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">age</span>               <span class="c1">;; &lt;-- new slot</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:arg</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="mi">18</span>      <span class="c1">;; &lt;-- default value</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">age</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">age</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 18. Correct. This is the default initform for this new slot.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">slot-value</span> <span class="nv">p1</span> <span class="ss">&#39;bwarf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;the slot bwarf is missing from the object #&lt;person…&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">age</span> <span class="nv">p1</span><span class="p">)</span> <span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">age</span> <span class="nv">p1</span><span class="p">)</span> <span class="c1">;; =&gt; 30</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">slot-value</span> <span class="nv">p1</span> <span class="ss">&#39;lisper</span><span class="p">)</span> <span class="c1">;; =&gt; slot lisper is missing.</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">lisper</span> <span class="nv">p1</span><span class="p">)</span> <span class="c1">;; =&gt; there is no applicable method for the generic function lisper when called with arguments #(lisper).</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要改变一个实例的class, 可以使用change-class:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">change-class</span> <span class="nv">p1</span> <span class="ss">&#39;child</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; we can also set slots of the new class:</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">change</span> <span class="nv">p1</span> <span class="ss">&#39;child</span> <span class="ss">:can-walk-p</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">class-of</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-CLASS CHILD&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">can-walk-p</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pretty-printing">Pretty printing</h2>
+<p>每次我们打印一个object 我们会获得一个这样的输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="err">#</span><span class="nv">&lt;PERSON</span> <span class="nv">{1006234593}&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要更多的信息，比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="err">#</span><span class="nv">&lt;PERSON</span> <span class="nv">me</span> <span class="nv">lisper:</span> <span class="nv">t&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要想更加好看的打印可以指定 class 的 generic print-object 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nf">print-object</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">)</span> <span class="nc">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">print-unreadable-object</span> <span class="p">(</span><span class="nv">obj</span> <span class="nc">stream</span> <span class="ss">:type</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">with-accessors</span> <span class="p">((</span><span class="nv">name</span> <span class="nv">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                     <span class="p">(</span><span class="nv">lisper</span> <span class="nv">lisper</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">obj</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">format</span> <span class="nc">stream</span> <span class="s">&#34;~a, lisper: ~a&#34;</span> <span class="nv">name</span> <span class="nv">lisper</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl"><span class="nv">p1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;PERSON me, lisper: T&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>print-unreadable-object 打印#&lt;&hellip;&gt;, 这表明 object 的reader无法再深入的读取. :type t 参数要求答应object-type的前缀，也就是 PERSON. 没有它我们会得到 #&lt;me,lisper: T&gt;
+我们使用了with-accessors macro,但是对于简单的情况这样做就可以了的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nf">print-object</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">)</span> <span class="nc">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">print-unreadable-object</span> <span class="p">(</span><span class="nv">obj</span> <span class="nc">stream</span> <span class="ss">:type</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="nc">stream</span> <span class="s">&#34;~a, lisper: ~a&#34;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">obj</span><span class="p">)</span> <span class="p">(</span><span class="nv">lisper</span> <span class="nv">obj</span><span class="p">))))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">尝试访问一个没有被绑定的slot会导致错误，所以应该先使用slot-boundp判断</div>
+        </div>
+    </div>
+<p>下面的代码重现了默认的打印方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nf">print-object</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">)</span> <span class="nc">stream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">print-unreadable-object</span> <span class="p">(</span><span class="nv">obj</span> <span class="nc">stream</span> <span class="ss">:type</span> <span class="no">t</span> <span class="ss">:identity</span> <span class="no">t</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里:identity为t时将会打印地址</p>
+<h2 id="classes-of-traditional-lisp-types">Classes of traditional lisp types</h2>
+<p>这节不是很明白贴出原文地址吧
+<a href="https://lispcookbook.github.io/cl-cookbook/clos.html#classes-of-traditional-lisp-types" target="_blank" rel="noopener noreffer ">Classes of traditional lisp types</a></p>
+<h2 id="introspection">Introspection</h2>
+<p>其实Introspection就是各种判断CLOS instance内部结构的断言函数，如果你需要非常了解这些函数的话推荐去看看<a href="https://github.com/pcostanza/closer-mop" target="_blank" rel="noopener noreffer ">closer-mop</a> 库和<a href="https://clos-mop.hexstreamsoft.com/" target="_blank" rel="noopener noreffer ">CLOS &amp; MOP specifications</a>
+这里列出一些函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">closer-mop:class-default-initargs</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-direct-default-initargs</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-direct-slots</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-direct-subclasses</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-direct-superclasses</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-precedence-list</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:class-slots</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:classp</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:extract-lambda-list</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:extract-specializer-names</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-argument-precedence-order</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-declarations</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-lambda-list</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-method-class</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-method-combination</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-methods</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:generic-function-name</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:method-combination</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:method-function</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:method-generic-function</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:method-lambda-list</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:method-specializers</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-allocation</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-initargs</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-initform</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-initfunction</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-location</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-name</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-readers</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-type</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:slot-definition-writers</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:specializer-direct-generic-functions</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:specializer-direct-methods</span>
+</span></span><span class="line"><span class="cl"><span class="nv">closer-mop:standard-accessor-method</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="see-also">See also</h2>
+<h3 id="defclass-std-write-shorter-classes">defclass/std: write shorter classes</h3>
+<p>defclass/std 提供了一个简写defclass的macro
+默认他会提供一个initarg 和一个绑定为nil的initform 给你的slot定义
+比如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defclass/std</span> <span class="nv">example</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">slot1</span> <span class="nv">slot2</span> <span class="nv">slot3</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>会被展开为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">example</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">slot1</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">slot1</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:slot1</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">slot2</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">slot2</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:slot2</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="p">(</span><span class="nv">slot3</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">slot3</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:slot3</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initform</span> <span class="no">nil</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>他很方便灵活，但是common lisp 社区很少使用他，你可以自行决定是否使用他</p>
+<h2 id="methods">Methods</h2>
+<h3 id="先来个潜入">先来个潜入</h3>
+<p>之前有过person 和 child 类的定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">person</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">((</span><span class="nv">name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:initarg</span> <span class="ss">:name</span>
+</span></span><span class="line"><span class="cl">    <span class="ss">:accessor</span> <span class="nv">name</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defclass</span> <span class="nv">child</span> <span class="p">(</span><span class="nv">person</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">p1</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;person</span> <span class="ss">:name</span> <span class="s">&#34;me&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">p2</span> <span class="p">(</span><span class="nf">make-instance</span> <span class="ss">&#39;child</span> <span class="ss">:name</span> <span class="s">&#34;Alice&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Are you a person ? You are a ~a.~&amp;&#34;</span> <span class="p">(</span><span class="nf">type-of</span> <span class="nv">obj</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; style-warning: Implicitly creating new generic function common-lisp-user::greet.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET (t) {1008EE4603}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="ss">:anything</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Are you a person ? You are a KEYWORD.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Are you a person ? You are a PERSON.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defgeneric</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:documentation</span> <span class="s">&#34;say hello&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; STYLE-WARNING: redefining COMMON-LISP-USER::GREET in DEFGENERIC</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-GENERIC-FUNCTION GREET (2)&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello ~a !~&amp;&#34;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">obj</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET (PERSON) {1007C26743}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;Hello me !&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;Hello Alice !&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;ur so cute~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET (CHILD) {1008F3C1C3}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;Hello me !&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;ur so cute&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;; Method combination: before, after, around.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:before</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;-- before person~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="nv">&lt;STANDARD-METHOD</span> <span class="nv">GREET</span> <span class="ss">:BEFORE</span> <span class="p">(</span><span class="nv">PERSON</span><span class="p">)</span> <span class="nv">{100C94A013}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Hello me</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:before</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;-- before child~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET :BEFORE (CHILD) {100AD32A43}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before child</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ur so cute</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:after</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;-- after person~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET :AFTER (PERSON) {100CA2E1A3}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Hello me</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- after person</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:after</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;-- after child~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET :AFTER (CHILD) {10075B71F3}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before child</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ur so cute</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- after person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- after child</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:around</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello my dear~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;STANDARD-METHOD GREET :AROUND (CHILD) {10076658E3}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span> <span class="c1">;; Hello my dear</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; call-next-method</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="ss">:around</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello my dear~&amp;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nf">next-method-p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">call-next-method</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;standard-method greet :around (child) {100AF76863}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">c1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Hello my dear</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before child</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- before person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ur so cute</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- after person</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; -- after child</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; Adding in &amp;key</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; In order to add &#34;&amp;key&#34; to our generic method, we need to remove its definition first.</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">fmakunbound</span> <span class="ss">&#39;greet</span><span class="p">)</span>  <span class="c1">;; with Slime: C-c C-u (slime-undefine-function)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">)</span> <span class="k">&amp;key</span> <span class="nv">talkative</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello ~a~&amp;&#34;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">obj</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">when</span> <span class="nv">talkative</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;blah&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defgeneric</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span> <span class="k">&amp;key</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:documentation</span> <span class="s">&#34;say hi&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span> <span class="k">&amp;key</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Are you a person ? You are a ~a.~&amp;&#34;</span> <span class="p">(</span><span class="nf">type-of</span> <span class="nv">obj</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">)</span> <span class="k">&amp;key</span> <span class="nv">talkative</span> <span class="k">&amp;allow-other-keys</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello ~a !~&amp;&#34;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">obj</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">when</span> <span class="nv">talkative</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;blah&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span> <span class="ss">:talkative</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; ok</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">greet</span> <span class="nv">p1</span> <span class="ss">:foo</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; still ok</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defgeneric</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:documentation</span> <span class="s">&#34;say hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:method</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Are you a person ? You are a ~a~&amp;.&#34;</span> <span class="p">(</span><span class="nf">type-of</span> <span class="nv">obj</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:method</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello ~a !~&amp;&#34;</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">obj</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:method</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;ur so cute~&amp;&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;; Specializers</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;;;;;;;;;;;;;;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defgeneric</span> <span class="nv">feed</span> <span class="p">(</span><span class="nv">obj</span> <span class="nv">meal-type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:method</span> <span class="p">(</span><span class="nv">obj</span> <span class="nv">meal-type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">meal-type</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;eating~&amp;&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">feed</span> <span class="p">(</span><span class="nv">obj</span> <span class="p">(</span><span class="nv">meal-type</span> <span class="p">(</span><span class="nf">eql</span> <span class="ss">:dessert</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">meal-type</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;mmh, dessert !~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">feed</span> <span class="nv">c1</span> <span class="ss">:dessert</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; mmh, dessert !</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">feed</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">)</span> <span class="p">(</span><span class="nv">meal-type</span> <span class="p">(</span><span class="nf">eql</span> <span class="ss">:soup</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">meal-type</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;bwark~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">feed</span> <span class="nv">p1</span> <span class="ss">:soup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; eating</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">feed</span> <span class="nv">c1</span> <span class="ss">:soup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; bwark</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="generic-functions--defgeneric-defmethod">Generic functions (defgeneric,defmethod)</h3>
+<p>在lisp方法中 generic function 是一个相关联的方法集合。所有同名的方法都属于同一个generic function
+defmethod 和 defun 很相似。他将函数名和函数体相关联，但是函数体只有当参数的类型和lambda list定义的类型相匹配时才会被执行。
+他们可以有optional,keyword 和 &amp;rest参数</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>lambda list<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">lambda list 其实就是参数列表</div>
+        </div>
+    </div>
+<p>defgeneric 用来定义generic function, 如果我们使用defmethod 的时候没有对应的defgeneric时，一个generic function就会被自动创建</p>
+<p>使用defgenerics 是一个好习惯，我们可以添加默认的实现，甚至是documentation</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defgeneric</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:documentation</span> <span class="s">&#34;says hi&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="ss">:method</span> <span class="p">(</span><span class="nv">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hi&#34;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个方法的lambda list 所需要的参数可能有三种形式</p>
+<ol>
+<li>a simple variable:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">(</span><span class="nv">foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>这个method 可以接受任何的参数</li>
+<li>一个variable 和一个specializer
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">greet</span> <span class="p">((</span><span class="nv">foo</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>在这种情况下，foo 被绑定只有特定的class 比如person 和其 subclass才能使用这个方法</li>
+</ol>
+<p>如果参数与specializer不匹配，那么就会报错
+对于optional &amp;key 参数我们不能使用specialize</p>
+<ol>
+<li>a variable 和一个eql specializer
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="nv">feed</span> <span class="p">((</span><span class="nv">obj</span> <span class="nv">child</span><span class="p">)</span> <span class="p">(</span><span class="nv">meal-type</span> <span class="p">(</span><span class="nf">eql</span> <span class="ss">:soup</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="k">ignorable</span> <span class="nv">meal-type</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;bwark~&amp;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">feed</span> <span class="nv">cl</span> <span class="ss">:soup</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;bwark&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>你可以定义很多同名的函数，只要他们的specializers不同。系统会选择最具体的函数进行调用。通用函数调用的优先级是</p>
+<ol>
+<li>参数决定了一个或多个可用方法，如果在调用中的参数和参数的specializers匹配，那么参数可用</li>
+<li>如果没有可用方法，就会报错. 如果只有一个，立刻调用</li>
+<li>如果多于一个，最具体的会被调用。</li>
+<li>最具体可用的方法由传入参数所属类别的优先级决定。由左往右审视参数。如果有一个可用方法的第一个参数，此参数特化给某个类，其类的优先级高于其它可用方法的第一个参数，则此方法就是最具体的可用方法。平手时比较第二个参数，以此类推。</li>
+</ol>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>notes<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ul>
+<li>
+<p>It is an error to define a method with the same function name as an ordinary function. If you really want to do that, use the shadowing mechanism.</p>
+</li>
+<li>
+<p>To add or remove keys or rest arguments to an existing generic method’s lambda list, you will need to delete its declaration with fmakunbound (or C-c C-u (slime-undefine-function) with the cursor on the function in Slime) and start again. Otherwise, you’ll see:</p>
+</li>
+<li>
+<p>Methods can be redefined (exactly as for ordinary functions).</p>
+</li>
+<li>
+<p>The order in which methods are defined is irrelevant, although any classes on which they specialize must already exist.</p>
+</li>
+<li>
+<p>An unspecialized argument is more or less equivalent to being specialized on the class t. The only difference is that all specialized arguments are implicitly taken to be “referred to” (in the sense of declare ignore.)</p>
+</li>
+<li>
+<p>Each defmethod form generates (and returns) a CLOS instance, of class standard-method.</p>
+</li>
+<li>
+<p>An eql specializer won’t work as is with strings. Indeed, strings need equal or equalp to be compared. But, we can assign our string to a variable and use the variable both in the eql specializer and for the function call.</p>
+</li>
+<li>
+<p>All the methods with the same function name belong to the same generic function.</p>
+</li>
+<li>
+<p>All slot accessors and readers defined by defclass are methods. They can override or be overridden by other methods on the same generic function.</p>
+</li>
+</ul>
+</div>
+        </div>
+    </div>
+<h2 id="multimethods">Multimethods</h2>
+<p>mutlimethods 显式的指出，函数的parameters不止一个。而且我们很难确定他到底属于那个class
+#+begin_src lisp
+(defgeneric hug (a b)
+(:documentation &ldquo;Hug between two persons&rdquo;))</p>
+<p>(defmethod hug ((a person) (b person))
+:person-person-hug)</p>
+<p>(defmethod hug ((a person) (b child)) :person-child-hug) #+end_src</p>
+<h2 id="控制setters--setf-ing-methods">控制setters (setf-ing methods)</h2>
+<p>在lisp 中，我们可以定义setf counterparts of functions or methods. 我们可能想在如何更新object上 获得更多的控制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defmethod</span> <span class="p">(</span><span class="nb">setf</span> <span class="nv">name</span><span class="p">)</span> <span class="p">(</span><span class="nv">new-val</span> <span class="p">(</span><span class="nv">obj</span> <span class="nv">person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">equalp</span> <span class="nv">new-val</span> <span class="s">&#34;jame bond&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Dude that`s not possible.~&amp;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">slot-value</span> <span class="nv">obj</span> <span class="ss">&#39;name</span><span class="p">)</span> <span class="nv">new-val</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">p1</span><span class="p">)</span> <span class="s">&#34;james bond&#34;</span><span class="p">)</span> <span class="c1">;; -&gt; no rename</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dispatch-mechanism-and-next-methods">Dispatch mechanism and next methods</h2>
+<p>这段不讲了，现代语言用的不多，感觉有点糟粕了。有兴趣自己去看吧
+<a href="https://lispcookbook.github.io/cl-cookbook/clos.html#dispatch-mechanism-and-next-methods" target="_blank" rel="noopener noreffer ">Dispatch mechanism and next methods</a></p>
+<h2 id="method-qualifiers--before-after-around">Method qualifiers (before,after,around)</h2>
+<p>这个也是牛牛牛，但是我学过的语言都没这个。也是自己去看吧
+<a href="https://lispcookbook.github.io/cl-cookbook/clos.html#method-qualifiers-before-after-around" target="_blank" rel="noopener noreffer ">Method qualifiers</a></p>
+<h2 id="other-method-combinations">Other method combinations</h2>
+<p>这个更离谱，自己去看
+<a href="https://lispcookbook.github.io/cl-cookbook/clos.html#other-method-combinations" target="_blank" rel="noopener noreffer ">other method combinations</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-05&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/6d0da5d08814c17a94c084921f5fef035e014035" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 6d0da5d08814c17a94c084921f5fef035e014035: temp sync">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6d0da5d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/fundamental_clos/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/fundamental_clos/" data-title="Common-Lisp Fundamental CLOS" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/fundamental_clos/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/fundamental_clos/" data-title="Common-Lisp Fundamental CLOS"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/fundamental_clos/" data-title="Common-Lisp Fundamental CLOS"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/fundamental_clos/" data-title="Common-Lisp Fundamental CLOS"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/error_and_exception_handlering/" class="prev" rel="prev" title="Common-lisp Error and Exception Handling"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Common-lisp Error and Exception Handling</a>
+            <a href="/input_output/" class="next" rel="next" title="Common-Lisp Input-Output">Common-Lisp Input-Output<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

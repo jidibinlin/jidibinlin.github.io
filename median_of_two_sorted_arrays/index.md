@@ -1,4 +1,7 @@
-# 返回两个有序数组中中间的数
+# Median of Two Sorted Arrays
+
+
+<!--more-->
 
 
 ## Description {#description}
@@ -11,7 +14,6 @@ The overall run time complexity should be O(log (m+n)).
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 1.  Example 1:
-
     ```nil
     Input: nums1 = [1,3], nums2 = [2]
     Output: 2.00000
@@ -19,7 +21,6 @@ The overall run time complexity should be O(log (m+n)).
     ```
 
 2.  Example 2:
-
     ```nil
     Input: nums1 = [1,2], nums2 = [3,4]
     Output: 2.50000
@@ -27,26 +28,22 @@ The overall run time complexity should be O(log (m+n)).
     ```
 
 3.  Example 3:
-
     ```nil
     Input: nums1 = [0,0], nums2 = [0,0]
     Output: 0.00000
     ```
 
 4.  Example 4:
-
     ```nil
     Input: nums1 = [], nums2 = [1]
     Output: 1.00000
     ```
 5.  Example 5:
-
     ```nil
     Input: nums1 = [2], nums2 = []
     Output: 2.00000
     ```
 6.  Constraints:
-
     ```nil
     nums1.length == m
     nums2.length == n
@@ -68,6 +65,7 @@ The overall run time complexity should be O(log (m+n)).
 medium =
 \begin{cases}
 \frac{array[len/2-1] + array[len/2]}{2} &len\mod 2=0 \\\\
+
 \frac{array[len/2-1]}{2}& len\mod 2\neq 0
 \end{cases}
 \end{equation}

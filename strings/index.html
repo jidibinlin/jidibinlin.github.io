@@ -9,37 +9,37 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>common lisp strings - jidibinlin`s blog site</title><meta name="Description" content="有关common-lisp string的知识以及操作"><meta property="og:title" content="common lisp strings" />
-<meta property="og:description" content="有关common-lisp string的知识以及操作" />
+        <title>Common-Lisp strings - jidibinlin`s blog site</title><meta name="Description" content="common lisp 字符串"><meta property="og:title" content="Common-Lisp strings" />
+<meta property="og:description" content="common lisp 字符串" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jidibinlin.github.io/strings/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-04-22T10:36:00+08:00" />
-<meta property="article:modified_time" content="2022-05-03T21:11:51+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta property="article:published_time" content="2022-10-04T21:39:00+08:00" />
+<meta property="article:modified_time" content="2022-10-05T16:32:25+08:00" /><meta property="og:site_name" content="My cool site" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
 
-<meta name="twitter:title" content="common lisp strings"/>
-<meta name="twitter:description" content="有关common-lisp string的知识以及操作"/>
+<meta name="twitter:title" content="Common-Lisp strings"/>
+<meta name="twitter:description" content="common lisp 字符串"/>
 <meta name="application-name" content="jidibinlin`s blog site">
-<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/strings/" /><link rel="prev" href="https://jidibinlin.github.io/data_structures/" /><link rel="next" href="https://jidibinlin.github.io/numbers/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/strings/" /><link rel="prev" href="https://jidibinlin.github.io/numbers/" /><link rel="next" href="https://jidibinlin.github.io/plugin/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "common lisp strings",
+        "headline": "Common-Lisp strings",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jidibinlin.github.io\/strings\/"
         },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  1932 ,
-        "url": "https:\/\/jidibinlin.github.io\/strings\/","datePublished": "2022-04-22T10:36:00+08:00","dateModified": "2022-05-03T21:11:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/jidibinlin.github.io\/strings\/","datePublished": "2022-10-04T21:39:00+08:00","dateModified": "2022-10-05T16:32:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "jidibinlin"
-            },"description": "有关common-lisp string的知识以及操作"
+            },"description": "common lisp 字符串"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -110,10 +110,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">common lisp strings</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Common-Lisp strings</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>lisp</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-22">2022-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1932 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;<span id="/strings/" class="leancloud_visitors" data-flag-title="common lisp strings">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-04">2022-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1932 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;<span id="/strings/" class="leancloud_visitors" data-flag-title="Common-Lisp strings">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -171,8 +171,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 <h2 id="创建-字符串">创建 字符串</h2>
 <p>最简单的，我们可以使用双引号创建string.但是其实我们还有别的方法:</p>
 <ul>
-<li>
-<p>使用format nil</p>
+<li>使用format nil
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -184,8 +183,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>make-string count 创建指定长度的字符串。 :initial-element 字符会被重复count次</p>
+<li>make-string count 创建指定长度的字符串。 :initial-element 字符会被重复count次
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -660,8 +658,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
     </div>
 <h3 id="使用format函数控制">使用format函数控制</h3>
 <ul>
-<li>
-<p>To lower case:</p>
+<li>To lower case:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -673,8 +670,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>Capitalize every word:</p>
+<li>Capitalize every word:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -686,8 +682,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>Capitalize the first word:</p>
+<li>Capitalize the first word:
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -699,8 +694,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>To upper case</p>
+<li>To upper case
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -745,8 +739,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </div>
 </div><h2 id="在symbol-和-字符串之间转换">在symbol 和 字符串之间转换</h2>
 <ul>
-<li>
-<p>intern 将string转化成symbol</p>
+<li>intern 将string转化成symbol
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -796,8 +789,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>symbol-name 和 string 将symbol 转换成 string</p>
+<li>symbol-name 和 string 将symbol 转换成 string
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -824,8 +816,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </ul>
 <h2 id="在string-和-character之间转换">在string 和 character之间转换</h2>
 <ul>
-<li>
-<p>coerce 将string(长度为1)转换成character.</p>
+<li>coerce 将string(长度为1)转换成character.
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -841,8 +832,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>coerce 将字符串转换中字符list</p>
+<li>coerce 将字符串转换中字符list
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -854,8 +844,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>coerce 将字符list转换成string</p>
+<li>coerce 将字符list转换成string
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -867,8 +856,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>coerce 将array 转换成string</p>
+<li>coerce 将array 转换成string
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -989,8 +977,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </div>
 </div><h2 id="将string-转换成number">将string 转换成number</h2>
 <ul>
-<li>
-<p>to integer 会返回两个值，一个是被转换后的值，另一个是转换停止的位置</p>
+<li>to integer 会返回两个值，一个是被转换后的值，另一个是转换停止的位置
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1042,8 +1029,7 @@ Some external libraries available on Quicklisp bring some more functionality or 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>转换成任意number: read-from-string</p>
+<li>转换成任意number: read-from-string
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1211,15 +1197,15 @@ Some external libraries available on Quicklisp bring some more functionality or 
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-05-03&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614" target="_blank" title="commit by jidibinlin(2694273649@qq.com) cdcf2ca71ea4eb30e7e7dad0e0716f1f4bf7d614: ...">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>cdcf2ca</a></span>
+                <span>Updated on 2022-10-05&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/6d0da5d08814c17a94c084921f5fef035e014035" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 6d0da5d08814c17a94c084921f5fef035e014035: temp sync">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6d0da5d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
                             <a class="link-to-markdown" href="/strings/index.md" target="_blank">Read Markdown</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/strings/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/strings/" data-title="common lisp strings"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/strings/" data-title="Common-Lisp strings" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/strings/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/strings/" data-title="Common-Lisp strings"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/strings/" data-title="Common-Lisp strings"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/strings/" data-title="Common-Lisp strings"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -1231,14 +1217,14 @@ Some external libraries available on Quicklisp bring some more functionality or 
         </section>
     </div>
 
-    <div class="post-nav"><a href="/data_structures/" class="prev" rel="prev" title="common lisp 数据结构"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>common lisp 数据结构</a>
-            <a href="/numbers/" class="next" rel="next" title="common lisp numbers">common lisp numbers<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/numbers/" class="prev" rel="prev" title="Common-Lisp numbers"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Common-Lisp numbers</a>
+            <a href="/plugin/" class="next" rel="next" title="golang plugin">golang plugin<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -4,21 +4,13 @@
         <link>https://jidibinlin.github.io/tags/actor/</link>
         <description>actor - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/actor/" rel="self" type="application/rss+xml" /><item>
-    <title>GoGameActor-103 对比golang 的两种actor实现———protoactor-go 和 gonet</title>
-    <link>https://jidibinlin.github.io/golang_actor_compare/</link>
-    <pubDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</pubDate>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Oct 2022 22:04:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/actor/" rel="self" type="application/rss+xml" /><item>
+    <title>actor 模型介绍和感悟</title>
+    <link>https://jidibinlin.github.io/introduction/</link>
+    <pubDate>Tue, 04 Oct 2022 22:04:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/golang_actor_compare/</guid>
-    <description><![CDATA[对比golang 的两种actor实现————protoactor-go 和 gonet]]></description>
-</item>
-<item>
-    <title>GoGameActor-101 actor intruduction</title>
-    <link>https://jidibinlin.github.io/actorintroduction/</link>
-    <pubDate>Wed, 29 Jun 2022 09:40:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/actorintroduction/</guid>
-    <description><![CDATA[这篇文章主要作为我准备写的GoGameActor框架 有关actor模型的引言。]]></description>
+    <guid>https://jidibinlin.github.io/introduction/</guid>
+    <description><![CDATA[actor 介绍和感悟]]></description>
 </item>
 </channel>
 </rss>

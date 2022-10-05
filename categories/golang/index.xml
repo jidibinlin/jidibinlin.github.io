@@ -4,55 +4,45 @@
         <link>https://jidibinlin.github.io/categories/golang/</link>
         <description>golang - Category - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
-    <title>GoGameActor-103 对比golang 的两种actor实现———protoactor-go 和 gonet</title>
-    <link>https://jidibinlin.github.io/golang_actor_compare/</link>
-    <pubDate>Thu, 14 Jul 2022 20:07:00 &#43;0800</pubDate>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Oct 2022 21:50:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>golang syntax</title>
+    <link>https://jidibinlin.github.io/syntax/</link>
+    <pubDate>Tue, 04 Oct 2022 21:50:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/golang_actor_compare/</guid>
-    <description><![CDATA[对比golang 的两种actor实现————protoactor-go 和 gonet]]></description>
-</item>
-<item>
-    <title>golang反射</title>
-    <link>https://jidibinlin.github.io/golang_reflect/</link>
-    <pubDate>Fri, 08 Jul 2022 19:21:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/golang_reflect/</guid>
-    <description><![CDATA[golang反射, 接口值，基本使用]]></description>
-</item>
-<item>
-    <title>golang plugin 性能分析</title>
-    <link>https://jidibinlin.github.io/plugin/</link>
-    <pubDate>Tue, 05 Jul 2022 18:08:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/plugin/</guid>
-    <description><![CDATA[有关golang plugin的基本使用方法，注意事项 和性能分析]]></description>
-</item>
-<item>
-    <title>GoGameActor-101 actor intruduction</title>
-    <link>https://jidibinlin.github.io/actorintroduction/</link>
-    <pubDate>Wed, 29 Jun 2022 09:40:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/actorintroduction/</guid>
-    <description><![CDATA[这篇文章主要作为我准备写的GoGameActor框架 有关actor模型的引言。]]></description>
-</item>
-<item>
-    <title>golang语法基础</title>
-    <link>https://jidibinlin.github.io/golang-syntax/</link>
-    <pubDate>Sun, 12 Jun 2022 17:24:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/golang-syntax/</guid>
+    <guid>https://jidibinlin.github.io/syntax/</guid>
     <description><![CDATA[golang的语法基础: 编程语言的语法总是离不开三件套，变量，函数，控制结构. 这里着重介绍golang这三部分的基础知识.]]></description>
 </item>
 <item>
-    <title>effective_go</title>
-    <link>https://jidibinlin.github.io/effectivego/</link>
-    <pubDate>Wed, 30 Mar 2022 23:01:00 &#43;0800</pubDate>
-    <author>golang_official</author>
-    <guid>https://jidibinlin.github.io/effectivego/</guid>
-    <description><![CDATA[this artical is copied from golang official
-Formatting Go let the machine take care of most formatting issues. The gofmt program(also available as go fmt,which operates at the package level rather than source file level) emits the source in a standard style of indentation and vertical alignment,retaining and if necessary reformatting comments.
-before formatted 1 2 3 4 type T struct{ name string //name of the object value int//its value } after formatted 1 2 3 4 type T struct { name string // name of the object value int // its value } Commentary Go Support C++ style comments.]]></description>
+    <title>golang functional-options</title>
+    <link>https://jidibinlin.github.io/functional_options/</link>
+    <pubDate>Tue, 04 Oct 2022 21:47:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/functional_options/</guid>
+    <description><![CDATA[golang 的functional options]]></description>
+</item>
+<item>
+    <title>golang tips</title>
+    <link>https://jidibinlin.github.io/tips/</link>
+    <pubDate>Tue, 04 Oct 2022 21:46:00 &#43;0800</pubDate>
+    <author>golang-official</author>
+    <guid>https://jidibinlin.github.io/tips/</guid>
+    <description><![CDATA[golang 中一些tips 从effective go那边超过来的]]></description>
+</item>
+<item>
+    <title>golang reflect</title>
+    <link>https://jidibinlin.github.io/reflect/</link>
+    <pubDate>Tue, 04 Oct 2022 21:44:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/reflect/</guid>
+    <description><![CDATA[golang反射, 接口值，基本使用]]></description>
+</item>
+<item>
+    <title>golang plugin</title>
+    <link>https://jidibinlin.github.io/plugin/</link>
+    <pubDate>Tue, 04 Oct 2022 21:42:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/plugin/</guid>
+    <description><![CDATA[golang plugin 详解]]></description>
 </item>
 </channel>
 </rss>

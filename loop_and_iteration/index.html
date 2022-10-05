@@ -1,0 +1,1598 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Common-Lisp loop and iteration - jidibinlin`s blog site</title><meta name="Description" content="有关common lisp 的循环，和一些小技巧"><meta property="og:title" content="Common-Lisp loop and iteration" />
+<meta property="og:description" content="有关common lisp 的循环，和一些小技巧" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/loop_and_iteration/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-04T21:34:00+08:00" />
+<meta property="article:modified_time" content="2022-10-05T16:32:25+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Common-Lisp loop and iteration"/>
+<meta name="twitter:description" content="有关common lisp 的循环，和一些小技巧"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/loop_and_iteration/" /><link rel="prev" href="https://jidibinlin.github.io/function/" /><link rel="next" href="https://jidibinlin.github.io/numbers/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Common-Lisp loop and iteration",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/loop_and_iteration\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  2019 ,
+        "url": "https:\/\/jidibinlin.github.io\/loop_and_iteration\/","datePublished": "2022-10-04T21:34:00+08:00","dateModified": "2022-10-05T16:32:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "有关common lisp 的循环，和一些小技巧"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/loop_and_iteration/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/loop_and_iteration/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Common-Lisp loop and iteration</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-04">2022-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2019 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;<span id="/loop_and_iteration/" class="leancloud_visitors" data-flag-title="Common-Lisp loop and iteration">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-loop-iterate-for-mapcar-series">Introduction: loop,iterate,for,mapcar,series</a>
+      <ul>
+        <li><a href="#loop">loop</a></li>
+        <li><a href="#iterate">iterate</a></li>
+        <li><a href="#for">for</a></li>
+        <li><a href="#map族">map族</a></li>
+        <li><a href="#series">series</a></li>
+      </ul>
+    </li>
+    <li><a href="#小妙招">小妙招</a>
+      <ul>
+        <li><a href="#looping-forever-return">Looping forever,return</a></li>
+        <li><a href="#固定循环n次">固定循环n次</a>
+          <ul>
+            <li><a href="#dotimes">dotimes</a></li>
+            <li><a href="#loop-dot-dot-dot-repeat">loop&hellip;repeat</a></li>
+            <li><a href="#series">Series</a></li>
+          </ul>
+        </li>
+        <li><a href="#循环无限次-在一个循环list上循环">循环无限次，在一个循环list上循环</a></li>
+        <li><a href="#iterate-的for-循环">Iterate 的for 循环</a></li>
+        <li><a href="#在一个list上进行循环">在一个list上进行循环</a>
+          <ul>
+            <li><a href="#dolist">dolist</a></li>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#在一个vector上循环">在一个vector上循环</a>
+          <ul>
+            <li><a href="#loop-across">loop:across</a></li>
+            <li><a href="#series">Series</a></li>
+          </ul>
+        </li>
+        <li><a href="#在一个hash-table上循环">在一个hash-table上循环</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+            <li><a href="#maphash">maphash</a></li>
+            <li><a href="#dohash">dohash</a></li>
+          </ul>
+        </li>
+        <li><a href="#并行的在两个list上循环">并行的在两个list上循环</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+            <li><a href="#mapcar">mapcar</a></li>
+          </ul>
+        </li>
+        <li><a href="#嵌套循环--nested-loops">嵌套循环(Nested loops)</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算一个中间值">计算一个中间值</a>
+          <ul>
+            <li><a href="#使用-与-for结合">使用= 与 for结合</a></li>
+          </ul>
+        </li>
+        <li><a href="#循环计数器">循环计数器</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#升降序-limits">升降序，limits</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#步长">步长</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#loop-和条件">Loop 和条件</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#用一个语句作为loop的开始--initially">用一个语句作为loop的开始(initially)</a></li>
+        <li><a href="#用一个test-until-while-来结束循环">用一个test（until,while）来结束循环</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#循环命名-和-提前退出">循环命名 和 提前退出</a>
+          <ul>
+            <li><a href="#loop">loop</a></li>
+          </ul>
+        </li>
+        <li><a href="#loop-thereis-never-always">Loop thereis never always</a></li>
+        <li><a href="#count">Count</a></li>
+        <li><a href="#summation">Summation</a>
+          <ul>
+            <li><a href="#将求和的结果放入变量中">将求和的结果放入变量中</a></li>
+          </ul>
+        </li>
+        <li><a href="#max-and-min">Max and Min</a></li>
+        <li><a href="#解构-对-list-进行dotted-pairs-aka-模式匹配">解构, 对 list 进行dotted pairs aka 模式匹配</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="introduction-loop-iterate-for-mapcar-series">Introduction: loop,iterate,for,mapcar,series</h2>
+<h3 id="loop">loop</h3>
+<p>loop 是一个内置的用来迭代的宏, 它最简单的形式是(loop (print &ldquo;hello&rdquo;)): 这个语句会无限打印&quot;hello&quot;
+一个简单的迭代List的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">x</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个例子会返回Nil但是会打印他应该打印的
+如果你需要将结果收集成一个list使用collect</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="mi">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>loop 表达式有四个部分</p>
+<ul>
+<li>设置要被迭代的变量</li>
+<li>结束迭代的条件表达式</li>
+<li>每次迭代要做的事情</li>
+<li>每次退出时要做的事情</li>
+<li>除此之外,loop表达式还能返回一个值</li>
+</ul>
+<p>正常来说，我们很少使用所有的部分，但是我们可以随意组合他们</p>
+<h3 id="iterate">iterate</h3>
+<p>iterate 是一个很流行的迭代宏，要比loop更容易懂，但是拓展性要差一些。iterate并不是内置的，要先导入a。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;iterate&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ues-package</span> <span class="ss">:iterate</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>iterate看起来是这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">iter</span> <span class="p">(</span><span class="nv">for</span> <span class="nv">in</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nv">collect</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">i</span> <span class="nv">i</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>warning<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>如果同时使用iterate 和 loop 会有命名冲突
+使用display-iterate-clauses可以解决这个问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">display-iterate-clauses</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">for</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; FOR PREVIOUS &amp;OPTIONAL INITIALLY BACK     Previous value of a variable</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; FOR FIRST THEN            Set var on first, and then on subsequent iterations</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h3 id="for">for</h3>
+<p>for是一个可拓展的迭代宏，通常要比loop短。
+for的最大好处就是，可以用在任何数据类型上(lists,vectors,hash-tables&hellip;)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">for:for</span> <span class="p">((</span><span class="nv">x</span> <span class="nv">over</span> <span class="nv">&lt;your</span> <span class="nv">data</span> <span class="nv">structure&gt;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">print</span> <span class="o">...</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>for是一个第三方库，需要先quickload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;for&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="map族">map族</h3>
+<p>后面还有很多mapcar 和 map这样的例子。map 族还有mapcon,mapcan,maplist,mapc 和 mapl.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcar</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">it</span><span class="p">)</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">it</span> <span class="mi">10</span><span class="p">))</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (11 12 13)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>map 更加通用 他可以接受List 和 vectors 作为参数，需要在第一个参数指定结果类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">map</span> <span class="ss">&#39;vector</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">it</span><span class="p">)</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">it</span> <span class="mi">10</span><span class="p">))</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #(11 12 13)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">map</span> <span class="ss">&#39;list</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">it</span><span class="p">)</span> <span class="p">(</span><span class="nf">+</span> <span class="nv">it</span> <span class="mi">10</span><span class="p">))</span> <span class="o">#(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (11 12 13)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">map</span> <span class="ss">&#39;string</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">it</span><span class="p">)</span> <span class="p">(</span><span class="nf">code-char</span> <span class="nv">it</span><span class="p">))</span> <span class="o">&#39;#(</span><span class="mi">97</span> <span class="mi">98</span> <span class="mi">99</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; &#34;abc&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>简写lambda函数<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>是不是觉得写lambda太烦， 其实有一些库可以提供简写lambda函数方法你可以去这里看看简写lambda的库有哪些<a href="https://github.com/CodyReichert/awesome-cl#lambda-shorthands" target="_blank" rel="noopener noreffer ">lambda shorthand libraries</a>
+这里给出一个cl-punch的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcar</span> <span class="nv">^</span><span class="p">(</span><span class="nf">*</span> <span class="nv">_</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (10 20 30)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h3 id="series">series</h3>
+<p>最后 你可能会喜欢series,一个库通过结合sequences,streams,和loop 来描述自己. Series 表达式看起来就像是在操作序列，但是可以获得相比loop 更高的效率。 Series第一次出现在 &ldquo;Common Lisp the Language&rdquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">collect</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nv">mapping</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nv">scan-range</span> <span class="ss">:from</span> <span class="mi">1</span> <span class="ss">:upto</span> <span class="mi">5</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 4 9 16 25)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>Generators The Way I Want Them Generated Library<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>这是一个lazy sequences 库，和series类似，景观他很年轻，切不完全，但是他有很多现代化的API 比如take,filter,for,fold 并且易用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">range</span> <span class="ss">:from</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; #&lt;GTWIWTG::GENERATOR! {1001A90CA3}&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">take</span> <span class="mi">4</span> <span class="p">(</span><span class="nv">range</span> <span class="ss">:from</span> <span class="mi">20</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (20 21 22 23)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<h2 id="小妙招">小妙招</h2>
+<h3 id="looping-forever-return">Looping forever,return</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">print</span> <span class="s">&#34;hello&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>return 用来返回结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">when</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">i</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">return</span> <span class="nv">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="固定循环n次">固定循环n次</h3>
+<h4 id="dotimes">dotimes</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nf">print</span> <span class="nv">n</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里dotimes只会返回Nil 有两种方法返回一个值</p>
+<ul>
+<li>设置result在lambda list 中
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">n</span> <span class="mi">3</span> <span class="ss">:done</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">print</span><span class="p">(</span><span class="nv">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; :DONE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>使用return
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">i</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">i</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nb">return</span> <span class="ss">:early-exit!</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; :EARLY-EXIT!</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="loop-dot-dot-dot-repeat">loop&hellip;repeat</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;Hello!~%&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打印10次hello 返回nil</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nf">random</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (5 1 3 5 4 0 7 4 9 1)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用collect 会返回一个list</p>
+<h4 id="series">Series</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">iterate</span> <span class="p">((</span><span class="nv">n</span> <span class="p">(</span><span class="nv">scan-range</span> <span class="ss">:below</span> <span class="mi">10</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">print</span> <span class="nv">n</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="循环无限次-在一个循环list上循环">循环无限次，在一个循环list上循环</h3>
+<p>前面提到了一个无限循环的方法，但是我们如何在一个list上无限循环呢
+我们可以构造一个循环list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">with</span> <span class="nv">list-a</span> <span class="nf">=</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">with</span> <span class="nv">infinite-list</span> <span class="nf">=</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nf">last</span> <span class="nv">list-a</span><span class="p">))</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="nv">infinite-list</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">repeat</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">item</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造循环列表有一个非常简单的方法使用#=语法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">list-a</span> <span class="o">&#39;#1=</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">.</span> <span class="o">#1#</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">print-circle</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">list-a</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你只想再两个值之间交替地带，使用for&hellip;then</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">up</span> <span class="nf">=</span> <span class="no">t</span> <span class="nv">then</span> <span class="p">(</span><span class="nf">not</span> <span class="nv">up</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">up</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="iterate-的for-循环">Iterate 的for 循环</h3>
+<p>对于list 和 vectors:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">iter</span> <span class="p">(</span><span class="nv">for</span> <span class="nv">item</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">print</span> <span class="nv">item</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">iter</span> <span class="p">(</span><span class="nv">for</span> <span class="nv">i</span> <span class="nv">in-vector</span> <span class="o">#(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="在一个list上进行循环">在一个list上进行循环</h3>
+<h4 id="dolist">dolist</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">item</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">print</span> <span class="nv">item</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="loop">loop</h4>
+<ul>
+<li>使用in</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; A</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; B</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (A B C)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用on 我们在cdr上迭代
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">on</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>mapcar
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcar</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nf">print</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="mi">10</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="mi">30</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>mapcar 会将lambda函数的返回值组合成一个List返回</p>
+<h3 id="在一个vector上循环">在一个vector上循环</h3>
+<h4 id="loop-across">loop:across</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">across</span> <span class="o">#(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="series">Series</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">iterate</span> <span class="p">((</span><span class="nv">i</span> <span class="p">(</span><span class="nv">scan</span> <span class="o">#(</span><span class="mi">123</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="在一个hash-table上循环">在一个hash-table上循环</h3>
+<p>先创建一个hasht-table:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">h</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;a</span> <span class="nv">h</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;b</span> <span class="nv">h</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="loop">loop</h4>
+<ul>
+<li>在key上循环
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">k</span> <span class="nv">being</span> <span class="k">the</span> <span class="nv">hash-key</span> <span class="nv">of</span> <span class="nv">h</span> <span class="nb">do</span><span class="p">(</span><span class="nf">print</span> <span class="nv">k</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; a</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>在value上循环
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">k</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">being</span> <span class="k">the</span> <span class="nv">hash-key</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">using</span> <span class="p">(</span><span class="nv">hash-value</span> <span class="nv">v</span><span class="p">)</span> <span class="nv">of</span> <span class="nv">h</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~a ~a~%&#34;</span> <span class="nv">k</span> <span class="nv">v</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; b 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; a 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="maphash">maphash</h4>
+<p>maphash 的lambda函数时一个拥有两个参数的函数两个参数分别是key,value</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">maphash</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">key</span> <span class="nv">val</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;key: ~a val: ~a~&amp;&#34;</span> <span class="nv">key</span> <span class="nv">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="nv">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; key: A val:1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; key: B val:2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="dohash">dohash</h4>
+<p>dohash 是第三方库trivial-do的一个macro,类似dolist</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">dohash</span> <span class="p">(</span><span class="nv">key</span> <span class="nv">value</span> <span class="nv">h</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;key: ~A, value: ~A ~%&#34;</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="并行的在两个list上循环">并行的在两个list上循环</h3>
+<h4 id="loop">loop</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((A 1) (B 2) (C 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想返回一个平整过的list(flat list),使用nconcing 替代collect:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">nconcing</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (A 1 B 2 C 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果两个list的长度不同，会在短的结束的时候退出循环</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((A 1) (B 2) (C 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以在一个大的list上循环，并且手动的通过index访问小一点的List的元素,但是这样的效率是非常低的，我们可以让loop自动拓展短的list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">y</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x-list</span> <span class="nf">=</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span> <span class="nv">then</span> <span class="p">(</span><span class="nf">cdr</span> <span class="nv">x-list</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x</span> <span class="nf">=</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">car</span> <span class="nv">x-list</span><span class="p">)</span> <span class="ss">&#39;z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((A 1) (B 2) (C 3) (Z 4) (Z 5))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个代码段中，for &hellip; = &hellip; then (cdr &hellip;) 在每一次的循环中都会缩短一次list. 他的值一开始是&rsquo;(a b c) 然后是 &lsquo;(b c) 然后 &lsquo;(c) 最后 nil</p>
+<h4 id="mapcar">mapcar</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcar</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((A 1) (B 2) (C 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者更简单:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcar</span> <span class="nf">#&#39;</span><span class="nc">list</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((A 1) (B 2) (C 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回一个flat list:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mapcan</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="嵌套循环--nested-loops">嵌套循环(Nested loops)</h3>
+<h4 id="loop">loop</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">y</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">x</span>
+</span></span><span class="line"><span class="cl">                    <span class="nv">collect</span> <span class="nv">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;((1) (1 2) (1 2 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要返回一个flat list,使用nconcing 替换第一个collect</p>
+<h3 id="计算一个中间值">计算一个中间值</h3>
+<h4 id="使用-与-for结合">使用= 与 for结合</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (10 20 30)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果使用with,那么只会计算一次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">with</span> <span class="nv">z</span> <span class="nf">=</span> <span class="nv">x</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((1 10 1) (2 20 1) (3 30 1))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>HyperSpec 对 with 的定义时这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">with-clause::=</span> <span class="nv">with</span> <span class="nv">var1</span> <span class="nv">[type-spec]</span> <span class="nv">[=</span> <span class="nv">form1]</span> <span class="nv">{and</span> <span class="nv">var2</span> <span class="nv">[type-spec]</span> <span class="nv">[=</span> <span class="nv">form2]}*</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以我们可以再=前面指明类型 并且用and 串起来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nc">integer</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">x</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">with</span> <span class="nv">z</span> <span class="nc">integer</span> <span class="nf">=</span> <span class="nv">x</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">upto</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">with</span> <span class="nv">foo</span> <span class="nf">=</span> <span class="ss">:foo</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">and</span> <span class="nv">bar</span> <span class="nf">=</span> <span class="ss">:bar</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nc">list</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">foo</span> <span class="nv">bar</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们也可以给for 一个 then 让他没次迭代都执行一次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">intermediate</span> <span class="nf">=</span> <span class="mi">10</span> <span class="nv">then</span> <span class="p">(</span><span class="nb">incf</span> <span class="nv">intermediate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">intermediate</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="mi">11</span>
+</span></span><span class="line"><span class="cl"><span class="mi">12</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里是一个在bool值之间不断切换的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">up</span> <span class="nf">=</span> <span class="no">t</span> <span class="nv">then</span> <span class="p">(</span><span class="nf">not</span> <span class="nv">up</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">up</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="循环计数器">循环计数器</h3>
+<h4 id="loop">loop</h4>
+<p>对一个List进行迭代的同时进行计数。list的长度决定了迭代合适结束。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nv">from</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">when</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">y</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;, &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~A&#34;</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">A,B,C,D,E</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以用if语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">d</span> <span class="nv">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">y</span> <span class="nv">from</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">y</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;, ~A&#34;</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">else</span> <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~A&#34;</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">A,B,C,D,E</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="升降序-limits">升降序，limits</h3>
+<h4 id="loop">loop</h4>
+<!--list-separator-->
+<ul>
+<li>
+<p>升序</p>
+<ul>
+<li>from&hellip; to&hellip;: include the last
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0 1 2 3 4 5 6 7 8 9 10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>from&hellip; below&hellip;: not include the last
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">below</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0 1 2 3 4 5 6 7 8 9</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>降序</p>
+<ul>
+<li>from&hellip; downto&hellip;: include
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">10</span> <span class="nv">downto</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 10 9 8 7 6 5 4 3 2 1 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>from&hellip; above&hellip;: not include
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">10</span> <span class="nv">above</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 10 9 8 7 6 5 4 3 2 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h3 id="步长">步长</h3>
+<h4 id="loop">loop</h4>
+<p>loop 使用by:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">10</span> <span class="nv">by</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果by后面跟的是一个表达式那么只会执行一次</p>
+<h3 id="loop-和条件">Loop 和条件</h3>
+<h4 id="loop">loop</h4>
+<p>使用if, else 和 finally:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">random</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">evenp</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">collect</span> <span class="nv">x</span> <span class="nv">into</span> <span class="nv">evens</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">collect</span> <span class="nv">x</span> <span class="nv">into</span> <span class="nv">odds</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">finally</span> <span class="p">(</span><span class="nb">return</span> <span class="p">(</span><span class="nf">values</span> <span class="nv">evens</span> <span class="nv">odds</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="mi">42</span> <span class="mi">82</span> <span class="mi">24</span> <span class="mi">92</span> <span class="mi">92</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">55</span> <span class="mi">89</span> <span class="mi">59</span> <span class="mi">13</span> <span class="mi">49</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要结合多个语句，那么if的body需要and关键字(and do, and count)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">repeat</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x</span> <span class="nf">=</span> <span class="p">(</span><span class="nf">random</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nf">evenp</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">collect</span> <span class="nv">x</span> <span class="nv">into</span> <span class="nv">evens</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">and</span> <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~a is even!~%&#34;</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">collect</span> <span class="nv">x</span> <span class="nv">into</span> <span class="nv">odds</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">and</span> <span class="nf">count</span> <span class="no">t</span> <span class="nv">into</span> <span class="nv">n-odds</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">finally</span> <span class="p">(</span><span class="nb">return</span> <span class="p">(</span><span class="nf">values</span> <span class="nv">evens</span> <span class="nv">odds</span> <span class="nv">n-odds</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="mi">46</span> <span class="nv">is</span> <span class="nv">even!</span>
+</span></span><span class="line"><span class="cl"><span class="mi">8</span> <span class="nv">is</span> <span class="nv">even!</span>
+</span></span><span class="line"><span class="cl"><span class="mi">76</span> <span class="nv">is</span> <span class="nv">even!</span>
+</span></span><span class="line"><span class="cl"><span class="mi">58</span> <span class="nv">is</span> <span class="nv">even!</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span> <span class="nv">is</span> <span class="nv">even!</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">46</span> <span class="mi">8</span> <span class="mi">76</span> <span class="mi">58</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">7</span> <span class="mi">45</span> <span class="mi">43</span> <span class="mi">15</span> <span class="mi">69</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="用一个语句作为loop的开始--initially">用一个语句作为loop的开始(initially)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">initially</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~a &#34;</span> <span class="ss">&#39;loop-begin</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x</span> <span class="nv">below</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;~a &#34;</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;LOOP-BEGIN 0 1 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="用一个test-until-while-来结束循环">用一个test（until,while）来结束循环</h3>
+<h4 id="loop">loop</h4>
+<ul>
+<li>until</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">until</span> <span class="p">(</span><span class="nf">&gt;</span> <span class="nv">x</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (1 2 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>while
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">while</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">x</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="循环命名-和-提前退出">循环命名 和 提前退出</h3>
+<h4 id="loop">loop</h4>
+<p>loop named foo 语法允许你创建一个能够提前退出的循环。使用return-form,即可退出已经命名的循环，甚至可以退出嵌套的循环。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">named</span> <span class="nv">loop-1</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">10</span> <span class="nv">by</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">y</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">100</span> <span class="nv">by</span> <span class="p">(</span><span class="nf">1+</span> <span class="p">(</span><span class="nf">random</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">               <span class="nb">when</span> <span class="p">(</span><span class="nf">&lt;</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                 <span class="nb">do</span> <span class="p">(</span><span class="k">return-from</span> <span class="nv">loop-1</span> <span class="p">(</span><span class="nf">values</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有的时候你想要提前退出，但是一定要执行一些语句，你可以使用loop-finish</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">when</span> <span class="p">(</span><span class="nf">&gt;=</span> <span class="nv">x</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">return</span> <span class="nv">x</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">finally</span> <span class="p">(</span><span class="nf">print</span> <span class="ss">:done</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">when</span> <span class="p">(</span><span class="nf">&gt;=</span> <span class="nv">x</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">do</span> <span class="p">(</span><span class="nb">loop-finish</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">finally</span> <span class="p">(</span><span class="nf">print</span> <span class="ss">:done</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="nb">return</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; :DONE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="loop-thereis-never-always">Loop thereis never always</h3>
+<ul>
+<li>thereis</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">thereis</span> <span class="p">(</span><span class="nf">numberp</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>never
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">never</span> <span class="p">(</span><span class="nf">numberp</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>always
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">always</span> <span class="p">(</span><span class="nf">numberp</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="no">NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>他们和some,notany,every对应：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">some</span> <span class="nf">#&#39;numberp</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">notany</span> <span class="nf">#&#39;numberp</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">every</span> <span class="nf">#&#39;numberp</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">foo</span> <span class="mi">2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="count">Count</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span> <span class="nf">count</span> <span class="p">(</span><span class="nf">oddp</span> <span class="nv">i</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="summation">Summation</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span> <span class="nv">sum</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">i</span> <span class="nv">i</span> <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 14</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="将求和的结果放入变量中">将求和的结果放入变量中</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">sum</span> <span class="p">(</span><span class="nf">*</span> <span class="nv">i</span> <span class="nv">i</span><span class="p">)</span> <span class="nv">into</span> <span class="nv">total</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">do</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">finally</span> <span class="p">(</span><span class="nf">print</span> <span class="nv">total</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="mi">14</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="max-and-min">Max and Min</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span> <span class="nv">maximize</span> <span class="p">(</span><span class="nf">mod</span> <span class="nv">i</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="解构-对-list-进行dotted-pairs-aka-模式匹配">解构, 对 list 进行dotted pairs aka 模式匹配</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">x</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">y</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nv">z</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((1 X) (2 Y) (3 Z))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nv">x</span> <span class="o">.</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">((</span><span class="mi">1</span> <span class="o">.</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span> <span class="o">.</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="mi">3</span> <span class="o">.</span> <span class="nv">c</span><span class="p">))</span> <span class="nv">collect</span> <span class="nv">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (A B C)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用nil忽略</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nv">a</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">in</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">x</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">y</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nv">z</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="nv">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (X Y Z)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>两个两个的遍历</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nv">key</span> <span class="nv">value</span><span class="p">)</span> <span class="nv">on</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="mi">2</span> <span class="nv">b</span> <span class="mi">2</span> <span class="nv">c</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="nf">#&#39;cddr</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">collect</span> <span class="p">(</span><span class="nc">list</span> <span class="nv">key</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">2</span> <span class="nv">value</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;((A 2) (B 4) (C 6))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-05&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/6d0da5d08814c17a94c084921f5fef035e014035" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 6d0da5d08814c17a94c084921f5fef035e014035: temp sync">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6d0da5d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/loop_and_iteration/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/loop_and_iteration/" data-title="Common-Lisp loop and iteration" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/loop_and_iteration/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/loop_and_iteration/" data-title="Common-Lisp loop and iteration"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/loop_and_iteration/" data-title="Common-Lisp loop and iteration"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/loop_and_iteration/" data-title="Common-Lisp loop and iteration"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/function/" class="prev" rel="prev" title="Common-Lisp function"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Common-Lisp function</a>
+            <a href="/numbers/" class="next" rel="next" title="Common-Lisp numbers">Common-Lisp numbers<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

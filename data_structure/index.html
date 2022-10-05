@@ -1,0 +1,2131 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Common-Lisp data_structure - jidibinlin`s blog site</title><meta name="Description" content="common lisp 的一些基本数据结构"><meta property="og:title" content="Common-Lisp data_structure" />
+<meta property="og:description" content="common lisp 的一些基本数据结构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/data_structure/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-04T21:32:00+08:00" />
+<meta property="article:modified_time" content="2022-10-05T16:32:25+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Common-Lisp data_structure"/>
+<meta name="twitter:description" content="common lisp 的一些基本数据结构"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/data_structure/" /><link rel="prev" href="https://jidibinlin.github.io/input_output/" /><link rel="next" href="https://jidibinlin.github.io/function/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Common-Lisp data_structure",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/data_structure\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "common-lisp","wordcount":  3462 ,
+        "url": "https:\/\/jidibinlin.github.io\/data_structure\/","datePublished": "2022-10-04T21:32:00+08:00","dateModified": "2022-10-05T16:32:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "common lisp 的一些基本数据结构"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/data_structure/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/data_structure/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Common-Lisp data_structure</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/lisp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>lisp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-04">2022-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3462 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;17 minutes&nbsp;<span id="/data_structure/" class="leancloud_visitors" data-flag-title="Common-Lisp data_structure">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#lists">Lists</a>
+      <ul>
+        <li><a href="#building-lists-dot-cons-cells-list">Building lists. Cons cells,list</a></li>
+        <li><a href="#circular-lists-循环列表">Circular lists 循环列表</a></li>
+        <li><a href="#car-cdr-or-first-rest--and-second-dot-dot-dot-to-tenth">car/cdr or first/rest (and second&hellip; to tenth)</a></li>
+        <li><a href="#last-butlast-nbutlast--and-optional-n">last,butlast,nbutlast(&amp;optional n)</a></li>
+        <li><a href="#reverse-nreverse-倒序">reverse,nreverse 倒序</a></li>
+        <li><a href="#append">append</a></li>
+        <li><a href="#push--item-place">push (item,place)</a></li>
+        <li><a href="#pop">pop</a></li>
+        <li><a href="#nthcdr--index-list">nthcdr (index ,list)</a></li>
+        <li><a href="#复合的car-和-cdr">复合的car 和 cdr</a></li>
+        <li><a href="#destructuring-bind--parameter-list">destructuring-bind (parameter*,list)</a></li>
+        <li><a href="#null-listp-断言">null,listp 断言</a></li>
+        <li><a href="#ldiff-tailp-list-make-list-fill-revappend-nreconc-consp-atom">ldiff,tailp,list*,make-list,fill,revappend,nreconc,consp,atom</a></li>
+        <li><a href="#member--elt-list">member (elt,list)</a></li>
+        <li><a href="#替换tree中的对象-subst-sublis">替换tree中的对象:subst,sublis</a></li>
+      </ul>
+    </li>
+    <li><a href="#sequences-序列">Sequences 序列</a>
+      <ul>
+        <li><a href="#断言-every-some-dot-dot-dot-dot">断言: every , some&hellip;.</a></li>
+        <li><a href="#常用函数">常用函数</a>
+          <ul>
+            <li><a href="#length--sequence">length(sequence)</a></li>
+            <li><a href="#elt--sequence-index">elt(sequence,index)</a></li>
+            <li><a href="#count--foo-sequence">count (foo sequence)</a></li>
+            <li><a href="#subseq--sequence-start-end">subseq (sequence start,[end])</a></li>
+            <li><a href="#sort-stable-sort--sequence-test-key-function">sort,stable-sort(sequence,test[,key function])</a></li>
+            <li><a href="#find-position--foo-sequence--get-index">find,position(foo,sequence) - get index</a></li>
+            <li><a href="#search-and-mismatch--sequence-a-sequence-b">search and mismatch (sequence-a, sequence-b)</a></li>
+            <li><a href="#substitute-nsubstitute-if-if-not">substitute,nsubstitute[if,if-not]</a></li>
+            <li><a href="#replace--sequence-a-sequence-b-and-key-start1-end1">replace (sequence-a,sequence-b,&amp;key start1,end1)</a></li>
+            <li><a href="#remove-delete--foo-sequence">remove,delete(foo sequence)</a></li>
+            <li><a href="#remove-duplicates-delete-duplicates--sequence--去重操作">remove-duplicates,delete-duplicates(sequence) 去重操作</a></li>
+            <li><a href="#mapping--map-mapcar-remove-if-not-dot-dot-dot">mapping (map,mapcar,remove-if[-not],&hellip;)</a></li>
+            <li><a href="#creating-lists-with-variables">Creating lists with variables</a></li>
+          </ul>
+        </li>
+        <li><a href="#集合操作set">集合操作Set</a>
+          <ul>
+            <li><a href="#intersection-list的交集">intersection  list的交集</a></li>
+            <li><a href="#set-difference-作差">set-difference 作差</a></li>
+            <li><a href="#union-并集">union 并集</a></li>
+            <li><a href="#补集-set-exclusive-or">补集 set-exclusive-or</a></li>
+            <li><a href="#adjoin-添加">adjoin 添加</a></li>
+            <li><a href="#subsetp-是否为子集">subsetp 是否为子集</a></li>
+          </ul>
+        </li>
+        <li><a href="#fset-immutable-data-structure">Fset-immutable data structure</a></li>
+      </ul>
+    </li>
+    <li><a href="#array-和-vector">array 和 vector</a>
+      <ul>
+        <li><a href="#创建和调整array">创建和调整array</a></li>
+        <li><a href="#访问-aref--array-i-j-dot-dot-dot">访问 : aref (array i [j&hellip;])</a></li>
+        <li><a href="#sizes">sizes</a></li>
+        <li><a href="#vector">Vector</a></li>
+      </ul>
+    </li>
+    <li><a href="#hash-table">Hash Table</a>
+      <ul>
+        <li><a href="#创建一个hash-table">创建一个hash table</a></li>
+        <li><a href="#获取hash-table-中的元素">获取hash table 中的元素</a></li>
+        <li><a href="#向hash-table-添加一个元素">向hash table 添加一个元素</a></li>
+        <li><a href="#判断hash-table-中某个key是否存在">判断hash table 中某个key是否存在</a></li>
+        <li><a href="#从hash-table-中删除">从hash table 中删除</a></li>
+        <li><a href="#clear-a-hash-table">clear a hash table</a></li>
+        <li><a href="#遍历hash-table">遍历hash table</a>
+          <ul>
+            <li><a href="#使用maphash-遍历">使用maphash 遍历</a></li>
+            <li><a href="#使用with-hash-table-iterator">使用with-hash-table-iterator</a></li>
+            <li><a href="#遍历keys-或者-values">遍历keys 或者 values</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算hash-table-中的entry-数量">计算hash table 中的entry 数量</a></li>
+        <li><a href="#线程安全的hash-table">线程安全的hash table</a></li>
+      </ul>
+    </li>
+    <li><a href="#alist--associated-list">Alist (associated list)</a>
+      <ul>
+        <li><a href="#构造-construct">构造 Construct</a></li>
+        <li><a href="#访问-access">访问 Access</a></li>
+        <li><a href="#插入和删除">插入和删除</a></li>
+        <li><a href="#更新entries">更新entries</a></li>
+      </ul>
+    </li>
+    <li><a href="#plist--property-list">Plist (property list)</a></li>
+    <li><a href="#structures-结构体">Structures 结构体</a>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#创建">创建</a></li>
+        <li><a href="#访问slot的值">访问slot的值</a></li>
+        <li><a href="#设置slot的值">设置slot的值</a></li>
+        <li><a href="#判断类型">判断类型</a></li>
+        <li><a href="#限制">限制</a></li>
+      </ul>
+    </li>
+    <li><a href="#tree">Tree</a>
+      <ul>
+        <li><a href="#sycamore-purely-functional-weight-balanced-binary-trees">Sycamore purely functional weight-balanced binary trees</a></li>
+      </ul>
+    </li>
+    <li><a href="#控制打印多少数据-print-length-print-level">控制打印多少数据 \*print-length\*, \*print-level\*)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="lists">Lists</h2>
+<h3 id="building-lists-dot-cons-cells-list">Building lists. Cons cells,list</h3>
+<p>list(列表) 也是一个 sequence(序列). list 由cons组成。 cons 有两个cell 一个叫 &ldquo;car&rdquo; 一个 叫 &ldquo;cdr&rdquo; 我们可以像这样构建一个简单的list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nc">cons</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;=&gt; (1 . 2) ;; 这是一个dotted pair 表示一个cons</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它的底层结构可以抽象成这样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[o|o]--- 2
+</span></span><span class="line"><span class="cl">|
+</span></span><span class="line"><span class="cl">1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果第一个cons的cdr 是另一个cons 并且最后一个cons 的cdr 是nil ,那么我们就得到了一个list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nc">cons</span> <span class="mi">1</span> <span class="p">(</span><span class="nc">cons</span> <span class="mi">2</span> <span class="no">nil</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层结构是这样的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[o|o]---[o|/]
+</span></span><span class="line"><span class="cl"> ^       ^
+</span></span><span class="line"><span class="cl"> 1       2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>为什么不是dotted pair<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">lisp printer 遇到这种结构的时候会自动将逗号省略。但是list还是由一个个dotted pair组成的。</div>
+        </div>
+    </div>
+<p>更简单的 可以用list 函数来构建list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者使用一个引用符号'</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="circular-lists-循环列表">Circular lists 循环列表</h3>
+<p>cons 的两个cell 可以 c存放任何值，所以也可以存放自己，或者列表的最后一个元素的cdr存储列表的第一个元素.这个时候就构成了循环列表。
+引文最后一个元素的cdr 存的是列表的开始。
+在开始之前，我们要将*print-circle* 设为t告诉printer 不要无限答应循环列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="vg">*print-circle*</span> <span class="no">t</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>首先定义一个能构造循环列表的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">circular!</span> <span class="p">(</span><span class="nv">items</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;Modifies the last cdr of list ITEMS, returning a circular list&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nf">last</span> <span class="nv">items</span><span class="p">))</span> <span class="nv">items</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">circular!</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">fifth</span> <span class="p">(</span><span class="nv">circular!</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于循环列表list-length将会返回nil</p>
+<p>reader 也可以构建一个循环列表，使用sharpsign equal-sign notation. 一个object(对象) 可以以#n=作为前缀，n是一个无符号十进制整数。可以用#n#去引用已经定义的对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">&#39;#42=</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">.</span> <span class="o">#42#</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #1=(1 2 3 . #1#)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="car-cdr-or-first-rest--and-second-dot-dot-dot-to-tenth">car/cdr or first/rest (and second&hellip; to tenth)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nc">cons</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">;; return the car cell of a cons. here return 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nc">cons</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">;; return the cdr cell of a cons.here return 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">first</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">;; return the car of first. here return 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">second</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">;; return the car of second. here return 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">third</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">;; return the car of third. here return 3</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tenth</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">))</span> <span class="c1">;; return the car of tenth. here return 10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">rest</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">rest</span><span class="p">))</span> <span class="c1">;; return (2 3) rest return cdr  of the first cons</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>setf 可以用来给列表中的元素赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">ll</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">first</span> <span class="nv">ll</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ll</span> <span class="c1">;; now ll is (2 2 3 4)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="last-butlast-nbutlast--and-optional-n">last,butlast,nbutlast(&amp;optional n)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">last</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span> <span class="c1">;; return last of cons of (1 2 3). here return (3)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (3)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">last</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)))</span> <span class="c1">;; or (first (last ...))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">butlast</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span><span class="c1">;; return the list except the last</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reverse-nreverse-倒序">reverse,nreverse 倒序</h3>
+<p>reverse 和 nreverse 都返回一个新的序列(sequence)
+nreverse 是毁灭性的(destructive)。前缀 n 代表 non-consing,代表他是直接在原有List上进行修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">mylist</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">reverse</span> <span class="nv">mylist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (3 2 1)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mylist</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">nreverse</span> <span class="nv">mylist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (3 2 1)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mylist</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1) in SBCL but implementation dependent.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>destructive<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">如果一个函数会修改他的他的操作元素 我们就说他是destructive的</div>
+        </div>
+    </div>
+<h3 id="append">append</h3>
+<p>append 会将两个list合并成一个list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">append</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 2 3 4)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw" aria-hidden="true"></i>append 的坑<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">append 返回的List会共享原有的list的cons 所以在其返回的list进行修改，也会影响原有的list</div>
+        </div>
+    </div>
+<h3 id="push--item-place">push (item,place)</h3>
+<p>push 是destructive的 他会将新的元素插入list的最前面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">mylist</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">push</span> <span class="mi">0</span> <span class="nv">mylist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;=&gt; (0 1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mylist</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;=&gt; (0 1 2 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">x</span> <span class="err">’</span><span class="p">(</span><span class="nv">a</span> <span class="p">(</span><span class="nv">b</span> <span class="nv">c</span><span class="p">)</span> <span class="nv">d</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (A (B C) D)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">push</span> <span class="mi">5</span> <span class="p">(</span><span class="nf">cadr</span> <span class="nv">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (5 B C)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">x</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (A (5 B C) D)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>CL 没有默认的尾插函数，如果想要尾插你可以先将list 进行 reverse 或者使用别的数据结构</p>
+<h3 id="pop">pop</h3>
+<p>pop 是 desctructive 和 push 相对 push 会往里面插入 而pop会将最前面的元素返回并删除</p>
+<h3 id="nthcdr--index-list">nthcdr (index ,list)</h3>
+<p>返回第n个cons 的 cdr。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">mylist</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">nthcdr</span> <span class="mi">1</span> <span class="nv">mylist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="复合的car-和-cdr">复合的car 和 cdr</h3>
+<p>我们可以复合 a 和 d 来做一些方便的操作。比如cadr 就是 返回 the car of cdr caar 就是返回 the car of car
+这些操作通常在嵌套list中有些意义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">caar</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span><span class="c1">;; ==&gt; error</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">caar</span> <span class="p">(</span><span class="nc">list</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">3</span><span class="p">))</span> <span class="c1">;; ==&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">cadr</span> <span class="p">(</span><span class="nc">list</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)))</span> <span class="c1">;; ==&gt; (3 4)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">caadr</span> <span class="p">(</span><span class="nc">list</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)))</span> <span class="c1">;; == &gt; 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="destructuring-bind--parameter-list">destructuring-bind (parameter*,list)</h3>
+<p>这个函数将List中的元素与参数绑定，我们可以析构tree,plists</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">destructuring-bind</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">:x</span> <span class="nv">x</span> <span class="ss">:y</span> <span class="nv">y</span> <span class="ss">:z</span> <span class="nv">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:X 1 :Y 2 :Z 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内部的sublist也可以绑定</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">destructuring-bind</span> <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">y1</span> <span class="nv">y2</span><span class="p">)</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">2</span> <span class="mi">20</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">:x</span> <span class="nv">x</span> <span class="ss">:y1</span> <span class="nv">y1</span> <span class="ss">:y2</span> <span class="nv">y2</span> <span class="ss">:z</span> <span class="nv">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:X 1 :Y1 2 :Y2 20 :Z 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>parameter list 还可以用&amp;optional,&amp;rest 和 &amp;key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">destructuring-bind</span> <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">y1</span> <span class="k">&amp;optional</span> <span class="nv">y2</span><span class="p">)</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">:x</span> <span class="nv">x</span> <span class="ss">:y1</span> <span class="nv">y1</span> <span class="ss">:y2</span> <span class="nv">y2</span> <span class="ss">:z</span> <span class="nv">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:X 1 :Y1 2 :Y2 NIL :Z 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">destructuring-bind</span> <span class="p">(</span><span class="k">&amp;key</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">:z</span> <span class="mi">1</span> <span class="ss">:y</span> <span class="mi">2</span> <span class="ss">:x</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">:x</span> <span class="nv">x</span> <span class="ss">:y</span> <span class="nv">y</span> <span class="ss">:z</span> <span class="nv">z</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:X 3 :Y 2 :Z 1)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&amp;whole parameter 会被绑定到整个list. 他必须再第一个 其余的参数必须在它后面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">destructuring-bind</span> <span class="p">(</span><span class="k">&amp;whole</span> <span class="nv">whole-list</span> <span class="k">&amp;key</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">:z</span> <span class="mi">1</span> <span class="ss">:y</span> <span class="mi">2</span> <span class="ss">:x</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nc">list</span> <span class="ss">:x</span> <span class="nv">x</span> <span class="ss">:y</span> <span class="nv">y</span> <span class="ss">:z</span> <span class="nv">z</span> <span class="ss">:whole</span> <span class="nv">whole-list</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:X 3 :Y 2 :Z 1 :WHOLE (:Z 1 :Y 2 :X 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="null-listp-断言">null,listp 断言</h3>
+<p>null 和 not 相同，但是看起来更好 用来判断一个列表是否为空
+listp 判断一个对象是否是一个cons cell</p>
+<h3 id="ldiff-tailp-list-make-list-fill-revappend-nreconc-consp-atom">ldiff,tailp,list*,make-list,fill,revappend,nreconc,consp,atom</h3>
+<p>只介绍几个常用的，其余的可以去查文档（太多了，不想写（小声bb） 很多其实不常用，就不写了）</p>
+<ul>
+<li>make-list 构造一个list
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-list</span> <span class="mi">3</span> <span class="ss">:initial-element</span> <span class="s">&#34;ta&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;ta&#34; &#34;ta&#34; &#34;ta&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>fill 用指定对象填充list
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-list</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (NIL NIL NIL)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">fill</span> <span class="nf">*</span> <span class="s">&#34;hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;hello&#34; &#34;hello&#34; &#34;hello&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>tailp 用来判断是否有共享的列表结构，也就是是否有相同的cons cell(use EQL for predicate),而不仅仅是cons cell的内容
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="no">t</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="no">nil</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="o">.</span> <span class="no">nil</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="no">nil</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="o">#1=</span><span class="s">&#34;e&#34;</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="o">.</span> <span class="o">#1#</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*tail*</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*larger*</span> <span class="p">(</span><span class="nf">list*</span> <span class="mi">1</span> <span class="mi">2</span> <span class="vg">*tail*</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*replica*</span> <span class="p">(</span><span class="nf">copy-list</span> <span class="vg">*larger*</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="vg">*tail*</span> <span class="vg">*replica*</span><span class="p">)</span> <span class="c1">;; ==&gt; nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">tailp</span> <span class="vg">*tail*</span> <span class="vg">*larger*</span><span class="p">)</span> <span class="c1">;; ==&gt; t</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="member--elt-list">member (elt,list)</h3>
+<p>返回以elt开始的剩下的元素 默认使用eql作为比较函数
+接受:test :test-not :key(functions or symbols)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">member</span> <span class="mi">2</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="替换tree中的对象-subst-sublis">替换tree中的对象:subst,sublis</h3>
+<p>subst 和 subst-if 在tree中查找所有和element相同的元素 并 用另一个element 替换 (可以用:test 指定判断相同的函数)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subst</span> <span class="ss">&#39;one</span> <span class="mi">1</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (one 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subst</span>  <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="o">.</span> <span class="nv">one</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="o">.</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">((</span><span class="mi">1</span> <span class="o">.</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span> <span class="o">.</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="mi">3</span> <span class="o">.</span> <span class="mi">3</span><span class="p">))</span> <span class="ss">:test</span> <span class="nf">#&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ((1 . ONE) (2 . 2) (3 . 3))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sublis 第一个参数是一个list(每个元素都是一个 dot list),每个dot list 有2个元素(x . y) 表示将 x 替换 为 y
+sublis 接受:test 和 :key 参数 :test 是一个接受key 和 subtree为参数的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">sublis</span> <span class="o">&#39;</span><span class="p">((</span><span class="no">t</span> <span class="o">.</span> <span class="s">&#34;foo&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s">&#34;one&#34;</span> <span class="mi">2</span> <span class="p">(</span><span class="s">&#34;three&#34;</span> <span class="p">(</span><span class="mi">4</span> <span class="mi">5</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="ss">:key</span> <span class="nf">#&#39;stringp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (&#34;foo&#34; 2 (&#34;foo&#34; (4 5)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sequences-序列">Sequences 序列</h2>
+<p>lists vectors strings 都是序列</p>
+<p>大多数和序列有关的函数都接受keyword 参数。所有keyword 参数都是可选的，并且可以以任意顺序出现</p>
+<p>:test参数默认使用eql (对于strings 来说 用:equal)</p>
+<p>:key 参数可以接受nil 和 单参数的函数（这个函数声明了我们具体要怎么看待序列中的每个元素）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-alist</span> <span class="p">(</span><span class="nc">list</span> <span class="p">(</span><span class="nc">cons</span> <span class="ss">&#39;foo</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                             <span class="p">(</span><span class="nc">cons</span> <span class="ss">&#39;bar</span> <span class="s">&#34;bar&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((FOO . &#34;foo&#34;) (BAR . &#34;bar&#34;))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="ss">&#39;bar</span> <span class="nv">my-alist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="ss">&#39;bar</span> <span class="nv">my-alist</span> <span class="ss">:key</span> <span class="ss">&#39;car</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="断言-every-some-dot-dot-dot-dot">断言: every , some&hellip;.</h3>
+<ul>
+<li>every 的作用是判断列表中的元素是否都满足某个条件 (都满足就返回真)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">foo</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">every</span> <span class="nf">#&#39;evenp</span> <span class="nv">foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>some 则只需要一些元素满足条件即可 (一些满足就返回真)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">foo</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">every</span> <span class="nf">#&#39;evenp</span> <span class="nv">foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>notany 只要不是所有都满足就返回真</li>
+</ul>
+<h3 id="常用函数">常用函数</h3>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>alexandria库<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">《common lisp cookbook》中一直提到有一个&quot;alexandria&quot;的库里面有很多非常实用的函数，是对common lisp 的一种扩充，可以去看一看</div>
+        </div>
+    </div>
+<h4 id="length--sequence">length(sequence)</h4>
+<p>返回序列的长度</p>
+<h4 id="elt--sequence-index">elt(sequence,index)</h4>
+<p>find by index</p>
+<h4 id="count--foo-sequence">count (foo sequence)</h4>
+<p>返回 sequence中 出现foo的次数 可接受:from-end,:start,:end
+相关的还有count-if,count-not(test-function sequence)</p>
+<h4 id="subseq--sequence-start-end">subseq (sequence start,[end])</h4>
+<p>返回子序列左闭右开[start,end):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subseq</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subseq</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (2)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>end不能大于( + (length sequence) 1) 因为这样会越界:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-list</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subseq</span> <span class="nv">my-list</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">+</span> <span class="nf">length</span><span class="p">(</span><span class="nv">my-list</span><span class="p">)</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; Error: the bounding indices 0 and 5 are bad for a sequence of length 3.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果果可能越界，用alexandria-2:subseq*:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">alexandria-2:subseq*</span> <span class="p">(</span><span class="nc">list</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">99</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>subseq 是&quot;setf&quot; able 的 但是只有当新的序列的长度和要被替换的序列长度一致的时候才会生效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-list</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;(1 2 3 4)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">subseq</span> <span class="nv">my-list</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nv">my-list</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (2 2 3 4)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="sort-stable-sort--sequence-test-key-function">sort,stable-sort(sequence,test[,key function])</h4>
+<p>这两个函数时destructive的，所以在排序前，可能会优先使用copy-seq 拷贝一份出来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">sort</span> <span class="p">(</span><span class="nf">copy-seq</span> <span class="nv">seq</span><span class="p">)</span> <span class="ss">:test</span> <span class="nf">#&#39;string&lt;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就像名字中说的一样 sort是不稳定的而stable-sort是稳定的</p>
+<h4 id="find-position--foo-sequence--get-index">find,position(foo,sequence) - get index</h4>
+<p>also find-if,find-if-not,position-if,position-if-not(test sequence)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">find</span> <span class="mi">20</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 20</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">position</span> <span class="mi">20</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="search-and-mismatch--sequence-a-sequence-b">search and mismatch (sequence-a, sequence-b)</h4>
+<p>search 会在sequence-b 中寻找和sequence-a 一样的subsequence。他会返回sequence-a 在 sequence-b 中的位置，如果没找到就是nil. 参数有 from-end,end1,end2 以及上面提到的test 和 key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">20</span> <span class="mi">30</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span> <span class="mi">40</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;b&#34;</span> <span class="s">&#34;c&#34;</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;a&#34;</span> <span class="s">&#34;b&#34;</span> <span class="s">&#34;c&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;b&#34;</span> <span class="s">&#34;c&#34;</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;a&#34;</span> <span class="s">&#34;b&#34;</span> <span class="s">&#34;c&#34;</span><span class="p">)</span> <span class="ss">:test</span> <span class="nf">#&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">search</span> <span class="s">&#34;bc&#34;</span> <span class="s">&#34;abc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>mismatch 返回两个序列开始不一样的地方</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mismatch</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">99</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">10</span> <span class="mi">20</span> <span class="mi">30</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mismatch</span> <span class="s">&#34;hellolisper&#34;</span> <span class="s">&#34;helloworld&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 5</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mismatch</span> <span class="s">&#34;same&#34;</span> <span class="s">&#34;same&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">mismatch</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="substitute-nsubstitute-if-if-not">substitute,nsubstitute[if,if-not]</h4>
+<p>返回一个同类型的序列，这个序列将会用新的元素替代就的元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">substitute</span> <span class="sc">#\o</span> <span class="sc">#\x</span> <span class="s">&#34;hellx&#34;</span><span class="p">)</span> <span class="c1">;; =&gt; &#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">substitute</span> <span class="ss">:a</span> <span class="ss">:x</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="ss">:x</span> <span class="ss">:x</span><span class="p">))</span> <span class="c1">;; =&gt; (:A :A :A)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">substitute</span> <span class="s">&#34;a&#34;</span> <span class="s">&#34;x&#34;</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;a&#34;</span> <span class="s">&#34;x&#34;</span> <span class="s">&#34;x&#34;</span><span class="p">)</span> <span class="ss">:test</span> <span class="nf">#&#39;string=</span><span class="p">)</span> <span class="c1">;; =&gt; (&#34;a&#34; &#34;a&#34; &#34;a&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="replace--sequence-a-sequence-b-and-key-start1-end1">replace (sequence-a,sequence-b,&amp;key start1,end1)</h4>
+<p>破坏性的用sequence-b 中的元素替换sequence-a中的元素
+完整的函数签名:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="nv">sequence1</span> <span class="nv">sequence2</span> <span class="k">&amp;rest</span> <span class="nv">args</span> <span class="k">&amp;key</span> <span class="p">(</span><span class="nv">start1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">end1</span> <span class="no">nil</span><span class="p">)</span> <span class="p">(</span><span class="nv">start2</span> <span class="mi">0</span><span class="p">)(</span><span class="nv">end2</span> <span class="no">nil</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="s">&#34;xxx&#34;</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;foo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="s">&#34;xxx&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="ss">:start1</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;xfo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="s">&#34;xxx&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="ss">:start1</span> <span class="mi">1</span> <span class="ss">:start2</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;xoo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">replace</span> <span class="s">&#34;xxx&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="ss">:start1</span> <span class="mi">1</span> <span class="ss">:start2</span> <span class="mi">1</span> <span class="ss">:end2</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;xox&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="remove-delete--foo-sequence">remove,delete(foo sequence)</h4>
+<p>返回一个不包含foo的新sequence 接受:start/end 和 :count参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="s">&#34;foo&#34;</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span> <span class="ss">:test</span> <span class="ss">&#39;equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;bar&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="remove-duplicates-delete-duplicates--sequence--去重操作">remove-duplicates,delete-duplicates(sequence) 去重操作</h4>
+<p>delete与remove 不同的地方在于 delete会直接操作原始的sequence
+接受 from-end test test-not start end key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove-duplicates</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:foo</span> <span class="ss">:foo</span> <span class="ss">:bar</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="ss">:FOO</span> <span class="ss">:BAR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove-duplicates</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove-duplicates</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span> <span class="ss">:test</span> <span class="nf">#&#39;string-equal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="mapping--map-mapcar-remove-if-not-dot-dot-dot">mapping (map,mapcar,remove-if[-not],&hellip;)</h4>
+<p>mapcar 只能用于list 而map 适用于vector list 但是由于map 可以用于多种结构 所以要指定返回值类型实参。(map &rsquo;list function vector)
+mapcar 可以接受多个list 映射操作会在最短的list被操作完是中断</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">foo</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">map</span> <span class="ss">&#39;list</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">it</span><span class="p">)</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">10</span> <span class="nv">it</span><span class="p">))</span> <span class="nv">foo</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>reduce (function,sequence). 首先会将function作用于列表第一个和第二个元素，然后将function作用于这个结果与下一个元素直到处理完所有元素
+如果指定了特殊参数:initial-value. 首先就不会将function作用于列表的第一个和第二个元素，而是首先将function作用于:initial-value 和第一个值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">reduce</span> <span class="ss">&#39;-</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; -8</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">reduce</span> <span class="ss">&#39;-</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="ss">:initial-value</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 90</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="creating-lists-with-variables">Creating lists with variables</h4>
+<p>由于quote &rsquo; 会保护表达式不被求值，所以我们得用list来新建列表，但是list 函数所有的参数都会先被求值然后再构造成列表.
+如果只是想特定的变量被求职，我们可以使用backquote ` 来构造List
+先来个正常的quote</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*var*</span> <span class="s">&#34;bar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; First try:</span>
+</span></span><span class="line"><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="vg">*var*</span> <span class="s">&#34;baz&#34;</span><span class="p">)</span> <span class="c1">;; no backquote</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;foo&#34; *VAR* &#34;baz&#34;) ;; nope</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再来个backquote</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="o">,</span><span class="vg">*var*</span> <span class="s">&#34;baz&#34;</span><span class="p">)</span>     <span class="c1">;; backquote, comma</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;foo&#34; &#34;bar&#34; &#34;baz&#34;) ;; good</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在backquote 后面 以comma , 开头的变量会被正常求值
+如果变量是一个list的话</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*var*</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;bar&#34;</span> <span class="s">&#34;baz&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;First try:</span>
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="o">,</span><span class="vg">*var*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;foo&#34; (&#34;bar&#34; &#34;baz&#34;)) ;; nested list</span>
+</span></span><span class="line"><span class="cl"><span class="o">`</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="o">,@</span><span class="vg">*var*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (&#34;foo&#34; &#34;bar&#34; &#34;baz&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集合操作set">集合操作Set</h3>
+<p>首先，一个集合不会包含两个同样的元素，并且集合内部是无需的.
+大多数函数都有循环利用已经有的变量的函数版本(破坏性的) 区别于正常的 他们以&quot;n&quot;开头. 他们都可以接受:key 和 :test 参数</p>
+<h4 id="intersection-list的交集">intersection  list的交集</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">list-a</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">list-b</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">intersection</span> <span class="nv">list-a</span> <span class="nv">list-b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (2 0)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="set-difference-作差">set-difference 作差</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">set-difference</span> <span class="nv">list-a</span> <span class="nv">list-b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (3 1)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">set-difference</span> <span class="nv">list-b</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (4)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="union-并集">union 并集</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">union</span> <span class="nv">list-a</span> <span class="nv">list-b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (3 1 0 2 4) ;; order can be different in your lisp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="补集-set-exclusive-or">补集 set-exclusive-or</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">set-exclusive-or</span> <span class="nv">list-a</span> <span class="nv">list-b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (4 3 1)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="adjoin-添加">adjoin 添加</h4>
+<p>会返回新的集合，原有集合不会被修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">adjoin</span> <span class="mi">3</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (0 1 2 3)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">adjoin</span> <span class="mi">5</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (5 0 1 2 3) ;; &lt;-- element added in front.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">list-a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (0 1 2 3)  ;; &lt;-- original list unmodified.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="subsetp-是否为子集">subsetp 是否为子集</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subsetp</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subsetp</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subsetp</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">subsetp</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">list-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="fset-immutable-data-structure">Fset-immutable data structure</h3>
+<p>也可以去quicklisp 看看FSet库</p>
+<h2 id="array-和-vector">array 和 vector</h2>
+<p>Arrays 的访问时间复杂度是常数时间的
+他们可以是fixed 或者 adjustable的。 一个simple array  既不能被displaced(置换) 也不能被adjust(调整) 更不会有fill-pointer 除非我们用:displaced-to, :adjust-array,:fill-pointer 指定,</p>
+<p>Vector 不同于 array的地方在于 他的维度只能固定再1维 vector 也是一个序列(sequence)</p>
+<h3 id="创建和调整array">创建和调整array</h3>
+<p>make-array(sizes-list :adjustable  :initial-element )
+common lisp 至少可以指定7个维度，买个维度可以至少容纳1023个元素，如果提供了:initial-element 那么这个值会作为初始值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">make-array</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="ss">:initial-element</span> <span class="no">nil</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>adjust-array(array,sizes-list :element-type : initial-element)
+adjust-array 用于调整函数的维度</p>
+<h3 id="访问-aref--array-i-j-dot-dot-dot">访问 : aref (array i [j&hellip;])</h3>
+<p>aref (array i j k &hellip;) 取指定索引上的元素
+row-major-aref(array i) 和 (aref i i i &hellip;.) 相同 用来去主轴上的元素
+返回的结果都可以被setf 赋值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">myarray</span> <span class="p">(</span><span class="nf">make-array</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span> <span class="ss">:initial-element</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nv">myarray</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #3A(((1 1) (1 1)) ((1 1) (1 1)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">aref</span> <span class="nv">myarray</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">aref</span> <span class="nv">myarray</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 9</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">row-major-aref</span> <span class="nv">myarray</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 9</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sizes">sizes</h3>
+<p>array-total-size(array): 返回array 中一共有多少个元素
+array-dimensions(array): 返回array每一维的长度
+array-dimension(array i): 返回第i维的长度
+array-rank: 返回函数一共有多少维</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">myarray</span> <span class="p">(</span><span class="nf">make-array</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; MYARRAY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">myarray</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #3A(((0 0) (0 0)) ((0 0) (0 0)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">array-rank</span> <span class="nv">myarray</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">array-dimensions</span> <span class="nv">myarray</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (2 2 2)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">array-dimension</span> <span class="nv">myarray</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">array-total-size</span> <span class="nv">myarray</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 8</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vector">Vector</h3>
+<p>创建vector 可以使用vector 或者读取宏 #(). 他会返回一个simple vector</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nc">vector</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #(1 2 3)</span>
+</span></span><span class="line"><span class="cl"><span class="o">#(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #(1 2 3)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>vector-push (foo vector): 将fill-pointer 指向的元素替换成foo</li>
+<li>vector-push-extend (foo vector [extension-num])t: 与vector-push相似，但是如果fill-pointer比较大，他会拓展数组</li>
+<li>vector-pop (vector): 返回fill-pointer 指向的元素 并删除</li>
+<li>fill-pointer (vector). setfable.: 返回array的fill-pointer</li>
+</ul>
+<p>and see also the sequence functions.</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>fill-pointer<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">fill-pointer 就是vector-push要push的index位置（或者vector-push-extend）.也叫填充句柄。如果一个元素他的index大于这个fill-pointer 那么他就是active的 如果小于fill-pointer 就是inactive的</div>
+        </div>
+    </div>
+<h2 id="hash-table">Hash Table</h2>
+<h3 id="创建一个hash-table">创建一个hash table</h3>
+<p>make-hash-table 创建一个hash table。make-hash-table 没有必要参数。:test 参数指定用来判断key是否相同的函数</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw" aria-hidden="true"></i>Note<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">see shorter notations in the Serapeum or Rutils libraries. For example, Serapeum has dict, and Rutils a #h reader macro.</div>
+        </div>
+    </div>
+<h3 id="获取hash-table-中的元素">获取hash table 中的元素</h3>
+<p>gethash 接受两个必要参数 一个要获取的元素的key 一个hash table. 它返回key绑定的value 和 一个bool 值表示是否在hash table中找到这个值.
+它还有一个可选参数default 表示找不到时的默认值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-table</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;bar</span> <span class="nv">my-table</span> <span class="ss">&#39;default-value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; default-value,NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获取 hashtable中所有的value or key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">ql:quickload</span> <span class="s">&#34;alexandria&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">alexandria:hash-table-keys</span> <span class="nv">my-table</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="向hash-table-添加一个元素">向hash table 添加一个元素</h3>
+<p>可以使用gethash+setf 向hash table 中添加元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-hash*</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*MY-HASH*</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;one-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="s">&#34;one&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;one&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;another-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="m">2/4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="m">1/2</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;one-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s">&#34;one&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;another-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="m">1/2</span>
+</span></span><span class="line"><span class="cl"><span class="no">T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断hash-table-中某个key是否存在">判断hash table 中某个key是否存在</h3>
+<p>gethash 的第一个返回值会返回对应key绑定的value 但是有的时候我们可能会刻意让这个value 为 nil。 所以使用第一个返回值是不可靠的。第二个返回值会明确告诉我们这个键值对是否存在，所以判断是否存在可以这样。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">nth-value</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;bar</span> <span class="nv">my-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Key exists&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Key does not exist&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="从hash-table-中删除">从hash table 中删除</h3>
+<p>remhash (remove-hash的缩写) 专门用来删除一个哈希表条目。当hash table中有这个条目的时候 返回T 否则就返回 NIL</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-hash*</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; ==&gt; ,*MY-HASH*</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="ss">&#39;one</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ONE</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ONE,T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remhash</span> <span class="ss">&#39;first-key</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt;T</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL,NIL</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;no-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL,NIL</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nf">remhash</span> <span class="ss">&#39;no-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;no-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL,NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="clear-a-hash-table">clear a hash table</h3>
+<p>使用clrhash 清空一个hash table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-hash</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="nv">my-hash</span><span class="p">)</span> <span class="ss">&#39;one</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;second-key</span> <span class="nv">my-hash</span><span class="p">)</span> <span class="ss">&#39;two</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">my-hash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #&lt;hash-table :TEST eql :COUNT 2 {10097BF4E3}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">clrhash</span> <span class="nv">my-hash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; #&lt;hash-table :TEST eql :COUNT 0 {10097BF4E3}&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="nv">myhash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL,NIL</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;second-key</span> <span class="nv">myhash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL,NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="遍历hash-table">遍历hash table</h3>
+<h4 id="使用maphash-遍历">使用maphash 遍历</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-hash</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first-key</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="ss">&#39;one</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;second-key</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="ss">&#39;two</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;third-key</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="no">nil</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="ss">&#39;nil-value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">print-hash-entry</span> <span class="p">(</span><span class="nv">key</span> <span class="nv">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="no">t</span> <span class="s">&#34;The value associated with the key ~S is ~S~%&#34;</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">maphash</span> <span class="nf">#&#39;</span><span class="nv">print-hash-entry</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key FIRST-KEY is ONE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key SECOND-KEY is TWO</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key THIRD-KEY is NIL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key NIL is NIL-VALUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用with-hash-table-iterator">使用with-hash-table-iterator</h4>
+<p>with-hash-table-iterator 是一个宏 他会为hash-table 创建迭代器，每次迭代会返回三个返回值</p>
+<ul>
+<li>第一个返回值返回是否有这个entry</li>
+<li>第二个返回值返回key</li>
+<li>第三个返回值返回value</li>
+</ul>
+<p>如果遍历到了最后，只会返回一个nil</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">with-hash-table-iterator</span> <span class="p">(</span><span class="nv">my-iterator</span> <span class="nv">my-hash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">loop</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nb">multiple-value-bind</span> <span class="p">(</span><span class="nv">entry-p</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="nv">my-iterator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="k">if</span> <span class="nv">entry-p</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nv">print-hash-entry</span> <span class="nv">key</span> <span class="nv">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">(</span><span class="nb">return</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key FIRST-KEY is ONE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key SECOND-KEY is TWO</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key THIRD-KEY is NIL</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; The value associated with the key NIL is NIL-VALUE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; NIL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="遍历keys-或者-values">遍历keys 或者 values</h4>
+<p>如果只想遍历keys 或者 values 可以使用Alexandria的maphash-keys 和 maphash-values</p>
+<h3 id="计算hash-table-中的entry-数量">计算hash table 中的entry 数量</h3>
+<p>可以使用hash-table-count</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-hash*</span> <span class="p">(</span><span class="nf">make-hash-table</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">hash-table-count</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;first</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;second</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;third</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">hash-table-count</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">&#39;second</span> <span class="vg">*my-hash*</span><span class="p">)</span> <span class="ss">&#39;two</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">hash-table-count</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">clrhash</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">hash-table-count</span> <span class="vg">*my-hash*</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="线程安全的hash-table">线程安全的hash table</h3>
+<p>common lisp 的标准中，hash-table不是线程安全的，但是在SBCL中，我们可以给make-hash-table传一个 :synchronized 参数来构造一个线程安全的hash table</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-hash*</span> <span class="p">(</span><span class="nf">make-hash-table</span> <span class="ss">:synchronized</span> <span class="no">t</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是在修改时，需要使用sb-ext:with-locked-hash-table将操作保护起来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">sb-ext:with-locked-hash-table</span> <span class="p">(</span><span class="nv">my-hash</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">gethash</span> <span class="ss">:a</span> <span class="nv">my-hash</span><span class="p">)</span> <span class="ss">:new-value</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>cl-gserver library<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">cl-gserver 实现了一套actors/agent system 可以简化多线程变成的困难</div>
+        </div>
+    </div>
+<h2 id="alist--associated-list">Alist (associated list)</h2>
+<p>一个association list 就是一个存放cons cells 的list</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="vg">*my-alist*</span> <span class="p">(</span><span class="nc">list</span> <span class="p">(</span><span class="nc">cons</span> <span class="ss">&#39;foo</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                             <span class="p">(</span><span class="nc">cons</span> <span class="ss">&#39;bar</span> <span class="s">&#34;bar&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((FOO . &#34;foo&#34;) (BAR . &#34;bar&#34;))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内部构造就像这样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[o|o]---[o|/]
+</span></span><span class="line"><span class="cl"> |       |
+</span></span><span class="line"><span class="cl"> |      [o|o]---&#34;bar&#34;
+</span></span><span class="line"><span class="cl"> |       |
+</span></span><span class="line"><span class="cl"> |      BAR
+</span></span><span class="line"><span class="cl"> |
+</span></span><span class="line"><span class="cl">[o|o]---&#34;foo&#34;
+</span></span><span class="line"><span class="cl"> |
+</span></span><span class="line"><span class="cl">FOO
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="构造-construct">构造 Construct</h3>
+<p>第一种方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="vg">*my-alist*</span> <span class="o">&#39;</span><span class="p">((</span><span class="ss">:foo</span> <span class="o">.</span> <span class="s">&#34;foo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">(</span><span class="ss">:bar</span> <span class="o">.</span> <span class="s">&#34;bar&#34;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二种方法是使用pairlis</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">pairlis</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:foo</span> <span class="ss">:bar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;foo&#34;</span> <span class="s">&#34;bar&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((:BAR . &#34;bar&#34;) (:FOO . &#34;foo&#34;))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Alist 就是一个list 所以一个key可以绑定多个值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="vg">*alist-with-duplicate-keys*</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&#39;</span><span class="p">((</span><span class="ss">:a</span> <span class="o">.</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="ss">:a</span> <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="ss">:b</span> <span class="o">.</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="ss">:a</span> <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="ss">:c</span> <span class="o">.</span> <span class="mi">5</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="访问-access">访问 Access</h3>
+<p>要获取一个key 我们使用assoc (可以指定 :test  如果key的类型为strings默认用 equal) 它会返回整个cons cell, 所以可以配合cdr 或者second 获取对应的值。Alexandria 还提供了assoc-value list key 这个函数更加的方便</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">alexandria:assoc-value</span> <span class="nv">my-alist</span> <span class="ss">:foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :foo , (:foo . &#34;foo&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>assoc-if(predicate alist) 找到第一个满足predicate的cons cell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">alist</span> <span class="o">&#39;</span><span class="p">((</span><span class="mi">1</span> <span class="o">.</span> <span class="ss">:a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="mi">2</span> <span class="o">.</span> <span class="ss">:b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="mi">3</span> <span class="o">.</span> <span class="ss">:c</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">assoc-if</span> <span class="nf">#&#39;evenp</span> <span class="nv">alist</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>rassoc 按值查找</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="nv">alist</span> <span class="o">&#39;</span><span class="p">((</span><span class="mi">1</span> <span class="o">.</span> <span class="ss">:a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="mi">2</span> <span class="o">.</span> <span class="ss">:b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">(</span><span class="mi">4</span> <span class="o">.</span> <span class="ss">:d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">              <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">rassoc</span> <span class="ss">:a</span> <span class="nv">alist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (1 . :a)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去重 使用remove-if-not 这个函数的作用是返回一个只包含不满足predicate的列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove-if-not</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">#&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">entry</span><span class="p">)</span> <span class="p">(</span><span class="nf">eq</span> <span class="ss">:a</span> <span class="nv">entry</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">alist-with-duplicate-keys</span>
+</span></span><span class="line"><span class="cl"> <span class="ss">:key</span> <span class="nf">#&#39;car</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="插入和删除">插入和删除</h3>
+<p>push 插入一个entry</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nc">cons</span> <span class="ss">&#39;team</span> <span class="s">&#34;team&#34;</span><span class="p">)</span> <span class="nv">my-alist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((TEAM . &#34;team&#34;) (FOO . &#34;foo&#34;) (BAR . &#34;bar&#34;))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除remove pop 等 remove 需要指定key 关键字 告诉remove 怎么读取entry</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="ss">&#39;team</span> <span class="nv">my-alist</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((TEAM . &#34;team&#34;) (FOO . &#34;foo&#34;) (BAR . &#34;bar&#34;)) ;; didn&#39;t remove anything</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">remove</span> <span class="ss">&#39;team</span> <span class="nv">my-alist</span> <span class="ss">:key</span> <span class="ss">&#39;car</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ((FOO . &#34;foo&#34;) (BAR . &#34;bar&#34;)) ;; returns a copy</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="更新entries">更新entries</h3>
+<ul>
+<li>replace a value</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="vg">*my-alist*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#39;((:FOO . &#34;foo&#34;) (:BAR . &#34;bar&#34;))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nf">assoc</span> <span class="ss">:foo</span> <span class="vg">*my-alist*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (:FOO . &#34;foo&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nf">assoc</span> <span class="ss">:foo</span> <span class="vg">*my-alist*</span><span class="p">))</span> <span class="s">&#34;new-value&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;new-value&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-alist*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#39;((:foo . &#34;new-value&#34;) (:BAR . &#34;bar&#34;))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>replace a key</li>
+</ul>
+<!--listend-->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="vg">*my-alist*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#39;((:FOO . &#34;foo&#34;) (:BAR . &#34;bar&#34;)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nf">assoc</span> <span class="ss">:bar</span> <span class="vg">*my-alist*</span><span class="p">))</span> <span class="ss">:new-key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; :NEW-KEY</span>
+</span></span><span class="line"><span class="cl"><span class="vg">*my-alist*</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#39;((:FOO . &#34;foo&#34;) (:NEW-KEY . &#34;bar&#34;)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="plist--property-list">Plist (property list)</h2>
+<p>plist 是一个简单地list 内部又 key ,value 交错组成。他的key是一个symbol</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-plist</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;foo</span> <span class="s">&#34;foo&#34;</span> <span class="ss">&#39;bar</span> <span class="s">&#34;bar&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>底层结构就像这样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">[o|o]---[o|o]---[o|o]---[o|/]</span>
+</span></span><span class="line"><span class="cl"> <span class="nv">|       |</span>       <span class="nv">|       |</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FOO</span>     <span class="s">&#34;foo&#34;</span>   <span class="nv">BAR</span>     <span class="s">&#34;bar&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以使用getf (list elt)来获取一个元素（返回value）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">my-plist</span> <span class="p">(</span><span class="nc">list</span> <span class="ss">&#39;foo</span> <span class="s">&#34;foo&#34;</span> <span class="ss">&#39;bar</span> <span class="s">&#34;bar&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (FOO &#34;foo&#34; BAR &#34;bar&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nf">getf</span> <span class="nv">my-plist</span> <span class="ss">&#39;foo</span><span class="p">)</span> <span class="s">&#34;foo!!!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; &#34;foo!!!&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>remf 用来删除一个元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">remf</span> <span class="nv">my-plist</span> <span class="ss">&#39;foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; (BAR &#34;bar&#34;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="structures-结构体">Structures 结构体</h2>
+<p>structures 可以将数据存储在具名的slots中，并且支持单继承。
+CLOS (Common Lisp Object System)提供一个更灵活的Classes. 但是structures 可以提供更好的性能</p>
+<h3 id="定义">定义</h3>
+<p>使用defstruct</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defstruct</span> <span class="nv">person</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">id</span> <span class="nv">name</span> <span class="nv">age</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在创建时 slots 默认值为nil
+要想自定义默认值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defstruct</span> <span class="nv">person</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">id</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">name</span> <span class="s">&#34;john doe&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">age</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以指定默认类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defstruct</span> <span class="nv">person</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">id</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">name</span> <span class="s">&#34;john doe&#34;</span> <span class="ss">:type</span> <span class="nc">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">age</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建">创建</h3>
+<p>使用make-&lt;structure-name&gt;, 对于上面的person 使用make-person</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">me</span> <span class="p">(</span><span class="nv">make-person</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; =&gt; ME</span>
+</span></span><span class="line"><span class="cl"><span class="nv">me</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;;=&gt; #S(PERSON :ID NIL :NAME &#34;john doe&#34; :AGE NIL)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以使用关键字指定参数值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">me</span> <span class="p">(</span><span class="nv">make-person</span> <span class="ss">:name</span> <span class="mi">123</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还可以自定义构造函数，但是一旦自定义了构造函数，那么默认构造函数就将不发再被使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defstruct</span> <span class="p">(</span><span class="nv">person</span> <span class="p">(</span><span class="ss">:constructor</span> <span class="nv">create-person</span> <span class="p">(</span><span class="nv">id</span> <span class="nv">name</span> <span class="nv">age</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">id</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">name</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">age</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="访问slot的值">访问slot的值</h3>
+<p>structure被定义后，会自动定义 &lt;name-of-the-struct&gt;-+slot-name这样的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">person-name</span> <span class="nv">me</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置slot的值">设置slot的值</h3>
+<p>使用setf来设置值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">person-name</span> <span class="nv">me</span><span class="p">)</span> <span class="s">&#34;Cookbook author&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断类型">判断类型</h3>
+<p>就像默认构造，默认也会生成断言函数来判断类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">person-p</span> <span class="nv">me</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="限制">限制</h3>
+<p>在定义改变后，实例并不会更新</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">defstruct</span> <span class="nv">person</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">id</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nv">name</span> <span class="s">&#34;john doe&#34;</span> <span class="ss">:type</span> <span class="nc">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">email</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">attempt</span> <span class="nv">to</span> <span class="nv">redefine</span> <span class="k">the</span> <span class="nv">STRUCTURE-OBJECT</span> <span class="nc">class</span> <span class="nv">PERSON</span>
+</span></span><span class="line"><span class="cl"><span class="nv">incompatibly</span> <span class="nv">with</span> <span class="k">the</span> <span class="nv">current</span> <span class="nv">definition</span>
+</span></span><span class="line"><span class="cl"><span class="nv">[Condition</span> <span class="nv">of</span> <span class="k">type</span> <span class="nv">SIMPLE-ERROR]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">Restarts:</span>
+</span></span><span class="line"><span class="cl"><span class="nv">0:</span> <span class="nv">[CONTINUE]</span> <span class="nv">Use</span> <span class="k">the</span> <span class="nv">new</span> <span class="nv">definition</span> <span class="nv">of</span> <span class="nv">PERSON,</span> <span class="nv">invalidating</span> <span class="nv">already-loaded</span> <span class="nv">code</span> <span class="nb">and</span> <span class="nv">instances.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">1:</span> <span class="nv">[RECKLESSLY-CONTINUE]</span> <span class="nv">Use</span> <span class="k">the</span> <span class="nv">new</span> <span class="nv">definition</span> <span class="nv">of</span> <span class="nv">PERSON</span> <span class="nv">as</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">were</span> <span class="nv">compatible,</span> <span class="nv">allowing</span> <span class="nv">old</span> <span class="nv">accessors</span> <span class="nv">to</span> <span class="nv">use</span> <span class="nv">new</span> <span class="nv">instances</span> <span class="nb">and</span> <span class="nv">allowing</span> <span class="nv">new</span> <span class="nv">accessors</span> <span class="nv">to</span> <span class="nv">use</span> <span class="nv">old</span> <span class="nv">instances.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">2:</span> <span class="nv">[CLOBBER-IT]</span> <span class="p">(</span><span class="nv">deprecated</span> <span class="nv">synonym</span> <span class="nv">for</span> <span class="nv">RECKLESSLY-CONTINUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">3:</span> <span class="nv">[RETRY]</span> <span class="nv">Retry</span> <span class="nv">SLIME</span> <span class="nv">REPL</span> <span class="nv">evaluation</span> <span class="nv">request.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">4:</span> <span class="nv">[*ABORT]</span> <span class="nv">Return</span> <span class="nv">to</span> <span class="nv">SLIME</span><span class="ss">&#39;s</span> <span class="nv">top</span> <span class="nv">level.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">5:</span> <span class="nv">[ABORT]</span> <span class="nf">abort</span> <span class="nv">thread</span> <span class="p">(</span><span class="err">#</span><span class="nv">&lt;THREAD</span> <span class="s">&#34;repl-thread&#34;</span> <span class="nv">RUNNING</span> <span class="nv">{1002A0FFA3}&gt;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>CLOS<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">CLOS是没有这种限制的 后面会介绍到</div>
+        </div>
+    </div>
+<h2 id="tree">Tree</h2>
+<p>tree-equal,copy-tree. 会自顶向下递归进入cons cell 的car 和 cdr</p>
+<h3 id="sycamore-purely-functional-weight-balanced-binary-trees">Sycamore purely functional weight-balanced binary trees</h3>
+<p><a href="https://github.com/ndantam/sycamore" target="_blank" rel="noopener noreffer ">https://github.com/ndantam/sycamore</a></p>
+<p>Features:</p>
+<ul>
+<li>Fast, purely functional weight-balanced binary trees.</li>
+<li>Leaf nodes are simple-vectors, greatly reducing tree height.</li>
+<li>Interfaces for tree Sets and Maps (dictionaries).</li>
+<li>Ropes</li>
+<li>Purely functional pairing heaps</li>
+<li>Purely functional amortized queue.</li>
+</ul>
+<h2 id="控制打印多少数据-print-length-print-level">控制打印多少数据 \*print-length\*, \*print-level\*)</h2>
+<p>print-length 和 print-level默认都为nil
+默认，如果你有一个非常长的list, 那么在REPL中打印就会非常的长。使用print-length 控制打印元素的最大数量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nb">setf</span> <span class="vg">*print-length*</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nc">list</span> <span class="ss">:A</span> <span class="ss">:B</span> <span class="ss">:C</span> <span class="ss">:D</span> <span class="ss">:E</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (:A :B ...)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>print-level用来控制打印的深度</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="vg">*print-level*</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nf">print</span> <span class="o">&#39;</span><span class="p">(</span><span class="ss">:a</span> <span class="p">(</span><span class="ss">:b</span> <span class="p">(</span><span class="ss">:c</span> <span class="p">(</span><span class="ss">:d</span> <span class="ss">:e</span><span class="p">))))))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (:A (:B #))             &lt;= *print-level* in action</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; (:A (:B (:C (:D :E))))  &lt;= the list is returned, the let binding is not in effect anymore.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-05&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/6d0da5d08814c17a94c084921f5fef035e014035" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 6d0da5d08814c17a94c084921f5fef035e014035: temp sync">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6d0da5d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/data_structure/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/data_structure/" data-title="Common-Lisp data_structure" data-hashtags="common-lisp"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/data_structure/" data-hashtag="common-lisp"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/data_structure/" data-title="Common-Lisp data_structure"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/data_structure/" data-title="Common-Lisp data_structure"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/data_structure/" data-title="Common-Lisp data_structure"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/common-lisp/">common-lisp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/input_output/" class="prev" rel="prev" title="Common-Lisp Input-Output"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Common-Lisp Input-Output</a>
+            <a href="/function/" class="next" rel="next" title="Common-Lisp function">Common-Lisp function<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.104.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,4 +1,4 @@
-# common lisp 函数
+# Common-Lisp function
 
 
 <!--more-->
