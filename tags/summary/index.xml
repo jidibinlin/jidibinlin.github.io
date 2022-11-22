@@ -1,24 +1,16 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>gamedev - Category - jidibinlin`s blog site</title>
-        <link>https://jidibinlin.github.io/categories/gamedev/</link>
-        <description>gamedev - Category - jidibinlin`s blog site</description>
+        <title>summary - Tag - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/tags/summary/</link>
+        <description>summary - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/gamedev/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/summary/" rel="self" type="application/rss+xml" /><item>
     <title>工作总结(2022)–如何正确重启游戏服务以及流量管理的必要</title>
     <link>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <pubDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</pubDate>
     <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
     <description><![CDATA[这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。]]></description>
-</item>
-<item>
-    <title>actor 模型介绍和感悟</title>
-    <link>https://jidibinlin.github.io/introduction/</link>
-    <pubDate>Tue, 04 Oct 2022 22:04:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/introduction/</guid>
-    <description><![CDATA[actor 介绍和感悟]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,204 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>工作总结(2022)–如何正确重启游戏服务以及流量管理的必要 - jidibinlin`s blog site</title><meta name="Description" content="这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。"><meta property="og:title" content="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要" />
+<meta property="og:description" content="这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-22T14:23:00+08:00" />
+<meta property="article:modified_time" content="2022-11-22T17:22:29+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要"/>
+<meta name="twitter:description" content="这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。"/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><link rel="prev" href="https://jidibinlin.github.io/longest_palindromic_substring/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "工作总结(2022)–如何正确重启游戏服务以及流量管理的必要",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "summary","wordcount":  44 ,
+        "url": "https:\/\/jidibinlin.github.io\/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8\/","datePublished": "2022-11-22T14:23:00+08:00","dateModified": "2022-11-22T17:22:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": "这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">工作总结(2022)–如何正确重启游戏服务以及流量管理的必要</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/summary/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>summary</a>&nbsp;<a href="/categories/gamedev/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>gamedev</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-22">2022-11-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;44 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="leancloud_visitors" data-flag-title="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#起源-一个发版工具">起源： 一个发版工具</a></li>
+    <li><a href="#如何解决这个问题">如何解决这个问题</a>
+      <ul>
+        <li><a href="#规范的结束进程">规范的结束进程</a></li>
+        <li><a href="#流量控制">流量控制</a></li>
+        <li><a href="#关服流程">关服流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>昨天突然被告知公司的项目上线运营的这段时间，数据反馈不好没法大推，公司无奈只能将我所在的项目组给停掉。于是我顺利的被迫失业了。虽然有挺多不甘的，但是在这一年的工作中我还是学习和实践了很多的东西。在我重新收拾好自己出去找工作之前，先对今年的工作进行一系列的总结吧。这些总结来自我在项目中实践得来的感悟，可能会有很多的主观看法。</p>
+<p>在今年的工作中，随着毕业后经验的积累,我对公司的项目是有一些想提出来的。但是碍于我的资历太浅（另外两个同事都是有家室的人了, 资历比我深很多），有一些意见可能会带来冲突，所以我选择藏在心里。那么离职之后，我就会想通过博客将自己的一些优化的意见反思总结，然后写成博客的形式进行总结。当然也会包括一些我敢于提出并且被采纳的意见的总结。</p>
+<p>同一系列的还有我在写业务的时候的一些心得，还有关于项目管理上面的一些意见。今年干的活除了写业务，还涉及到一些关于运维上面的工作。总的来说干得活会比较杂，看的代码也很多，看的多，自然就会发现一些问题。</p>
+<p>这篇文章来自于我在为公司写一个发版工具的时候，在服务器重启流程上的一个疏漏，这个疏漏引发了我对如何正确重启服务的思考。</p>
+<h2 id="起源-一个发版工具">起源： 一个发版工具</h2>
+<p>因为公司的项目上线之后，管理的服务器也许不是一台两台的事情，每次更新版本还需要手动ssh上去重启的话就是一件不合理的事情了（公司第一次做在线游戏，这方面的流程还处在摸索阶段）。所以我的老大找到我让我给他写一个发版的工具，要求能够帮助他分发配置文件，和重启服务器。而问题也就出在重启服务器的流程上。</p>
+<p>虽然我对重启服务器的流程已经做了思考，但是还是忽略了一些东西。后端的项目在结束进程上是不规范的，结束进程是直接使用 <strong>kill -9</strong> 的杀无赦策略。这意味着结束进程的时候，不会给进程任何的反应机会直接将进程杀掉。</p>
+<p>而进程中的业务在不知情的情况下，还在对数据库进行操作。那么这样的话就可能会导致数据库的数据会出现问题。假设我有一个业务操作要分别对数据库进行两次写入操作，这两次操作我分别称作A 和 B。那么在A 执行的过后，进程被杀掉B没有被执行，这个时候这个业务操作就会陷入只执行了一半的尴尬情况。</p>
+<p>另外，强制杀死进程还会导致数据库的链接没有关闭，无端占用数据库链接的问题。</p>
+<h2 id="如何解决这个问题">如何解决这个问题</h2>
+<p>对于这个问题的解决，简单但是不严谨的方式是，先把gateway这样的流量代理服务给停掉，然后后等一会在把游戏的业务服务器给关掉。之所以说简单，因为这种方法确实简单，之所以说不严谨，就是这个 <strong>等一会</strong> ，到底是等多久。而且这种方式还是没法解决数据库链接被占用的问题。</p>
+<p>在没有对服务内部进行监控的情况下，你根本不可能精确的知道服务内部到底是一个怎样的状态。这个 <strong>等一会</strong> ，你就只能是靠猜测。所以1.我们需要对服务内部的流量进行监控，2.进程的结束要更加规范化。</p>
+<h3 id="规范的结束进程">规范的结束进程</h3>
+<p>上面提到 <strong>kill -9</strong> 属于杀无赦的结束进程方式，只能在迫不得已的情况下才能使用。根据posix的规范，其实还有别的级别比较高的终止进程的信号比如 <strong>term</strong> 。</p>
+<p>强制杀死进程是不会给程序反应机会的，停止进程应该是通知进程我想让你停止，请你做自己做好内部状态的维护然后自己退出进程。两者的区别在于，前者不会留给进程反应机会，而后者会。在这个反应的时间内，进程可以检测内部的状态，直到状态符合推出进程的要求时，再退出进程。这样才能对流程的控制力才会更强，减少了灰色地带出现的可能性。</p>
+<h3 id="流量控制">流量控制</h3>
+<p>这里的流量控制并不是gateway层面的流量控制。而是业务服务器对自身内部正在执行的业务的流量控制。划分原则是：进入gateway 但是还没进业务服务器，我们就叫gateway层面的流量控制，而流量一旦进入业务服务器了，我们就叫业务层流量控制。</p>
+<p>业务层的流量控制我们需要关心的是这个业务流量对应的生命周期。在流量进入业务服务器，我们说这个业务开始了，流量对应的业务执行完后，我们说这个业务的生命结束我们消耗了一条流量。</p>
+<p>当然这种对业务流量的监控可能会导致一些性能上的退化，所以我建议使用队列，单独开一个线程去处理,只要不阻塞业务逻辑线程就行。具体实现方式的话，你可以用一个hashmap去存储进入的流量，想流量的key传递下去，等业务处理完毕，将key push到管理流量消费队列里面去,让消费队列的线程异步去将流量关闭就好。实现其实可以很多样和优雅，这也是编程的魅力所在。</p>
+<h3 id="关服流程">关服流程</h3>
+<p>有了流量控制，我们就知道了当前服务器还有多少的逻辑没有处理完毕。这时，我们就可以配合term信号去处理关服了。流程如下图。</p>
+<figure><img src="/ox-hugo/%e5%85%b3%e6%9c%8d%e6%b5%81%e7%a8%8b.png"/>
+</figure>
+
+<h2 id="总结">总结</h2>
+<p>其实要点在于，服务内部状态要做到心中有数。程序自身应该明确知道在某种状态下可不可以退出进程。严格禁止使用 -9 去停止进程除非迫不得已。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-11-22&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/4f9555b48c1080bccb6b9815b12839c9044e23f4" target="_blank" title="commit by jidibinlin(2694273649@qq.com) 4f9555b48c1080bccb6b9815b12839c9044e23f4: 工作总结(2022)--如何正确重启游戏服务以及流量管理的必要">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>4f9555b</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要" data-hashtags="summary"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-hashtag="summary"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-title="工作总结(2022)–如何正确重启游戏服务以及流量管理的必要"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/summary/">summary</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/longest_palindromic_substring/" class="prev" rel="prev" title="longest palindromic substring"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>longest palindromic substring</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
