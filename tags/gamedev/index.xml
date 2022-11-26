@@ -4,7 +4,15 @@
         <link>https://jidibinlin.github.io/tags/gamedev/</link>
         <description>gamedev - Tag - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Oct 2022 22:04:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/gamedev/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/gamedev/" rel="self" type="application/rss+xml" /><item>
+    <title>工作总结(2022)–服务器列表更新</title>
+    <link>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[服务器列表动态更新的一些思考]]></description>
+</item>
+<item>
     <title>actor 模型介绍和感悟</title>
     <link>https://jidibinlin.github.io/introduction/</link>
     <pubDate>Tue, 04 Oct 2022 22:04:00 &#43;0800</pubDate>

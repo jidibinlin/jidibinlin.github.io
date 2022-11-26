@@ -4,7 +4,15 @@
         <link>https://jidibinlin.github.io/categories/gamedev/</link>
         <description>gamedev - Category - jidibinlin`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/gamedev/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/gamedev/" rel="self" type="application/rss+xml" /><item>
+    <title>工作总结(2022)–服务器列表更新</title>
+    <link>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[服务器列表动态更新的一些思考]]></description>
+</item>
+<item>
     <title>工作总结(2022)–如何正确重启游戏服务以及流量管理的必要</title>
     <link>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E9%87%8D%E5%90%AF%E6%B8%B8%E6%88%8F%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <pubDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</pubDate>
