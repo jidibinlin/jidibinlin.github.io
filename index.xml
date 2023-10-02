@@ -4,9 +4,17 @@
         <link>https://jidibinlin.github.io/</link>
         <description>a heart boy`s blog site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
-            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</lastBuildDate>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jidibinlin.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Context与链路，如何用Context对抗协程泄漏</title>
+    <link>https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/</link>
+    <pubDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>工作总结(2022)–服务器列表更新</title>
     <link>https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <pubDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</pubDate>
@@ -77,14 +85,6 @@
     <author>jidibinlin</author>
     <guid>https://jidibinlin.github.io/introduction/</guid>
     <description><![CDATA[actor 介绍和感悟]]></description>
-</item>
-<item>
-    <title>golang syntax</title>
-    <link>https://jidibinlin.github.io/syntax/</link>
-    <pubDate>Tue, 04 Oct 2022 21:50:00 &#43;0800</pubDate>
-    <author>jidibinlin</author>
-    <guid>https://jidibinlin.github.io/syntax/</guid>
-    <description><![CDATA[golang的语法基础: 编程语言的语法总是离不开三件套，变量，函数，控制结构. 这里着重介绍golang这三部分的基础知识.]]></description>
 </item>
 </channel>
 </rss>

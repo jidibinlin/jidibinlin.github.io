@@ -1,38 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Even - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on Even - A super concise theme for Hugo</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 28 Mar 2022 20:39:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>leetcode</title>
-      <link>http://localhost:1313/categories/leetcode/</link>
-      <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/categories/leetcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>http://localhost:1313/categories/go/</link>
-      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/categories/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cpp</title>
-      <link>http://localhost:1313/categories/cpp/</link>
-      <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/categories/cpp/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - Category - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/categories/</link>
+        <description>Categories - Category - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>golang</title>
+    <link>https://jidibinlin.github.io/categories/golang/</link>
+    <pubDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/golang/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>gamedev</title>
+    <link>https://jidibinlin.github.io/categories/gamedev/</link>
+    <pubDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/gamedev/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>summary</title>
+    <link>https://jidibinlin.github.io/categories/summary/</link>
+    <pubDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/summary/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>leetcode</title>
+    <link>https://jidibinlin.github.io/categories/leetcode/</link>
+    <pubDate>Tue, 04 Oct 2022 23:49:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/leetcode/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>divide-and-conquer</title>
+    <link>https://jidibinlin.github.io/categories/divide-and-conquer/</link>
+    <pubDate>Tue, 04 Oct 2022 23:39:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/divide-and-conquer/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>interval-scheduling</title>
+    <link>https://jidibinlin.github.io/categories/interval-scheduling/</link>
+    <pubDate>Tue, 04 Oct 2022 22:27:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/interval-scheduling/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>tools</title>
+    <link>https://jidibinlin.github.io/categories/tools/</link>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/tools/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>game-dev</title>
+    <link>https://jidibinlin.github.io/categories/game-dev/</link>
+    <pubDate>Tue, 04 Oct 2022 22:08:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/game-dev/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>GoGameActor</title>
+    <link>https://jidibinlin.github.io/categories/gogameactor/</link>
+    <pubDate>Tue, 04 Oct 2022 22:08:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/gogameactor/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>lisp</title>
+    <link>https://jidibinlin.github.io/categories/lisp/</link>
+    <pubDate>Tue, 04 Oct 2022 21:39:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/categories/lisp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>

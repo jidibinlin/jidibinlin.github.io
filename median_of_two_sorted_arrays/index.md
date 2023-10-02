@@ -6,9 +6,8 @@
 
 ## Description {#description}
 
-Given two sorted arrays nums1 and nums2 of size m and n respectively, return the
-median of the two sorted arrays. The overall run time complexity should be O(log
-(m+n)).
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two
+sorted arrays. The overall run time complexity should be O(log (m+n)).
 
 来源：力扣（LeetCode）
 链接：<https://leetcode-cn.com/problems/median-of-two-sorted-arrays>
@@ -57,27 +56,26 @@ median of the two sorted arrays. The overall run time complexity should be O(log
 
 ## Analyse {#analyse}
 
-这道题最简单的想法就是先归并到一个数组，然后再把中位数找到，但是此时的时间复杂度
-为\\(o(m+n)\\) 不符合题意。题目要求的是 \\(o(\log(m+n))\\) 。此时我们能想到的应该就只有
-二分法了，对于有序数组，二分法总能非常有效的降低算法的复杂度。但是如何二分成为一
-个问题。中位数指的是一个数列中间的数。设 len = len(array) 这里的/为整除
+这道题最简单的想法就是先归并到一个数组，然后再把中位数找到，但是此时的时间复杂度为\\(o(m+n)\\) 不符合题
+意。题目要求的是 \\(o(\log(m+n))\\) 。此时我们能想到的应该就只有二分法了，对于有序数组，二分法总能非常有
+效的降低算法的复杂度。但是如何二分成为一个问题。中位数指的是一个数列中间的数。设 len = len(array) 这
+里的/为整除
 
 \begin{equation}
 \label{中位数公式}
-    medium = \begin{cases}
-    \frac{array[len/2-1] + array[len/2]}{2} &len\mod 2=0 \\\\
-    \frac{array[len/2-1]}{2}& len\mod 2\neq 0
+    medium =\begin{cases}
+    \dfrac{array[len/2-1] + array[len/2]}{2} \qquad &len\mod 2=0 && \\\\
+    \dfrac{array[len/2-1]}{2} \qquad &len\mod 2\neq 0
 \end{cases}
 \end{equation}
 
-这道题是寻找两个有序数组的中位数，我们可以姑且假设他们已经合并后的数组为 **nums3**
-我们要在nums3中寻找中位数。此时 **nums3** 的长度我们是知道的(m+n) 那么其中位数的应该
-为第 k= \\(\frac{m+n}{2}\\) 个数（这里我们先只看奇数情况。这时我们可以对k进行二分处
-理，分别找到两个s数组中第\\(\frac{k}{2}\\) 个数进行比较，然后排除较小的以及它所在数
-组中在它前面的数。因为他们是不可能成为中位数的。对于 nums1[k/2-1] 和
-nums2[k/2-1] 在它们之前的只有 k/2-1 + k/2-1 = k -2 个数。即使算上较小的那个数，
-也只能到第k-1个数。所以他们是不可能成为第k个数的。这时我们让 k = k-A(A为已经排除
-的数的个数) 然后继续对剩下的数组进行同样的操作。 这里会出现两种情况
+这道题是寻找两个有序数组的中位数，我们可以姑且假设他们已经合并后的数组为 **nums3\*我们要在nums3中寻找中
+位数。此时 \*nums3** 的长度我们是知道的(m+n) 那么其中位数的应该为第 k= \\(\frac{m+n}{2}\\) 个数（这里我们先
+只看奇数情况。这时我们可以对k进行二分处理，分别找到两个s数组中第\\(\frac{k}{2}\\) 个数进行比较，然后排除
+较小的以及它所在数组中在它前面的数。因为他们是不可能成为中位数的。对于 nums1[k/2-1] 和nums2[k/2-1]
+在它们之前的只有 k/2-1 + k/2-1 = k -2 个数。即使算上较小的那个数，也只能到第k-1个数。所以他们是不可
+能成为第k个数的。这时我们让 k = k-A(A为已经排除的数的个数) 然后继续对剩下的数组进行同样的操作。 这里
+会出现两种情况
 
 1.  如果 nums1[k/2-1] &gt;= nums2[k/2-1] 则直接排除nums1[k/2-1] 及其前面的数
 2.  如果 nums1[k/2-1] &lt; nums2[k/2-1] 则直接排除nums2[k/2-1] 及其前面的数
@@ -222,7 +220,6 @@ func min(x, y int) int {
 
 ## summery {#summery}
 
-这道题对二分的运用比较灵活，主要是二分的对象变了，但是思想还在。正常的二分是对数
-组的长度进行二分，而此题的二分却是先确定中位数的位置，再利用二分的思想去到两个数
-组中分别寻找排除，非常巧妙，受益匪浅。
+这道题对二分的运用比较灵活，主要是二分的对象变了，但是思想还在。正常的二分是对数组的长度进行二分，而
+此题的二分却是先确定中位数的位置，再利用二分的思想去到两个数组中分别寻找排除，非常巧妙，受益匪浅。
 

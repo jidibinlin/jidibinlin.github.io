@@ -1,110 +1,88 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Even - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/</link>
-    <description>Recent content in Tags on Even - A super concise theme for Hugo</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 28 Mar 2022 20:39:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>double-point</title>
-      <link>http://localhost:1313/tags/double-point/</link>
-      <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/double-point/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>leetcode</title>
-      <link>http://localhost:1313/tags/leetcode/</link>
-      <pubDate>Mon, 28 Mar 2022 20:39:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/leetcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>array</title>
-      <link>http://localhost:1313/tags/array/</link>
-      <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>binary_search</title>
-      <link>http://localhost:1313/tags/binary_search/</link>
-      <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/binary_search/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>divide_and_conquer</title>
-      <link>http://localhost:1313/tags/divide_and_conquer/</link>
-      <pubDate>Mon, 28 Mar 2022 20:07:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/divide_and_conquer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dynamic-programming</title>
-      <link>http://localhost:1313/tags/dynamic-programming/</link>
-      <pubDate>Mon, 28 Mar 2022 16:54:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/dynamic-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linked-list</title>
-      <link>http://localhost:1313/tags/linked-list/</link>
-      <pubDate>Mon, 28 Mar 2022 16:52:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/linked-list/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>functionalOptions</title>
-      <link>http://localhost:1313/tags/functionaloptions/</link>
-      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/functionaloptions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>http://localhost:1313/tags/go/</link>
-      <pubDate>Mon, 28 Mar 2022 16:49:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cpp</title>
-      <link>http://localhost:1313/tags/cpp/</link>
-      <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/cpp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>singleton</title>
-      <link>http://localhost:1313/tags/singleton/</link>
-      <pubDate>Mon, 28 Mar 2022 16:46:00 +0800</pubDate>
-      
-      <guid>http://localhost:1313/tags/singleton/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - jidibinlin`s blog site</title>
+        <link>https://jidibinlin.github.io/tags/</link>
+        <description>Tags - Tag - jidibinlin`s blog site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>2694273649@qq.com (jidibinlin)</managingEditor>
+            <webMaster>2694273649@qq.com (jidibinlin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</lastBuildDate><atom:link href="https://jidibinlin.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>golang</title>
+    <link>https://jidibinlin.github.io/tags/golang/</link>
+    <pubDate>Sun, 01 Oct 2023 22:55:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/golang/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>gamedev</title>
+    <link>https://jidibinlin.github.io/tags/gamedev/</link>
+    <pubDate>Tue, 22 Nov 2022 20:30:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/gamedev/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>summary</title>
+    <link>https://jidibinlin.github.io/tags/summary/</link>
+    <pubDate>Tue, 22 Nov 2022 14:23:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/summary/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>dynamic-programming</title>
+    <link>https://jidibinlin.github.io/tags/dynamic-programming/</link>
+    <pubDate>Tue, 04 Oct 2022 23:49:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/dynamic-programming/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>leetcode</title>
+    <link>https://jidibinlin.github.io/tags/leetcode/</link>
+    <pubDate>Tue, 04 Oct 2022 23:42:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/leetcode/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>divide-and-conquer</title>
+    <link>https://jidibinlin.github.io/tags/divide-and-conquer/</link>
+    <pubDate>Tue, 04 Oct 2022 23:39:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/divide-and-conquer/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>common-lisp</title>
+    <link>https://jidibinlin.github.io/tags/common-lisp/</link>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/common-lisp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>emacs</title>
+    <link>https://jidibinlin.github.io/tags/emacs/</link>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/emacs/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>lisp</title>
+    <link>https://jidibinlin.github.io/tags/lisp/</link>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/lisp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>tools</title>
+    <link>https://jidibinlin.github.io/tags/tools/</link>
+    <pubDate>Tue, 04 Oct 2022 22:13:00 &#43;0800</pubDate>
+    <author>jidibinlin</author>
+    <guid>https://jidibinlin.github.io/tags/tools/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>

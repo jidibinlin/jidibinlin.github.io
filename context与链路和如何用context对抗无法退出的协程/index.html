@@ -1,0 +1,411 @@
+
+<script src="https://jidibinlin.github.io/js/mathjax-config.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Context与链路，如何用Context对抗协程泄漏 - jidibinlin`s blog site</title><meta name="Description" content="a heart boy`s blog site"><meta property="og:title" content="Context与链路，如何用Context对抗协程泄漏" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" /><meta property="og:image" content="https://jidibinlin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-01T22:55:00+08:00" />
+<meta property="article:modified_time" content="2023-10-02T17:42:06+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jidibinlin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Context与链路，如何用Context对抗协程泄漏"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="jidibinlin`s blog site">
+<meta name="apple-mobile-web-app-title" content="jidibinlin`s blog site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" /><link rel="prev" href="https://jidibinlin.github.io/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Context与链路，如何用Context对抗协程泄漏",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jidibinlin.github.io\/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B\/"
+        },"image": ["https:\/\/jidibinlin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "golang","wordcount":  276 ,
+        "url": "https:\/\/jidibinlin.github.io\/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B\/","datePublished": "2023-10-01T22:55:00+08:00","dateModified": "2023-10-02T17:42:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/jidibinlin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "jidibinlin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="jidibinlin`s blog site"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/jidibinlin/" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Context与链路，如何用Context对抗协程泄漏</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://jidibinlin.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>jidibinlin</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>golang</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-01">2023-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;276 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Context与链路，如何用Context对抗协程泄漏">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#链路">链路</a></li>
+    <li><a href="#context-plus-链路如何与日志结合">Context+链路如何与日志结合</a>
+      <ul>
+        <li><a href="#单物理节点单协程处理方式">单物理节点单协程处理方式:</a></li>
+        <li><a href="#单物理节点但是多协程处理方式">单物理节点但是多协程处理方式</a></li>
+        <li><a href="#多物理节点处理方式">多物理节点处理方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#context-要如何与协程泄漏对抗">Context 要如何与协程泄漏对抗</a>
+      <ul>
+        <li><a href="#协程阻塞检测">协程阻塞检测</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>关于如何将Context与链路结合，如何使用Context 去对抗可能会阻塞的协程(因io阻塞/因不小心写出了死循环)。
+如何在不同的框架模型中建立链路(单物理节点单协程，多物理节点，单物理节点但是多协程)</p>
+<h2 id="引言">引言</h2>
+<ol>
+<li>为何会引发链路与Context结合的讨论: 在我工作的公司，有一个大拿提出了在项目中引入链路id的概念。虽然以前在使用goframe的时候有使用过这个东西，但是goframe是web框架的。在游戏框架中引入这一概念对我来说非常新颖，加之大拿引入的链路偏web向，所以我觉得是有使他更适合我们当前游戏框架的优化空间的。</li>
+<li>为何会引发使用Context去对协程泄漏的思考: 使用golang有差不多2年了，一直有个疑惑——golang不提供从协程外部强制退出协程的能力，那么正在线上狂奔的程序就会有概率遇到无法退出协程的情况。对于一个完备的语言，没有相关的措施是不太合理的。一个月前偶然一次询问ai+国庆前两天的处理链路的思考让我突然想明白了这个问题。</li>
+</ol>
+<h2 id="context">Context</h2>
+<p>Context是Go语言中的一个标准库，用于在程序中传递请求范围的值、取消信号和截止时间。它可以用于控制goroutine的生命周期，避免资源泄漏和提高程序的可读性和可维护性。在并发编程中，Context是一个非常有用的工具，可以帮助我们优雅地处理并发请求。</p>
+<p>在golang中, Context 是一个树形结构，每个context都可以有一个父Context和多个子Context。当一个Context被取消的时候，他所有的子Context都会被取消。基于这种树形结构设计，我们有了管理并发请求，避免goroutine泄漏的能力。</p>
+<p>当下使用golang的作为游戏框架语言的公司并不多，广州应该还是一水的lua。而正在用golang作为框架语言的，很可能也是当初那帮写lua的大拿。这让我发现了一个问题，就是对于context的应用其实并不多(具体原因会比较复杂，这里就不讨论了)。但是context可以说在控制goroutine的生命周期，和一些特殊场景下无法绕开的话题。</p>
+<p>Context能做到的事情有以下这几个方面</p>
+<ol>
+<li>控制goroutine的生命周期，可以在需要的时候取消goroutine的执行。</li>
+<li>传值，可以使用context在整个请求的链路中传递context(context可以被塞入键值对),避免函数之间传递大量的参数。</li>
+<li>控制请求处理超时，给context设置截止时间，超过指定时间以后，自动取消goroutine的执行()</li>
+</ol>
+<h2 id="链路">链路</h2>
+<p>链路是一个请求发起之后-&gt;请求处理完毕之后，所经历的所有函数/远程消息调用形成的路径。但是单纯的链路只是一个概念，具有讨论意义的是可观测的链路，下文中如果不特殊说明，我们说的链路就指代可观测链路。</p>
+<p>链路的可观测性在性能，和日志分析上有非常大的意义。</p>
+<ol>
+<li>性能: 我们可以在每个链路节点产生和消亡/去往下一个节点的时候计算节点与节点之间传递所消耗的时间。通过观察所有节点间传递消耗的时间，我们可以找到性能瓶颈存在于链路的那个环节</li>
+<li>日志: 处理过日志的伙伴应该都知道，日志没有根据用户id/链路id进行标志的话，日志是难以进行分析的  (因为日志过于杂乱)。有了链路id后，我们就可以很方便的通过过滤收集到整个链路的日志。</li>
+</ol>
+<p>观测链路是有一些方式的</p>
+<ol>
+<li>直接使用日志进行纪录</li>
+<li>搭建专门的链路收集服务。</li>
+</ol>
+<p>第一种方式会相对简单，易于实现，坏处是如果有多个物理节点，就需要挨个去差日志。第二种方式会相对重量级一些，好处是，有专门的服务收集链路，链路的查看会更加集中，有更好的拓展性。</p>
+<p>需要注意的是如果存在不止一个物理节点，还需要在各种中间件上想办法嵌入链路id和物理节点id，以防止不知道链路的某一环究竟跑在哪一台物理节点上了。</p>
+<h2 id="context-plus-链路如何与日志结合">Context+链路如何与日志结合</h2>
+<h3 id="单物理节点单协程处理方式">单物理节点单协程处理方式:</h3>
+<p>前面有提到过Context可以用于传值, 我们可以在收到请求后，生成链路的id，塞入Context进而一层一层的在整个链路中传递。</p>
+<p>一种做法是我们可以将Log封在Context中。这里只是给出思想，并配上简单的代码说明。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">fooContext</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">traceId</span> <span class="kt">string</span> <span class="c1">// 为了叙述方便这里并没有用到context提供的接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fooContext</span><span class="p">)</span> <span class="nf">TraceId</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nx">traceId</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">fooContext</span><span class="p">)</span> <span class="nf">LogError</span><span class="p">(</span><span class="nx">format</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">args</span> <span class="o">...</span><span class="kd">interface</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;[%d:] &#34;</span><span class="o">+</span><span class="nx">format</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">TraceId</span><span class="p">(),</span> <span class="nx">args</span><span class="o">...</span><span class="p">)</span> <span class="c1">//自动在log中拼接上链路的id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="单物理节点但是多协程处理方式">单物理节点但是多协程处理方式</h3>
+<p>如果逻辑需要分配到多个协程处理，可以基于当前的Context 派生多个Context到各个协程中去。</p>
+<p>context.WithValue这个接口会自动拷贝父Context的所有Value到生成的子Context中, 如果在Context中没有指针或者引用类型，可以粗暴共享，反之就不可以。在有指针/引用类型的情况下可能会需要借用不可变原则去设计协程间数据流转的方法。</p>
+<p>另外是，如果是多协程，有必要的情况下，还可以附带协程的id/name, 方便更好的分析。</p>
+<h3 id="多物理节点处理方式">多物理节点处理方式</h3>
+<p>多物理节点需要在跨物理节点的时候，想办法把链路信息跨到另一个物理节点去。可以考虑改造rpc，或者协议封装附带的方式。</p>
+<p>在物理节点内部可以参考单节点的处理方式和注意点。</p>
+<h2 id="context-要如何与协程泄漏对抗">Context 要如何与协程泄漏对抗</h2>
+<p>首先需要讨论为何goroutine会泄漏。可能有些小伙伴会说，因为go不提供强制关闭goroutine的能力，所以才会泄漏。但是在我了解到的是，这么设计是基于一些原因的（我不说，你别问，因为我也是不甚了解）。先看下这两种情况</p>
+<ol>
+<li>io阻塞(这里用chan模拟以下这种场景)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">foo</span> <span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">_</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">foo</span> <span class="c1">// 没人往foo中写数据的时候，这里会阻塞
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fooChan</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="k">go</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">fooChan</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 等待一段时间，以便doSomething协程可以执行一段时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>有个叼毛写了死循环
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doSomething</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 死循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">go</span> <span class="nf">doSomething</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 等待一段时间，以便doSomething协程可以执行一段时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>上面两种情况，都反应了一个问题。在编写这段代码的时候，没有好好的处理阻塞这个异常情况，所以才会导致泄漏。在第二中情况下，有些老鸟甚至会告诉你你可以写一个会循环很多次的循环，但是不要写一个有可能真的无法退出的循环。我猜测，go在设计的时候，也认为这种问题应该由编码的人自行妥善处理，而不是由语言提供粗暴的强制关闭。</p>
+<p>前面有提到过, 在golang中, Context 是一个树形结构，每个context都可以有一个父context和多个子context。当一个context被取消的时候，他所有的子context都会被取消。基于这种树形结构设计，我们有了管理并发请求，避免goroutine泄漏的能力。</p>
+<p>看下面的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 收到取消信号，退出goroutine的执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 执行任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 创建一个带有取消信号的context
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">ctx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">WithCancel</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 启动goroutine
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">go</span> <span class="nf">doSomething</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 休眠10秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 在需要的时候取消goroutine的执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">cancel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要解释的是context.Done() 这个接口会返回一个chan, 这个chan 在context.WithCancel(context.Background) 所返回的cancel()函数被调用的时候会被隐式的写入一个信号。</p>
+<p>利用信号监听，在每一个循环开始的时候，都进行ctx.Done()的监听, 如果有收到取消信号，就代表外面有人通知该协程需要退出了。</p>
+<p>如果想要避免goroutine泄漏，我们就必须遵守context的这种约定。否则，golang中并没有提供强制关闭的方法(强制关闭并非一个好方法)。一切都需要在编写程序的时候自觉遵守处理ctx.Done()的约定。目前我了解到的需要处理的场景是</p>
+<ol>
+<li>在处理阻塞的io的时候</li>
+<li>当在书写可能会死循环的循环的时候。</li>
+</ol>
+<h3 id="协程阻塞检测">协程阻塞检测</h3>
+<p>在国庆之前在和我的老大讨论防止协程泄漏的问题, 当时我们讨论到了利用一个协程监测器来查看协程是否泄漏。但是只是检测并不能解决协程泄漏的问题。基于本篇文章思考后，我想到可以将对应协程的context生成的cancel上交给检测器，当检测器判定协程泄漏后，直接利用cancel() 通知协程退出，从而最大可能的避免死循环/阻塞io站着茅坑不拉屎。</p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>就像避免内存泄漏那样, go想要避免goroutine泄漏，并没有非常保险的方法。go将这种健壮性的保证交给的编码的人来解决。</li>
+<li>链路的问题我们可以利用context来处理。</li>
+<li>链路的设计要合理，最好一个请求一个链路id, 链路的信息要完善，否则会有丢失环节的风险。</li>
+<li>涉及多个物理节点，还要考虑改造rpc接口，以附带链路信息。</li>
+<li>警惕多个协程共享context的Value会导致panic的情况。</li>
+<li>不只是context，chan的传值最好也遵循不可变原则，否则会有panic的风险。</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-02&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/d9f93c7f127e2062e751afdb249b091e15461338" target="_blank" title="commit by jidibinlin(2694273649@qq.com) d9f93c7f127e2062e751afdb249b091e15461338: blog">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d9f93c7</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" data-title="Context与链路，如何用Context对抗协程泄漏" data-hashtags="golang"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" data-hashtag="golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" data-title="Context与链路，如何用Context对抗协程泄漏"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" data-title="Context与链路，如何用Context对抗协程泄漏"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://jidibinlin.github.io/context%E4%B8%8E%E9%93%BE%E8%B7%AF%E5%92%8C%E5%A6%82%E4%BD%95%E7%94%A8context%E5%AF%B9%E6%8A%97%E6%97%A0%E6%B3%95%E9%80%80%E5%87%BA%E7%9A%84%E5%8D%8F%E7%A8%8B/" data-title="Context与链路，如何用Context对抗协程泄漏"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/golang/">golang</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93_2022_%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="prev" rel="prev" title="工作总结(2022)–服务器列表更新"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>工作总结(2022)–服务器列表更新</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.119.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://jidibinlin.github.io" target="_blank">jidibinlin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"Jidibinlin","id-2":"Jidibinlin"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
